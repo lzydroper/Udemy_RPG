@@ -1056,7 +1056,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackDuration: 0.25
-  basicAttackVelocity: {x: 3, y: 1}
+  comboAttackTime: 1
+  basicAttackVelocity:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 2.5}
+  - {x: 5, y: 3.5}
   moveSpeed: 8
   jumpForce: 12
   wallJumpForce: {x: 8, y: 12}
