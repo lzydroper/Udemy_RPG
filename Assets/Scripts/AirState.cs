@@ -12,5 +12,10 @@ public class AirState : EntityState
         {
             player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.inAirMultiplier), rb.linearVelocity.y);
         }
+
+        if (input.Player.BasicAttack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.JumpAttackState);
+        }
     }
 }

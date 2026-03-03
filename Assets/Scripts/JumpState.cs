@@ -15,7 +15,7 @@ public class JumpState : AirState
     {
         base.Update();
 
-        if (rb.linearVelocity.y < 0)
+        if (rb.linearVelocity.y < 0 && stateMachine.CurrentState != player.JumpAttackState)
         {
             stateMachine.ChangeState(player.FallState);
         }

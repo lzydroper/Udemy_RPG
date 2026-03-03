@@ -21,12 +21,14 @@ public class Player : MonoBehaviour
     public EntityState WallJumpState { get; private set; }
     public EntityState DashState { get; private set; }
     public EntityState BasicAttackState { get; private set; }
+    public EntityState JumpAttackState { get; private set; }
     
     // attack
     [Header("attack details")] 
     public float basicAttackDuration;
     public float comboAttackTime;
     public Vector2[] basicAttackVelocity;
+    public Vector2 jumpAttackVelocity;
     private Coroutine _queuedAttackCo;
     
     // move
@@ -45,9 +47,11 @@ public class Player : MonoBehaviour
     
     // collision detect
     [Header("collision detection")]
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform wallCheckTopPoint;
+    [SerializeField] private Transform wallCheckBottomPoint;
     public bool GroundDetected { get; private set; }
     public bool WallDetected { get; private set; }
 
@@ -69,6 +73,7 @@ public class Player : MonoBehaviour
         WallJumpState = new WallJumpState(this, _stateMachine, "jumpFall");
         DashState = new DashState(this, _stateMachine, "dash");
         BasicAttackState = new BasicAttackState(this, _stateMachine, "basicAttack");
+        JumpAttackState = new JumpAttackState(this, _stateMachine, "jumpAttack");
     }
 
     private void OnEnable()
@@ -105,7 +110,9 @@ public class Player : MonoBehaviour
         GroundDetected = Physics2D.Raycast(
             transform.position, Vector2.down, groundCheckDistance, groundLayer);
         WallDetected = Physics2D.Raycast(
-            transform.position, Vector2.right * facingDir, wallCheckDistance, groundLayer);
+                           wallCheckTopPoint.position, Vector2.right * facingDir, wallCheckDistance, groundLayer) &&
+                       Physics2D.Raycast(
+                           wallCheckBottomPoint.position, Vector2.right * facingDir, wallCheckDistance, groundLayer);
     }
 
     private void HandleFlip(float xVelocity)
@@ -164,8 +171,9 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(facingDir * wallCheckDistance, 0));
+        Gizmos.DrawLine(wallCheckTopPoint.position, wallCheckTopPoint.position + new Vector3(facingDir * wallCheckDistance, 0));
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(wallCheckBottomPoint.position, wallCheckBottomPoint.position + new Vector3(facingDir * wallCheckDistance, 0));
     }
 }
