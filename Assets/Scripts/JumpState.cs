@@ -19,5 +19,10 @@ public class JumpState : AirState
         {
             stateMachine.ChangeState(player.FallState);
         }
+
+        if (player.GroundDetected)
+        {
+            stateMachine.ChangeState(player.IdleState);
+        }
     }
 }
