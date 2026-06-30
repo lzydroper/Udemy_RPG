@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class StateMachine
 {
     public EntityState CurrentState { get; private set; }
@@ -11,9 +13,12 @@ public class StateMachine
 
     public void ChangeState(EntityState newState)
     {
+        string from = CurrentState.GetType().Name;
         CurrentState.Exit();
         CurrentState = newState;
+        string to = CurrentState.GetType().Name;
         CurrentState.Enter();
+        Debug.Log($"from : {from}, to: {to}");
     }
 
     public void UpdateActiveState()

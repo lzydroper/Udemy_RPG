@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
     
     #region privateMethods
     
-    private void Flip()
+    public void Flip()
     {
         transform.Rotate(0, 180, 0);
         _isFacingRight = !_isFacingRight;
