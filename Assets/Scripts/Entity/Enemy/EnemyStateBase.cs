@@ -3,11 +3,10 @@ using Core.State;
 
 namespace Entity.Enemy
 {
-    public class EnemyStateBase<TOwner, TStateType> : StateBase<TOwner, TStateType>
+    public class EnemyStateBase<TOwner> : StateBase<TOwner>
         where TOwner : EnemyBase
-        where TStateType : Enum
     {
-        public EnemyStateBase(TOwner owner, StateMachine<TStateType> stateMachine, string animBoolName) 
+        public EnemyStateBase(TOwner owner, StateMachine stateMachine, string animBoolName) 
             : base(owner, stateMachine, animBoolName)
         {
         }

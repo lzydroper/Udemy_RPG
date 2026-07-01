@@ -6,7 +6,7 @@ namespace Entity.Player.State
     {
         private bool _touchedGround;
     
-        public JumpAttackState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public JumpAttackState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }

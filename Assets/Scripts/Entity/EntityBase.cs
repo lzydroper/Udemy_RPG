@@ -14,6 +14,9 @@ namespace Entity
         #endregion
 
         #region Variables
+        
+        // state machine
+        [SerializeField] protected StateMachine fsm;
 
         // move
         protected bool isFacingRight = true;
@@ -38,11 +41,20 @@ namespace Entity
             rb = GetComponentInChildren<Rigidbody2D>();
         }
 
-        protected abstract void BuildStateMachine();
+        protected virtual void BuildStateMachine()
+        {
+            fsm = new StateMachine();
+        }
         
         #endregion
 
         #region LifecycleMethods
+
+        protected virtual void Awake()
+        {
+            FetchComponents();
+            BuildStateMachine();
+        }
 
         protected virtual void Update()
         {

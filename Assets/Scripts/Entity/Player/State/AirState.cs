@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public abstract class AirState : PlayerStateBase
     {
-        protected AirState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        protected AirState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }
@@ -18,7 +18,7 @@ namespace Entity.Player.State
                 player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.inAirMultiplier), player.rb.linearVelocity.y);
             }
 
-            if (input.Player.BasicAttack.WasPressedThisFrame())
+            if (player.InputSet.Player.BasicAttack.WasPressedThisFrame())
             {
                 stateMachine.ChangeState(PlayerStateType.JumpAttack);
             }

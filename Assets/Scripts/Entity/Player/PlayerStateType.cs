@@ -1,15 +1,15 @@
 namespace Entity.Player
 {
-    public enum PlayerStateType
+    public static class PlayerStateType
     {
-        Idle,
-        Move,
-        Jump,
-        Fall,
-        WallSlide,
-        WallJump,
-        Dash,
-        BasicAttack,
-        JumpAttack,
+        public const string Idle = "Idle";
+        public const string Move = "Move";
+        public const string Jump = "Jump";
+        public const string Fall = "Fall";
+        public const string WallSlide = "WallSlide";
+        public const string WallJump = "WallJump";
+        public const string Dash = "Dash";
+        public const string BasicAttack = "BasicAttack";
+        public const string JumpAttack = "JumpAttack";
     }
 }

@@ -6,10 +6,7 @@ namespace Entity.Enemy.Skeleton
     public class Skeleton : EnemyBase
     {
         #region Variables
-
-        // state machine
-        [SerializeField] private StateMachine<SkeletonStateType> fsm;
-
+        
         #endregion
         
         #region InheritMethods
@@ -21,7 +18,7 @@ namespace Entity.Enemy.Skeleton
         
         #endregion
 
-        #region Lifecycle
+        #region LifecycleMethods
 
         // private void Start()
         // {

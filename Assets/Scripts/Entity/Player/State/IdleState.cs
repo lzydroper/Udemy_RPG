@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public class IdleState : GroundedState
     {
-        public IdleState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public IdleState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }

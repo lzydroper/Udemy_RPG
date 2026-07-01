@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public class WallSlideState : PlayerStateBase
     {
-        public WallSlideState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public WallSlideState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }
@@ -15,7 +15,7 @@ namespace Entity.Player.State
 
             HandleWallSlide();
 
-            if (input.Player.Jump.WasPressedThisFrame())
+            if (player.InputSet.Player.Jump.WasPressedThisFrame())
             {
                 stateMachine.ChangeState(PlayerStateType.WallJump);
             }

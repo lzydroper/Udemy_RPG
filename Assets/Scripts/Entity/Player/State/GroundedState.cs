@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public abstract class GroundedState : PlayerStateBase
     {
-        protected GroundedState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        protected GroundedState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }
@@ -18,12 +18,12 @@ namespace Entity.Player.State
                 stateMachine.ChangeState(PlayerStateType.Fall);
             }
 
-            if (input.Player.Jump.WasPressedThisFrame())
+            if (player.InputSet.Player.Jump.WasPressedThisFrame())
             {
                 stateMachine.ChangeState(PlayerStateType.Jump);
             }
 
-            if (input.Player.BasicAttack.WasPressedThisFrame())
+            if (player.InputSet.Player.BasicAttack.WasPressedThisFrame())
             {
                 stateMachine.ChangeState(PlayerStateType.BasicAttack);
             }

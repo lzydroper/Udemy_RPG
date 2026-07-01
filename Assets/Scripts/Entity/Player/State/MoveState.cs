@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public class MoveState : GroundedState
     {
-        public MoveState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public MoveState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }

@@ -4,7 +4,7 @@ namespace Entity.Player.State
 {
     public class WallJumpState : PlayerStateBase
     {
-        public WallJumpState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public WallJumpState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
         }

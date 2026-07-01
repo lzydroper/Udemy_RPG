@@ -3,16 +3,14 @@ using UnityEngine;
 
 namespace Entity.Player
 {
-    public abstract class PlayerStateBase : StateBase<Player, PlayerStateType>
+    public abstract class PlayerStateBase : StateBase<Player>
     {
-        protected readonly PlayerInputSet input;
         protected float stateTimer;
         protected Player player => owner;
         
-        protected PlayerStateBase(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName)
+        protected PlayerStateBase(Player owner, StateMachine stateMachine, string animBoolName)
             : base(owner, stateMachine, animBoolName)
         {
-            this.input = owner.InputSet;
         }
 
         public override void OnUpdate()
@@ -22,7 +20,7 @@ namespace Entity.Player
         
             owner.ani.SetFloat("yVelocity", owner.rb.linearVelocity.y);
 
-            if (input.Player.Dash.WasPressedThisFrame() && CanDash())
+            if (player.InputSet.Player.Dash.WasPressedThisFrame() && CanDash())
             {
                 stateMachine.ChangeState(PlayerStateType.Dash);
             }

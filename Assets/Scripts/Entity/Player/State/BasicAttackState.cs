@@ -13,7 +13,7 @@ namespace Entity.Player.State
         private int _comboLimit;
         private float _attackDir;
     
-        public BasicAttackState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName )
+        public BasicAttackState(Player owner, StateMachine stateMachine, string animBoolName )
             : base(owner, stateMachine, animBoolName)
         {
             _comboLimit = player.basicAttackVelocity.Length;
@@ -50,7 +50,7 @@ namespace Entity.Player.State
                 player.SetVelocity(0, player.rb.linearVelocity.y);
         
             // handle attack combo
-            if (input.Player.BasicAttack.WasPressedThisFrame())
+            if (player.InputSet.Player.BasicAttack.WasPressedThisFrame())
             {
                 if (_comboIndex < _comboLimit)
                 {

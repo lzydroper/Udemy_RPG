@@ -7,7 +7,7 @@ namespace Entity.Player.State
         private float _originalGravityScale;
         private float _dashDir;
 
-        public DashState(Player owner, StateMachine<PlayerStateType> stateMachine, string animBoolName)
+        public DashState(Player owner, StateMachine stateMachine, string animBoolName)
             : base(owner, stateMachine, animBoolName)
         {
         }

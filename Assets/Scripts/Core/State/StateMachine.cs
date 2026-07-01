@@ -5,32 +5,31 @@ using UnityEngine;
 namespace Core.State
 {
     [Serializable]
-    public class StateMachine<TStateType> 
-        where TStateType : Enum
+    public class StateMachine
     {
-        private readonly Dictionary<TStateType, IState> m_states = new();
+        private readonly Dictionary<string, IState> m_states = new();
         public IState CurrentState { get; private set; }
         [field: SerializeField]
-        public TStateType CurrentStateKey { get; private set; }
-        public Action<TStateType, TStateType> OnStateChanged;
+        public string CurrentStateKey { get; private set; }
+        public Action<string, string> OnStateChanged;
         
-        public void AddState(TStateType key, IState state)
+        public void AddState(string stateKey, IState state)
         {
-            m_states[key] = state;
+            m_states[stateKey] = state;
         }
         
-        public void Initialize(TStateType key)
+        public void Initialize(string stateKey)
         {
-            CurrentStateKey = key;
+            CurrentStateKey = stateKey;
             CurrentState = m_states[CurrentStateKey];
             CurrentState.OnEnter();
         }
         
-        public void ChangeState(TStateType key)
+        public void ChangeState(string stateKey)
         {
             CurrentState.OnExit();
-            TStateType prevKey = CurrentStateKey;
-            CurrentStateKey = key;
+            string prevKey = CurrentStateKey;
+            CurrentStateKey = stateKey;
             CurrentState = m_states[CurrentStateKey];
             CurrentState.OnEnter();
             OnStateChanged?.Invoke(prevKey, CurrentStateKey);

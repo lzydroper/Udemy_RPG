@@ -10,8 +10,6 @@ namespace Entity.Player
         // input system
         public Vector2 MoveInput { get; private set; } 
         public PlayerInputSet InputSet { get; private set; }
-        // state machine
-        [SerializeField] private StateMachine<PlayerStateType> fsm;
     
         // attack
         [Header("attack details")] 
@@ -37,7 +35,7 @@ namespace Entity.Player
 
         protected override void BuildStateMachine()
         {
-            fsm = new StateMachine<PlayerStateType>();
+            base.BuildStateMachine();
             fsm.AddState(PlayerStateType.Idle, new IdleState(this, fsm, "idle"));
             fsm.AddState(PlayerStateType.Move, new MoveState(this, fsm, "move"));
             fsm.AddState(PlayerStateType.Jump, new JumpState(this, fsm, "jumpFall"));
@@ -51,13 +49,12 @@ namespace Entity.Player
         
         #endregion
 
-        #region lifecycle
+        #region LifecycleMethods
     
-        private void Awake()
+        protected override void Awake()
         {
-            FetchComponents();
+            base.Awake();
             InputSet = new PlayerInputSet();
-            BuildStateMachine();
         }
 
         private void OnEnable()

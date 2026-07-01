@@ -1,7 +1,8 @@
 namespace Entity.Enemy.Skeleton
 {
-    public enum SkeletonStateType
+    public static class SkeletonStateType
     {
-        
+        public const string Idle = "Idle";
+        public const string Move = "Move";
     }
 }
