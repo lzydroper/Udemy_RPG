@@ -5,5 +5,6 @@ namespace Core.State
         void OnEnter();
         void OnUpdate();
         void OnExit();
+        void CallStateTrigger();
     }
 }

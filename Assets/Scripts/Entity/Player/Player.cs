@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Core.State;
 using Entity.Player.State;
@@ -88,7 +87,7 @@ namespace Entity.Player
 
         public void CallCurrentStateTrigger()
         {
-            (fsm.CurrentState as PlayerStateBase).CallStateTrigger();
+            fsm.CurrentState.CallStateTrigger();
         }
     
         public void EnterAttackStateWithDelay()
