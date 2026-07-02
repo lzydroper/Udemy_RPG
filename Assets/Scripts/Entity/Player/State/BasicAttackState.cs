@@ -1,3 +1,4 @@
+using System.Collections;
 using Core.State;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Entity.Player.State
         private int _comboIndex;
         private int _comboLimit;
         private float _attackDir;
+        private Coroutine _queuedAttackCo;
     
         public BasicAttackState(Player player, StateMachine stateMachine, string animBoolName )
             : base(player, stateMachine, animBoolName)
@@ -63,7 +65,7 @@ namespace Entity.Player.State
                 if (_comboAttackQueued)
                 {
                     ani.SetBool(animBoolName, false);
-                    player.EnterAttackStateWithDelay();
+                    EnterAttackStateWithDelay();
                 }
                 else
                 {
@@ -78,6 +80,20 @@ namespace Entity.Player.State
 
             _comboIndex += 1;
             _lastAttackTime = Time.time;
+        }
+    
+        private void EnterAttackStateWithDelay()
+        {
+            if (_queuedAttackCo != null)
+            {
+                player.StopCoroutine(_queuedAttackCo);
+            }
+            _queuedAttackCo = player.StartCoroutine(EnterAttackStateWithDelayCo());
+        }
+        private IEnumerator EnterAttackStateWithDelayCo()
+        {
+            yield return new WaitForEndOfFrame();
+            stateMachine.ChangeState(PlayerStateType.BasicAttack);
         }
     }
 }

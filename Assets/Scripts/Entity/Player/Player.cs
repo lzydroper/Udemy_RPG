@@ -17,7 +17,6 @@ namespace Entity.Player
         public float comboAttackTime;
         public Vector2[] basicAttackVelocity;
         public Vector2 jumpAttackVelocity;
-        private Coroutine _queuedAttackCo;
     
         // move
         [Header("movement details")]
@@ -81,24 +80,5 @@ namespace Entity.Player
         }
 
         #endregion
-
-        public void CallCurrentStateTrigger()
-        {
-            fsm.CurrentState.CallStateTrigger();
-        }
-    
-        public void EnterAttackStateWithDelay()
-        {
-            if (_queuedAttackCo != null)
-            {
-                StopCoroutine(_queuedAttackCo);
-            }
-            _queuedAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
-        }
-        private IEnumerator EnterAttackStateWithDelayCo()
-        {
-            yield return new WaitForEndOfFrame();
-            fsm.ChangeState(PlayerStateType.BasicAttack);
-        }
     }
 }
