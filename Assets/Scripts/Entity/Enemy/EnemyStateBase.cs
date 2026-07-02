@@ -1,14 +1,24 @@
-using System;
 using Core.State;
 
 namespace Entity.Enemy
 {
-    public class EnemyStateBase<TOwner> : StateBase<TOwner>
-        where TOwner : EnemyBase
+    public abstract class EnemyStateBase : StateBase
     {
-        public EnemyStateBase(TOwner owner, StateMachine stateMachine, string animBoolName) 
-            : base(owner, stateMachine, animBoolName)
+        protected readonly EnemyBase enemy;
+        
+        public EnemyStateBase(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
+            : base(stateMachine, animBoolName)
         {
+            this.enemy = enemy;
+            this.ani = enemy.ani;
+            this.rb = enemy.rb;
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            
+            enemy.ani.SetFloat("aniMoveMultiplier", enemy.aniMoveMultiplier);
         }
     }
 }

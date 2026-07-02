@@ -1,5 +1,4 @@
-using Core.State;
-using UnityEngine;
+using Entity.Enemy.State;
 
 namespace Entity.Enemy.Skeleton
 {
@@ -13,23 +12,25 @@ namespace Entity.Enemy.Skeleton
 
         protected override void BuildStateMachine()
         {
-            
+            base.BuildStateMachine();
+            fsm.AddState(SkeletonStateType.Idle, new IdleState(this, fsm, "idle"));
+            fsm.AddState(SkeletonStateType.Move, new MoveState(this, fsm, "move"));
         }
         
         #endregion
 
         #region LifecycleMethods
 
-        // private void Start()
-        // {
-        //     
-        // }
-        //
-        // protected override void Update()
-        // {
-        //     base.Update();
-        //     fsm.OnUpdate();
-        // }
+        private void Start()
+        {
+            fsm.Initialize(SkeletonStateType.Idle);
+        }
+        
+        protected override void Update()
+        {
+            base.Update();
+            fsm.OnUpdate();
+        }
 
         #endregion
     }
