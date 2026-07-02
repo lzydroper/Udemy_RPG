@@ -4,5 +4,6 @@ namespace Entity.Enemy
     {
         public const string Idle = "Idle";
         public const string Move = "Move";
+        public const string Attack = "Attack";
     }
 }

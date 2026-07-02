@@ -15,6 +15,7 @@ namespace Entity.Enemy.Skeleton
             base.BuildStateMachine();
             fsm.AddState(SkeletonStateType.Idle, new IdleState(this, fsm, "idle"));
             fsm.AddState(SkeletonStateType.Move, new MoveState(this, fsm, "move"));
+            fsm.AddState(SkeletonStateType.Attack, new AttackState(this, fsm, "attack"));
         }
         
         #endregion
