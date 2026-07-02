@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public abstract class GroundedState : PlayerStateBase
     {
-        protected GroundedState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        protected GroundedState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -13,7 +13,7 @@ namespace Entity.Player.State
         {
             base.OnUpdate();
         
-            if (player.rb.linearVelocity.y < 0 && !player.GroundDetected)
+            if (rb.linearVelocity.y < 0 && !player.GroundDetected)
             {
                 stateMachine.ChangeState(PlayerStateType.Fall);
             }

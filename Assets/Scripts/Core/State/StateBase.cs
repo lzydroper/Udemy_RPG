@@ -1,33 +1,36 @@
-using System;
+using UnityEngine;
 
 namespace Core.State
 {
-    public abstract class StateBase<TOwner> : IState 
-        where TOwner : IStateOwner
+    public abstract class StateBase : IState 
     {
-        protected readonly TOwner owner;
+        protected Animator ani;
+        protected Rigidbody2D rb;
         protected readonly StateMachine stateMachine;
         protected readonly string animBoolName;
+        protected float stateTimer;
         protected bool stateTrigger;
 
-        protected StateBase(TOwner owner, StateMachine stateMachine, string animBoolName)
+        protected StateBase(StateMachine stateMachine, string animBoolName)
         {
-            this.owner = owner;
             this.stateMachine = stateMachine;
             this.animBoolName = animBoolName;
         }
 
         public virtual void OnEnter()
         {
-            owner.ani.SetBool(animBoolName, true);
+            ani.SetBool(animBoolName, true);
             stateTrigger = false;
         }
-        
-        public virtual void OnUpdate() { }
+
+        public virtual void OnUpdate()
+        {
+            stateTimer -= Time.deltaTime;
+        }
 
         public virtual void OnExit()
         {
-            owner.ani.SetBool(animBoolName, false);
+            ani.SetBool(animBoolName, false);
         }
         
         public virtual void CallStateTrigger()

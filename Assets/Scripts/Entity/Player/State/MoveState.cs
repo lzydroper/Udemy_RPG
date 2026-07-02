@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class MoveState : GroundedState
     {
-        public MoveState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public MoveState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -13,12 +13,12 @@ namespace Entity.Player.State
         {
             base.OnUpdate();
 
-            if (player.rb.linearVelocity.x == 0)
+            if (rb.linearVelocity.x == 0)
             {
                 stateMachine.ChangeState(PlayerStateType.Idle);
             }
         
-            player.SetVelocity(player.moveSpeed * player.MoveInput.x, player.rb.linearVelocity.y);
+            player.SetVelocity(player.moveSpeed * player.MoveInput.x, rb.linearVelocity.y);
         }
     }
 }

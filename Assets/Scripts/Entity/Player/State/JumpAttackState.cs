@@ -6,8 +6,8 @@ namespace Entity.Player.State
     {
         private bool _touchedGround;
     
-        public JumpAttackState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public JumpAttackState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -25,8 +25,8 @@ namespace Entity.Player.State
             if (!_touchedGround && player.GroundDetected)
             {
                 _touchedGround = true;
-                player.ani.SetTrigger("jumpAttackTrigger");
-                player.SetVelocity(0, player.rb.linearVelocityY);
+                ani.SetTrigger("jumpAttackTrigger");
+                player.SetVelocity(0, rb.linearVelocityY);
             }
 
             if (stateTrigger && player.GroundDetected)

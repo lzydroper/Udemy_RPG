@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class JumpState : AirState
     {
-        public JumpState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public JumpState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -13,14 +13,14 @@ namespace Entity.Player.State
         {
             base.OnEnter();
         
-            player.SetVelocity(player.rb.linearVelocity.x, player.jumpForce);
+            player.SetVelocity(rb.linearVelocity.x, player.jumpForce);
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
 
-            if (player.rb.linearVelocity.y < 0 && stateMachine.CurrentStateKey != PlayerStateType.JumpAttack)
+            if (rb.linearVelocity.y < 0 && stateMachine.CurrentStateKey != PlayerStateType.JumpAttack)
             {
                 stateMachine.ChangeState(PlayerStateType.Fall);
             }

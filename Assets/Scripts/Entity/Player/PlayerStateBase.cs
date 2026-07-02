@@ -1,24 +1,24 @@
 using Core.State;
-using UnityEngine;
 
 namespace Entity.Player
 {
-    public abstract class PlayerStateBase : StateBase<Player>
+    public abstract class PlayerStateBase : StateBase
     {
-        protected float stateTimer;
-        protected Player player => owner;
+        protected readonly Player player;
         
-        protected PlayerStateBase(Player owner, StateMachine stateMachine, string animBoolName)
-            : base(owner, stateMachine, animBoolName)
+        protected PlayerStateBase(Player player, StateMachine stateMachine, string animBoolName)
+            : base(stateMachine, animBoolName)
         {
+            this.player = player;
+            this.ani = player.ani;
+            this.rb = player.rb;
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
-            stateTimer -= Time.deltaTime;
         
-            owner.ani.SetFloat("yVelocity", owner.rb.linearVelocity.y);
+            ani.SetFloat("yVelocity", rb.linearVelocity.y);
 
             if (player.InputSet.Player.Dash.WasPressedThisFrame() && CanDash())
             {
@@ -28,7 +28,7 @@ namespace Entity.Player
         
         private bool CanDash()
         {
-            if (owner.WallDetected)
+            if (player.WallDetected)
                 return false;
 
             if (Equals(stateMachine.CurrentStateKey, PlayerStateType.Dash))

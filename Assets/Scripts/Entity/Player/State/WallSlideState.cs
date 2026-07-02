@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class WallSlideState : PlayerStateBase
     {
-        public WallSlideState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public WallSlideState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Entity.Player.State
         {
             if (player.MoveInput.y < 0)
             {
-                player.SetVelocity(player.MoveInput.x, player.rb.linearVelocity.y);
+                player.SetVelocity(player.MoveInput.x, rb.linearVelocity.y);
             }
             else
             {

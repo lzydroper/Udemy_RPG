@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class IdleState : GroundedState
     {
-        public IdleState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public IdleState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -13,7 +13,7 @@ namespace Entity.Player.State
         {
             base.OnEnter();
         
-            player.SetVelocity(0, player.rb.linearVelocity.y);
+            player.SetVelocity(0, rb.linearVelocity.y);
         }
 
         public override void OnUpdate()

@@ -7,8 +7,8 @@ namespace Entity.Player.State
         private float _originalGravityScale;
         private float _dashDir;
 
-        public DashState(Player owner, StateMachine stateMachine, string animBoolName)
-            : base(owner, stateMachine, animBoolName)
+        public DashState(Player player, StateMachine stateMachine, string animBoolName)
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -16,8 +16,8 @@ namespace Entity.Player.State
         {
             base.OnEnter();
             _dashDir = (player.MoveInput.x != 0) ? player.MoveInput.x : player.facingDir;
-            _originalGravityScale = player.rb.gravityScale;
-            player.rb.gravityScale = 0;
+            _originalGravityScale = rb.gravityScale;
+            rb.gravityScale = 0;
 
             stateTimer = player.dashDuration;
         }
@@ -59,7 +59,7 @@ namespace Entity.Player.State
             base.OnExit();
         
             player.SetVelocity(0, 0);
-            player.rb.gravityScale = _originalGravityScale;
+            rb.gravityScale = _originalGravityScale;
         
         }
     }

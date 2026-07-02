@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public abstract class AirState : PlayerStateBase
     {
-        protected AirState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        protected AirState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -15,7 +15,7 @@ namespace Entity.Player.State
 
             if (player.MoveInput.x != 0)
             {
-                player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.inAirMultiplier), player.rb.linearVelocity.y);
+                player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.inAirMultiplier), rb.linearVelocity.y);
             }
 
             if (player.InputSet.Player.BasicAttack.WasPressedThisFrame())

@@ -1,4 +1,3 @@
-using System;
 using Core.State;
 using UnityEngine;
 
@@ -26,10 +25,12 @@ namespace Entity
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private float wallCheckDistance;
+        [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Transform wallCheckTopPoint;
         [SerializeField] private Transform wallCheckBottomPoint;
         public bool GroundDetected { get; private set; }
         public bool WallDetected { get; private set; }
+        private bool needSecondaryWallCheck;
 
         #endregion
         
@@ -52,6 +53,10 @@ namespace Entity
 
         protected virtual void Awake()
         {
+            if (wallCheckBottomPoint == null)
+            {
+                needSecondaryWallCheck = false;
+            }
             FetchComponents();
             BuildStateMachine();
         }
@@ -66,11 +71,19 @@ namespace Entity
         private void HandleCollisionDetect()
         {
             GroundDetected = Physics2D.Raycast(
-                transform.position, Vector2.down, groundCheckDistance, groundLayer);
-            WallDetected = Physics2D.Raycast(
+                groundCheckPoint.position, Vector2.down, groundCheckDistance, groundLayer);
+            if (needSecondaryWallCheck)
+            {
+                WallDetected = Physics2D.Raycast(
                                wallCheckTopPoint.position, Vector2.right * facingDir, wallCheckDistance, groundLayer) &&
-                           Physics2D.Raycast(
+                               Physics2D.Raycast(
                                wallCheckBottomPoint.position, Vector2.right * facingDir, wallCheckDistance, groundLayer);
+            }
+            else
+            {
+                WallDetected = Physics2D.Raycast(
+                    wallCheckTopPoint.position, Vector2.right * facingDir, wallCheckDistance, groundLayer);
+            }
         }
 
         private void HandleFlip(float xVelocity)
@@ -101,12 +114,13 @@ namespace Entity
 #if UNITY_EDITOR
         #region GizmosMethods
         
-        private void OnDrawGizmos()
+        private void OnDrawGizmos/*Selected*/()
         {
-            Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+            Gizmos.DrawLine(groundCheckPoint.position, groundCheckPoint.position + new Vector3(0, -groundCheckDistance));
             Gizmos.DrawLine(wallCheckTopPoint.position, wallCheckTopPoint.position + new Vector3(facingDir * wallCheckDistance, 0));
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(wallCheckBottomPoint.position, wallCheckBottomPoint.position + new Vector3(facingDir * wallCheckDistance, 0));
+            if (wallCheckBottomPoint != null)
+                Gizmos.DrawLine(wallCheckBottomPoint.position, wallCheckBottomPoint.position + new Vector3(facingDir * wallCheckDistance, 0));
         }
         
         #endregion

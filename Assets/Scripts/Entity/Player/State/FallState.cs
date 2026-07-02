@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class FallState : AirState
     {
-        public FallState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public FallState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 

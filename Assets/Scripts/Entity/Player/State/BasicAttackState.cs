@@ -13,8 +13,8 @@ namespace Entity.Player.State
         private int _comboLimit;
         private float _attackDir;
     
-        public BasicAttackState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public BasicAttackState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
             _comboLimit = player.basicAttackVelocity.Length;
         }
@@ -37,7 +37,7 @@ namespace Entity.Player.State
             player.SetVelocity(attackVelocity.x * _attackDir, attackVelocity.y);
         
             // set anim
-            player.ani.SetInteger("basicAttackIndex", _comboIndex);
+            ani.SetInteger("basicAttackIndex", _comboIndex);
         }
 
         public override void OnUpdate()
@@ -47,7 +47,7 @@ namespace Entity.Player.State
             // handle attack velocity
             _basicAttackVelocityTimer -= Time.deltaTime;
             if (_basicAttackVelocityTimer < 0)
-                player.SetVelocity(0, player.rb.linearVelocity.y);
+                player.SetVelocity(0, rb.linearVelocity.y);
         
             // handle attack combo
             if (player.InputSet.Player.BasicAttack.WasPressedThisFrame())
@@ -62,7 +62,7 @@ namespace Entity.Player.State
             {
                 if (_comboAttackQueued)
                 {
-                    player.ani.SetBool(animBoolName, false);
+                    ani.SetBool(animBoolName, false);
                     player.EnterAttackStateWithDelay();
                 }
                 else

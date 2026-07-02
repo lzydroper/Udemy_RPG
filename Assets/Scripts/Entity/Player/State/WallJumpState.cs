@@ -4,8 +4,8 @@ namespace Entity.Player.State
 {
     public class WallJumpState : PlayerStateBase
     {
-        public WallJumpState(Player owner, StateMachine stateMachine, string animBoolName )
-            : base(owner, stateMachine, animBoolName)
+        public WallJumpState(Player player, StateMachine stateMachine, string animBoolName )
+            : base(player, stateMachine, animBoolName)
         {
         }
 
@@ -20,7 +20,7 @@ namespace Entity.Player.State
         {
             base.OnUpdate();
 
-            if (player.rb.linearVelocity.y < 0)
+            if (rb.linearVelocity.y < 0)
             {
                 stateMachine.ChangeState(PlayerStateType.Fall);
             }
