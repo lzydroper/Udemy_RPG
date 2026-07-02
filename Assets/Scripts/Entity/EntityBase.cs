@@ -15,7 +15,9 @@ namespace Entity
         #region Variables
         
         // state machine
-        [SerializeField] protected StateMachine fsm;
+        public string CurStateKey => fsm?.CurStateKey;
+        public string PreStateKey => fsm?.PreStateKey;
+        protected StateMachine fsm;
 
         // move
         protected bool isFacingRight = true;

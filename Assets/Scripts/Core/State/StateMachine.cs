@@ -9,8 +9,8 @@ namespace Core.State
     {
         private readonly Dictionary<string, IState> m_states = new();
         public IState CurrentState { get; private set; }
-        [field: SerializeField]
-        public string CurrentStateKey { get; private set; }
+        public string CurStateKey { get; private set; }
+        public string PreStateKey { get; private set; }
         public Action<string, string> OnStateChanged;
         
         public void AddState(string stateKey, IState state)
@@ -20,19 +20,19 @@ namespace Core.State
         
         public void Initialize(string stateKey)
         {
-            CurrentStateKey = stateKey;
-            CurrentState = m_states[CurrentStateKey];
+            CurStateKey = stateKey;
+            CurrentState = m_states[CurStateKey];
             CurrentState.OnEnter();
         }
         
         public void ChangeState(string stateKey)
         {
             CurrentState.OnExit();
-            string prevKey = CurrentStateKey;
-            CurrentStateKey = stateKey;
-            CurrentState = m_states[CurrentStateKey];
+            PreStateKey = CurStateKey;
+            CurStateKey = stateKey;
+            CurrentState = m_states[CurStateKey];
             CurrentState.OnEnter();
-            OnStateChanged?.Invoke(prevKey, CurrentStateKey);
+            OnStateChanged?.Invoke(PreStateKey, CurStateKey);
         }
 
         public void OnUpdate()

@@ -31,7 +31,7 @@ namespace Entity.Player
             if (player.WallDetected)
                 return false;
 
-            if (Equals(stateMachine.CurrentStateKey, PlayerStateType.Dash))
+            if (stateMachine.CurStateKey == PlayerStateType.Dash)
                 return false;
         
             return true;

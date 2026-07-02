@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Editor.PlaySaveMode
+namespace Plugins.PlayModeSaver.Editor
 {
 	[Serializable]
 	public class ComponentSnapshot {

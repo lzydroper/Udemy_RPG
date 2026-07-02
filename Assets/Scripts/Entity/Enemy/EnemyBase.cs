@@ -23,5 +23,10 @@ namespace Entity.Enemy
         }
         
         #endregion
+        
+#if UNITY_EDITOR
+        [ContextMenu("TestToAttackState")]
+        private void TestToAttackState() => fsm.ChangeState(EnemyStateType.Attack);
+#endif
     }
 }

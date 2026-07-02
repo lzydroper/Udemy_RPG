@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Editor.PlaySaveMode
+namespace Plugins.PlayModeSaver.Editor
 {
 	public class PlaySaveModeMenuItems
 	{

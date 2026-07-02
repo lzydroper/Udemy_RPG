@@ -20,7 +20,7 @@ namespace Entity.Player.State
         {
             base.OnUpdate();
 
-            if (rb.linearVelocity.y < 0 && stateMachine.CurrentStateKey != PlayerStateType.JumpAttack)
+            if (rb.linearVelocity.y < 0 && stateMachine.CurStateKey != PlayerStateType.JumpAttack)
             {
                 stateMachine.ChangeState(PlayerStateType.Fall);
             }

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor.PlaySaveMode
+namespace Plugins.PlayModeSaver.Editor
 {
 	[InitializeOnLoad]
 	public static class PlayModeSaveHierarchyIndicator
