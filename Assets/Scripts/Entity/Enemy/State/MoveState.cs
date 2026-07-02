@@ -2,7 +2,7 @@ using Core.State;
 
 namespace Entity.Enemy.State
 {
-    public class MoveState : EnemyStateBase
+    public class MoveState : SGroundState
     {
         public MoveState(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
             : base(enemy, stateMachine, animBoolName)
@@ -23,12 +23,12 @@ namespace Entity.Enemy.State
         {
             base.OnUpdate();
             
-            enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.linearVelocity.y);
-
             if (!enemy.GroundDetected || enemy.WallDetected)
             {
                 stateMachine.ChangeState(EnemyStateType.Idle);
             }
+            
+            enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.linearVelocity.y);
         }
     }
 }

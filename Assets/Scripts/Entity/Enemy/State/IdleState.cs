@@ -2,7 +2,7 @@ using Core.State;
 
 namespace Entity.Enemy.State
 {
-    public class IdleState : EnemyStateBase
+    public class IdleState : SGroundState
     {
         public IdleState(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
             : base(enemy, stateMachine, animBoolName)
