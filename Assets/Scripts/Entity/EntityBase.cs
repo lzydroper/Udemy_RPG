@@ -111,6 +111,11 @@ namespace Entity
             HandleFlip(xVelocity);
         }
 
+        public void CallCurrentStateTrigger()
+        {
+            fsm.CurrentState.CallStateTrigger();
+        }
+
 #if UNITY_EDITOR
         #region GizmosMethods
         
