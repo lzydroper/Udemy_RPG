@@ -16,6 +16,7 @@ namespace Entity.Enemy.Skeleton
             fsm.AddState(SkeletonStateType.Idle, new IdleState(this, fsm, "idle"));
             fsm.AddState(SkeletonStateType.Move, new MoveState(this, fsm, "move"));
             fsm.AddState(SkeletonStateType.Attack, new AttackState(this, fsm, "attack"));
+            fsm.AddState(SkeletonStateType.Battle, new BattleState(this, fsm, "battle"));
         }
         
         #endregion

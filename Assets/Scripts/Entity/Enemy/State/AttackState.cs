@@ -1,4 +1,5 @@
 using Core.State;
+using UnityEngine;
 
 namespace Entity.Enemy.State
 {
@@ -19,9 +20,11 @@ namespace Entity.Enemy.State
         {
             base.OnUpdate();
 
+            // string debugLog = stateTrigger ? "stateTrigger is true" : "stateTrigger is false";
+            // Debug.Log(debugLog);
             if (stateTrigger)
             {
-                stateMachine.ChangeState(EnemyStateType.Idle);
+                stateMachine.ChangeState(EnemyStateType.Battle);
             }
         }
     }

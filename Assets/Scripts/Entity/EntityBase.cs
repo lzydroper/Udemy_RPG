@@ -24,7 +24,7 @@ namespace Entity
         public float facingDir { get; private set; } = 1;
         // collision detect
         [Header("collision detection")]
-        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] protected LayerMask groundLayer;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private Transform groundCheckPoint;
@@ -121,7 +121,7 @@ namespace Entity
 #if UNITY_EDITOR
         #region GizmosMethods
         
-        private void OnDrawGizmos/*Selected*/()
+        protected virtual void OnDrawGizmos/*Selected*/()
         {
             Gizmos.DrawLine(groundCheckPoint.position, groundCheckPoint.position + new Vector3(0, -groundCheckDistance));
             Gizmos.DrawLine(wallCheckTopPoint.position, wallCheckTopPoint.position + new Vector3(facingDir * wallCheckDistance, 0));

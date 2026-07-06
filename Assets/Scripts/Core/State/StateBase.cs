@@ -35,6 +35,7 @@ namespace Core.State
         
         public virtual void CallStateTrigger()
         {
+            // Debug.Log("CallStateTrigger!");
             stateTrigger = true;
         }
     }

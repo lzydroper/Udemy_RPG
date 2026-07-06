@@ -8,5 +8,15 @@ namespace Entity.Enemy.State
             : base(enemy, stateMachine, animBoolName)
         {
         }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (enemy.PlayerDetection())
+            {
+                stateMachine.ChangeState(EnemyStateType.Battle);
+            }
+        }
     }
 }

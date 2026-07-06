@@ -14,11 +14,15 @@ namespace Entity.Enemy
             this.rb = enemy.rb;
         }
 
-        public override void OnEnter()
+        public override void OnUpdate()
         {
-            base.OnEnter();
+            base.OnUpdate();
+
+            float aniBattleMultiplier = enemy.attackMoveSpeed / enemy.moveSpeed;
+            enemy.ani.SetFloat("aniBattleMultiplier", aniBattleMultiplier);
             
             enemy.ani.SetFloat("aniMoveMultiplier", enemy.aniMoveMultiplier);
+            enemy.ani.SetFloat("xVelocity", rb.linearVelocity.x);
         }
     }
 }
