@@ -4,16 +4,23 @@ namespace Entity
 {
     public class EntityAnimationTriggers : MonoBehaviour
     {
-        private EntityBase entity;
+        private EntityBase _entityBase;
+        private EntityCombat _entityCombat;
 
         private void Awake()
         {
-            entity = GetComponentInParent<EntityBase>();
+            _entityBase = GetComponentInParent<EntityBase>();
+            _entityCombat = GetComponentInParent<EntityCombat>();
         }
 
         private void CurrentStateTrigger()
         {
-            entity.CallCurrentStateTrigger();
+            _entityBase.CallCurrentStateTrigger();
+        }
+
+        private void AttackTrigger()
+        {
+            _entityCombat.PerformAttack();
         }
     }
 }
