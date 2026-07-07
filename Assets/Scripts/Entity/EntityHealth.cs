@@ -7,9 +7,20 @@ namespace Entity
     {
         #region Variables
 
+        private EntityVFX _entityVFX;
+        
         [SerializeField] protected float maxHealth = 100f;
         [SerializeField] protected float curHealth = 100f;
         protected bool isDead = false;
+
+        #endregion
+        
+        #region LifecycleMethods
+
+        protected virtual void Awake()
+        {
+            _entityVFX = GetComponent<EntityVFX>();
+        }
 
         #endregion
 
@@ -17,6 +28,7 @@ namespace Entity
         {
             if (isDead) return;
             
+            _entityVFX?.PlayOnDamageVFX();
             ReduceHealth(damage);
         }
 

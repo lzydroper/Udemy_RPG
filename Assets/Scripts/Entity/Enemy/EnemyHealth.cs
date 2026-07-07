@@ -12,8 +12,9 @@ namespace Entity.Enemy
 
         #region LifecycleMethods
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _enemyBase = GetComponent<EnemyBase>();
         }
 

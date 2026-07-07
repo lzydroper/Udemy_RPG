@@ -36727,6 +36727,7 @@ GameObject:
   - component: {fileID: 1776875630}
   - component: {fileID: 1776875632}
   - component: {fileID: 1776875633}
+  - component: {fileID: 1776875634}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -36883,6 +36884,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 100
+--- !u!114 &1776875634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776875627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a5e3bc869b4b32ae655ce55ba10828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
+  onDamageDuration: 0.2
 --- !u!1 &2006900473
 GameObject:
   m_ObjectHideFlags: 0
@@ -36928,6 +36943,7 @@ GameObject:
   - component: {fileID: 2125322182}
   - component: {fileID: 2125322183}
   - component: {fileID: 2125322184}
+  - component: {fileID: 2125322185}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -37084,6 +37100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 100
+--- !u!114 &2125322185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125322178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a5e3bc869b4b32ae655ce55ba10828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
+  onDamageDuration: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
