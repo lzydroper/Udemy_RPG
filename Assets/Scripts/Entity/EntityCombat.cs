@@ -16,7 +16,7 @@ namespace Entity
 
         public void PerformAttack()
         {
-            foreach (var target in Physics2D.OverlapCircleAll(transform.position, targetCheckRadius, targetLayer))
+            foreach (var target in Physics2D.OverlapCircleAll(targetCheckPoint.position, targetCheckRadius, targetLayer))
             {
                 target.GetComponent<EntityHealth>()?.TakeDamage(damage, transform);
             }

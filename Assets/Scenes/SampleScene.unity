@@ -36864,7 +36864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 35
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -36886,6 +36886,9 @@ MonoBehaviour:
   curHealth: 100
   knockbackVelocity: {x: 1.5, y: 2.5}
   knockbackDuration: 0.2
+  heavyDamageThreshold: 0.3
+  heavyKnockbackVelocity: {x: 7, y: 7}
+  heavyKnockbackDuration: 0.5
 --- !u!114 &1776875634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37082,7 +37085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 35
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -37104,6 +37107,9 @@ MonoBehaviour:
   curHealth: 100
   knockbackVelocity: {x: 1.5, y: 2.5}
   knockbackDuration: 0.2
+  heavyDamageThreshold: 0.3
+  heavyKnockbackVelocity: {x: 7, y: 7}
+  heavyKnockbackDuration: 0.5
 --- !u!114 &2125322185
 MonoBehaviour:
   m_ObjectHideFlags: 0
