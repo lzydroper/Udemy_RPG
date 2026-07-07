@@ -36884,6 +36884,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 100
+  knockbackVelocity: {x: 1.5, y: 2.5}
+  knockbackDuration: 0.2
 --- !u!114 &1776875634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37100,6 +37102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 100
+  knockbackVelocity: {x: 1.5, y: 2.5}
+  knockbackDuration: 0.2
 --- !u!114 &2125322185
 MonoBehaviour:
   m_ObjectHideFlags: 0

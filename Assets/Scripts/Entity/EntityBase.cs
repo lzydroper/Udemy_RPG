@@ -1,6 +1,10 @@
+using System.Collections;
 using Core.State;
+using Core.Utils;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
+using StateMachine = Core.State.StateMachine;
 
 namespace Entity
 {
@@ -34,6 +38,9 @@ namespace Entity
         public bool GroundDetected { get; private set; }
         public bool WallDetected { get; private set; }
         private bool needSecondaryWallCheck;
+
+        private bool isKnocked;
+        private Coroutine knockbackCoroutine;
 
         #endregion
         
@@ -70,7 +77,21 @@ namespace Entity
         }
 
         #endregion
+
+        public void ReceiveKnockback(Vector2 knockbackVelocity, float knockbackDuration) 
+            => this.RestartCoroutine(ref knockbackCoroutine, KnockbackCo(knockbackVelocity, knockbackDuration));
         
+        private IEnumerator KnockbackCo(Vector2 knockbackVelocity, float knockbackDuration)
+        {
+            isKnocked = true;
+            rb.linearVelocity = knockbackVelocity;
+            
+            yield return new WaitForSeconds(knockbackDuration);
+            
+            rb.linearVelocity = Vector2.zero;
+            isKnocked = false;
+        }
+
         private void HandleCollisionDetect()
         {
             GroundDetected = Physics2D.Raycast(
@@ -110,6 +131,7 @@ namespace Entity
         
         public void SetVelocity(float xVelocity, float yVelocity)
         {
+            if (isKnocked) return;
             rb.linearVelocity = new Vector2(xVelocity, yVelocity);
             HandleFlip(xVelocity);
         }
