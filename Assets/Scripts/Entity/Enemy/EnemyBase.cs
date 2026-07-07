@@ -10,6 +10,9 @@ namespace Entity.Enemy
         [Header("Battle")] 
         public float attackDistance;
         public float attackMoveSpeed;
+        public float battleDuration;
+        public float retreatDistance;
+        public Vector2 retreatVelocity;
         
         [Header("Movement")] 
         public float idleDuration;
@@ -34,7 +37,7 @@ namespace Entity.Enemy
         
         #endregion
 
-        public RaycastHit2D PlayerDetection()
+        public RaycastHit2D PlayerDetected()
         {
             RaycastHit2D hit = Physics2D.Raycast(
                 playerCheckPoint.position, Vector2.right * facingDir, 
@@ -61,6 +64,9 @@ namespace Entity.Enemy
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(playerCheckPoint.position, 
                 playerCheckPoint.position + Vector3.right * facingDir * attackDistance);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(playerCheckPoint.position, 
+                playerCheckPoint.position + Vector3.right * facingDir * retreatDistance);
         }
         
         #endregion

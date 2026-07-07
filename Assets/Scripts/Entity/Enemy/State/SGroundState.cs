@@ -13,7 +13,7 @@ namespace Entity.Enemy.State
         {
             base.OnUpdate();
 
-            if (enemy.PlayerDetection())
+            if (enemy.PlayerDetected())
             {
                 stateMachine.ChangeState(EnemyStateType.Battle);
             }

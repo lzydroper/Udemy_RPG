@@ -1,4 +1,5 @@
 using Core.State;
+using Entity.Enemy.Skeleton;
 using UnityEngine;
 
 namespace Entity.Enemy.State
@@ -7,6 +8,7 @@ namespace Entity.Enemy.State
     {
         private Transform player;
         private bool _hadGetPlayer;
+        private float _lastTimeWasInBattle;
         
         public BattleState(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
             : base(enemy, stateMachine, animBoolName)
@@ -20,7 +22,13 @@ namespace Entity.Enemy.State
             if (player == null)
             {
                 _hadGetPlayer = true;
-                player = enemy.PlayerDetection().transform;
+                player = enemy.PlayerDetected().transform;
+            }
+            // check if should retreat
+            if (DistanceToPlayer() < enemy.retreatDistance)
+            {
+                rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), rb.linearVelocity.y);
+                enemy.HandleFlip(DirectionToPlayer());
             }
         }
 
@@ -28,7 +36,18 @@ namespace Entity.Enemy.State
         {
             base.OnUpdate();
 
-            if (WithInAttackRange())
+            if (enemy.PlayerDetected())
+            {
+                // update battle timer
+                _lastTimeWasInBattle = Time.time;
+            }
+            // check battle is over
+            if (enemy.battleDuration < Time.time - _lastTimeWasInBattle)
+            {
+                stateMachine.ChangeState(SkeletonStateType.Idle);
+            }
+
+            if (WithInAttackRange() && enemy.PlayerDetected())
             {
                 stateMachine.ChangeState(EnemyStateType.Attack);
             }

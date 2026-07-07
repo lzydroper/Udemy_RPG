@@ -36769,6 +36769,9 @@ MonoBehaviour:
   wallCheckBottomPoint: {fileID: 0}
   attackDistance: 2
   attackMoveSpeed: 3
+  battleDuration: 5
+  retreatDistance: 1
+  retreatVelocity: {x: 5, y: 3}
   idleDuration: 2
   moveSpeed: 1.5
   playerLayer:

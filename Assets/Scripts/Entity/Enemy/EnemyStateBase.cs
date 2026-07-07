@@ -14,10 +14,9 @@ namespace Entity.Enemy
             this.rb = enemy.rb;
         }
 
-        public override void OnUpdate()
+        protected override void UpdateAnimationParas()
         {
-            base.OnUpdate();
-
+            base.UpdateAnimationParas();
             float aniBattleMultiplier = enemy.attackMoveSpeed / enemy.moveSpeed;
             enemy.ani.SetFloat("aniBattleMultiplier", aniBattleMultiplier);
             

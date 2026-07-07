@@ -88,7 +88,7 @@ namespace Entity
             }
         }
 
-        private void HandleFlip(float xVelocity)
+        public void HandleFlip(float xVelocity)
         {
             if (xVelocity > 0 && !isFacingRight)
             {

@@ -26,6 +26,7 @@ namespace Core.State
         public virtual void OnUpdate()
         {
             stateTimer -= Time.deltaTime;
+            UpdateAnimationParas();
         }
 
         public virtual void OnExit()
@@ -37,6 +38,10 @@ namespace Core.State
         {
             // Debug.Log("CallStateTrigger!");
             stateTrigger = true;
+        }
+        
+        protected virtual void UpdateAnimationParas()
+        {
         }
     }
 }
