@@ -6,5 +6,6 @@ namespace Entity.Enemy.Skeleton
         public const string Move = EnemyStateType.Move;
         public const string Attack = EnemyStateType.Attack;
         public const string Battle = EnemyStateType.Battle;
+        public const string Death = EnemyStateType.Death;
     }
 }

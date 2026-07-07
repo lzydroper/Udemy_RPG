@@ -74,9 +74,12 @@ namespace Entity
         protected virtual void Update()
         {
             HandleCollisionDetect();
+            fsm.OnUpdate();
         }
 
         #endregion
+
+        public virtual void Death() { }
 
         public void ReceiveKnockback(Vector2 knockbackVelocity, float knockbackDuration) 
             => this.RestartCoroutine(ref knockbackCoroutine, KnockbackCo(knockbackVelocity, knockbackDuration));

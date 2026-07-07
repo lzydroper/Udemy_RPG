@@ -17,6 +17,7 @@ namespace Entity.Enemy.Skeleton
             fsm.AddState(SkeletonStateType.Move, new MoveState(this, fsm, "move"));
             fsm.AddState(SkeletonStateType.Attack, new AttackState(this, fsm, "attack"));
             fsm.AddState(SkeletonStateType.Battle, new BattleState(this, fsm, "battle"));
+            fsm.AddState(SkeletonStateType.Death, new DeathState(this, fsm));
         }
         
         #endregion
@@ -26,12 +27,6 @@ namespace Entity.Enemy.Skeleton
         private void Start()
         {
             fsm.Initialize(SkeletonStateType.Idle);
-        }
-        
-        protected override void Update()
-        {
-            base.Update();
-            fsm.OnUpdate();
         }
 
         #endregion

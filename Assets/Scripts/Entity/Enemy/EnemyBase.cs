@@ -39,6 +39,12 @@ namespace Entity.Enemy
         
         #endregion
 
+        public override void Death()
+        {
+            base.Death();
+            fsm.ChangeState(EnemyStateType.Death);
+        }
+
         public RaycastHit2D PlayerDetected()
         {
             RaycastHit2D hit = Physics2D.Raycast(

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Core.State
 {
@@ -11,7 +10,8 @@ namespace Core.State
         public IState CurrentState { get; private set; }
         public string CurStateKey { get; private set; }
         public string PreStateKey { get; private set; }
-        public Action<string, string> OnStateChanged;
+        public Action<string, string> onStateChanged;
+        private bool m_canChangeState;
         
         public void AddState(string stateKey, IState state)
         {
@@ -20,6 +20,7 @@ namespace Core.State
         
         public void Initialize(string stateKey)
         {
+            m_canChangeState = true;
             CurStateKey = stateKey;
             CurrentState = m_states[CurStateKey];
             CurrentState.OnEnter();
@@ -27,17 +28,20 @@ namespace Core.State
         
         public void ChangeState(string stateKey)
         {
+            if (!m_canChangeState) return;
             CurrentState.OnExit();
             PreStateKey = CurStateKey;
             CurStateKey = stateKey;
             CurrentState = m_states[CurStateKey];
             CurrentState.OnEnter();
-            OnStateChanged?.Invoke(PreStateKey, CurStateKey);
+            onStateChanged?.Invoke(PreStateKey, CurStateKey);
         }
 
         public void OnUpdate()
         {
             CurrentState.OnUpdate();
         }
+        
+        public void SwitchOffStateMachine() => m_canChangeState = false;
     }
 }

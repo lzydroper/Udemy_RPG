@@ -22,11 +22,12 @@ namespace Entity.Enemy
 
         public override void TakeDamage(float damage, Transform damageDealer)
         {
+            base.TakeDamage(damage, damageDealer);
+            if (isDead) return;
             if (damageDealer?.GetComponent<Player.Player>())
             {
                 _enemyBase.TryEnterBattleState(damageDealer);
             }
-            base.TakeDamage(damage, damageDealer);
         }
     }
 }

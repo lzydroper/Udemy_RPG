@@ -73,12 +73,6 @@ namespace Entity.Player
             fsm.Initialize(PlayerStateType.Idle);
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            fsm.OnUpdate();
-        }
-
         #endregion
     }
 }

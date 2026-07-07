@@ -64,6 +64,7 @@ namespace Entity
         protected virtual void Die()
         {
             isDead = true;
+            _entityBase?.Death();
         }
 
         private Vector2 CalKnockbackVelocity(Vector2 knockbackVe,Transform dealer)
