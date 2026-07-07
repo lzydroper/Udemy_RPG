@@ -17,15 +17,19 @@ namespace Entity.Player
         public override void OnUpdate()
         {
             base.OnUpdate();
-        
-            ani.SetFloat("yVelocity", rb.linearVelocity.y);
-
+            
             if (player.InputSet.Player.Dash.WasPressedThisFrame() && CanDash())
             {
                 stateMachine.ChangeState(PlayerStateType.Dash);
             }
         }
-        
+
+        protected override void UpdateAnimationParas()
+        {
+            base.UpdateAnimationParas();
+            ani.SetFloat("yVelocity", rb.linearVelocity.y);
+        }
+
         private bool CanDash()
         {
             if (player.WallDetected)
