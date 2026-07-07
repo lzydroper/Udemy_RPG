@@ -6,6 +6,7 @@ namespace Entity
     {
         #region Variables
 
+        public float damage;
         [Header("TargetDetection")]
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private float targetCheckRadius;
@@ -13,17 +14,11 @@ namespace Entity
 
         #endregion
 
-        #region LifecycleMethods
-
-        
-
-        #endregion
-
         public void PerformAttack()
         {
             foreach (var target in Physics2D.OverlapCircleAll(transform.position, targetCheckRadius, targetLayer))
             {
-                Debug.Log(target.name);
+                target.GetComponent<EntityHealth>()?.TakeDamage(damage, transform);
             }
         }
         

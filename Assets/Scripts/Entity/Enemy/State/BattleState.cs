@@ -7,7 +7,6 @@ namespace Entity.Enemy.State
     public class BattleState : EnemyStateBase
     {
         private Transform player;
-        private bool _hadGetPlayer;
         private float _lastTimeWasInBattle;
         
         public BattleState(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
@@ -19,12 +18,14 @@ namespace Entity.Enemy.State
         {
             base.OnEnter();
             
-            if (player == null)
+            // update battle timer
+            _lastTimeWasInBattle = Time.time;
+            
+            if (!player)
             {
-                _hadGetPlayer = true;
-                player = enemy.PlayerDetected().transform;
+                player = enemy.GetPlayerTransform();
             }
-            // check if should retreat
+            // check if it should retreat
             if (DistanceToPlayer() < enemy.retreatDistance)
             {
                 rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), rb.linearVelocity.y);
@@ -61,14 +62,14 @@ namespace Entity.Enemy.State
 
         private float DirectionToPlayer()
         {
-            if (!_hadGetPlayer)
+            if (!player)
                 return 0;
             return player.position.x < enemy.transform.position.x ? -1 : 1;
         }
 
         private float DistanceToPlayer()
         {
-            if (!_hadGetPlayer)
+            if (!player)
                 return float.MaxValue;
             return Mathf.Abs(player.position.x - enemy.transform.position.x);
         }

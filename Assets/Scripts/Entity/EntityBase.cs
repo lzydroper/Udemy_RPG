@@ -1,4 +1,5 @@
 using Core.State;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Entity

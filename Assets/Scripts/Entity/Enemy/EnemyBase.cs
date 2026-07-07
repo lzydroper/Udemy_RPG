@@ -1,4 +1,5 @@
 using Core.Utils;
+using Entity.Enemy.Skeleton;
 using UnityEngine;
 
 namespace Entity.Enemy
@@ -24,6 +25,7 @@ namespace Entity.Enemy
         [SerializeField] private LayerMask playerLayer;
         [SerializeField] private float playerCheckDistance;
         [SerializeField] private Transform playerCheckPoint;
+        public Transform playerTransform;
 
         #endregion
 
@@ -47,6 +49,21 @@ namespace Entity.Enemy
                 return default;
             }
             return hit;
+        }
+
+        public void TryEnterBattleState(Transform player)
+        {
+            if (fsm.CurStateKey is SkeletonStateType.Battle or SkeletonStateType.Attack)
+                return;
+            playerTransform = player;
+            fsm.ChangeState(SkeletonStateType.Battle);
+        }
+
+        public Transform GetPlayerTransform()
+        {
+            if (!playerTransform)
+                playerTransform = PlayerDetected().transform;
+            return playerTransform;
         }
         
 #if UNITY_EDITOR

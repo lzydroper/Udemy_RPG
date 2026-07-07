@@ -36829,6 +36829,7 @@ MonoBehaviour:
     m_Bits: 256
   playerCheckDistance: 10
   playerCheckPoint: {fileID: 1716913230}
+  playerTransform: {fileID: 0}
 --- !u!4 &1776875631
 Transform:
   m_ObjectHideFlags: 0
@@ -36861,6 +36862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -36910,6 +36912,7 @@ GameObject:
   - component: {fileID: 2125322181}
   - component: {fileID: 2125322180}
   - component: {fileID: 2125322183}
+  - component: {fileID: 2125322184}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -37046,11 +37049,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   targetCheckRadius: 1
   targetCheckPoint: {fileID: 159470168}
+--- !u!114 &2125322184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125322178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255ce2710e374ca1b19d3070b8924279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
