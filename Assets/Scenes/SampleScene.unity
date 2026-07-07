@@ -36722,10 +36722,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1776875631}
-  - component: {fileID: 1776875630}
   - component: {fileID: 1776875629}
   - component: {fileID: 1776875628}
+  - component: {fileID: 1776875630}
   - component: {fileID: 1776875632}
+  - component: {fileID: 1776875633}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -36868,6 +36869,20 @@ MonoBehaviour:
     m_Bits: 256
   targetCheckRadius: 1
   targetCheckPoint: {fileID: 1249709763}
+--- !u!114 &1776875633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776875627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee55b29c603142a08a80ee2d17c97ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 100
 --- !u!1 &2006900473
 GameObject:
   m_ObjectHideFlags: 0
@@ -36908,9 +36923,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125322179}
-  - component: {fileID: 2125322182}
   - component: {fileID: 2125322181}
   - component: {fileID: 2125322180}
+  - component: {fileID: 2125322182}
   - component: {fileID: 2125322183}
   - component: {fileID: 2125322184}
   m_Layer: 8
