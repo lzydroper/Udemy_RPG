@@ -44,6 +44,9 @@ TagManager:
   - name: 'Ground           '
     uniqueID: 4176407651
     locked: 0
+  - name: Prop
+    uniqueID: 1983218949
+    locked: 0
   - name: 'Enemy     '
     uniqueID: 1629366573
     locked: 0

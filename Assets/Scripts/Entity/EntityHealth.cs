@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Entity
 {
-    public class EntityHealth : MonoBehaviour
+    public class EntityHealth : MonoBehaviour, IDamageable
     {
         #region Variables
 

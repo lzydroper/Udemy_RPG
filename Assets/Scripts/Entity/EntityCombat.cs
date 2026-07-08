@@ -18,7 +18,7 @@ namespace Entity
         {
             foreach (var target in Physics2D.OverlapCircleAll(targetCheckPoint.position, targetCheckRadius, targetLayer))
             {
-                target.GetComponent<EntityHealth>()?.TakeDamage(damage, transform);
+                target.GetComponent<IDamageable>()?.TakeDamage(damage, transform);
             }
         }
         

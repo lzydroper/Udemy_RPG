@@ -44,8 +44,15 @@ namespace Entity.Player
             fsm.AddState(PlayerStateType.Dash, new DashState(this, fsm, "dash"));
             fsm.AddState(PlayerStateType.BasicAttack, new BasicAttackState(this, fsm, "basicAttack"));
             fsm.AddState(PlayerStateType.JumpAttack, new JumpAttackState(this, fsm, "jumpAttack"));
+            fsm.AddState(PlayerStateType.Death, new DeathState(this, fsm, "death"));
         }
-        
+
+        public override void Death()
+        {
+            base.Death();
+            fsm.ChangeState(PlayerStateType.Death);
+        }
+
         #endregion
 
         #region LifecycleMethods
