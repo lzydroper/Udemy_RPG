@@ -26,6 +26,11 @@ namespace Entity.Enemy
         [SerializeField] private float playerCheckDistance;
         [SerializeField] private Transform playerCheckPoint;
         public Transform playerTransform;
+        
+        [Header("Stunned")]
+        public float stunDuration;
+        public Vector2 stunVelocity;
+        protected bool canBeStunned;
 
         #endregion
 
@@ -71,6 +76,8 @@ namespace Entity.Enemy
                 playerTransform = PlayerDetected().transform;
             return playerTransform;
         }
+        
+        public void SwitchStunEnable(bool enable) => canBeStunned = enable;
         
 #if UNITY_EDITOR
         [ContextMenu("TestToAttackState")]

@@ -7,7 +7,7 @@ namespace Entity
         private EntityBase _entityBase;
         private EntityCombat _entityCombat;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _entityBase = GetComponentInParent<EntityBase>();
             _entityCombat = GetComponentInParent<EntityCombat>();

@@ -7,5 +7,6 @@ namespace Entity.Enemy
         public const string Attack = "Attack";
         public const string Battle = "Battle";
         public const string Death = "Death";
+        public const string Stunned = "Stunned";
     }
 }

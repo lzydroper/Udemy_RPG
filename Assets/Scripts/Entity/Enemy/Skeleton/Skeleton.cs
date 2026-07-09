@@ -1,8 +1,10 @@
 using Entity.Enemy.State;
+using Entity.Interfaces;
+using NaughtyAttributes;
 
 namespace Entity.Enemy.Skeleton
 {
-    public class Skeleton : EnemyBase
+    public class Skeleton : EnemyBase, ICounterable
     {
         #region Variables
         
@@ -18,6 +20,7 @@ namespace Entity.Enemy.Skeleton
             fsm.AddState(SkeletonStateType.Attack, new AttackState(this, fsm, "attack"));
             fsm.AddState(SkeletonStateType.Battle, new BattleState(this, fsm, "battle"));
             fsm.AddState(SkeletonStateType.Death, new DeathState(this, fsm));
+            fsm.AddState(SkeletonStateType.Stunned, new StunnedState(this, fsm, "stunned"));
         }
         
         #endregion
@@ -30,5 +33,12 @@ namespace Entity.Enemy.Skeleton
         }
 
         #endregion
+
+        [Button("TestStunned")]
+        public void HandleCounter()
+        {
+            if (!canBeStunned) return;
+            fsm.ChangeState(SkeletonStateType.Stunned);
+        }
     }
 }
