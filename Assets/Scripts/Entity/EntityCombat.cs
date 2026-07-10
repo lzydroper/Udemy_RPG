@@ -17,10 +17,15 @@ namespace Entity
 
         public void PerformAttack()
         {
-            foreach (var target in Physics2D.OverlapCircleAll(targetCheckPoint.position, targetCheckRadius, targetLayer))
+            foreach (var target in GetDetectTargets())
             {
                 target.GetComponent<IDamageable>()?.TakeDamage(damage, transform);
             }
+        }
+
+        protected Collider2D[] GetDetectTargets()
+        {
+            return Physics2D.OverlapCircleAll(targetCheckPoint.position, targetCheckRadius, targetLayer);
         }
         
 #if UNITY_EDITOR

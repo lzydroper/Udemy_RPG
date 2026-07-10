@@ -37362,7 +37362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 35
+  damage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -37445,7 +37445,7 @@ GameObject:
   - component: {fileID: 2125322181}
   - component: {fileID: 2125322180}
   - component: {fileID: 2125322182}
-  - component: {fileID: 2125322183}
+  - component: {fileID: 2125322186}
   - component: {fileID: 2125322184}
   - component: {fileID: 2125322185}
   m_Layer: 8
@@ -37572,24 +37572,6 @@ MonoBehaviour:
   wallSlideSlowMultiplier: 0.35
   dashDuration: 0.25
   dashSpeed: 20
---- !u!114 &2125322183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125322178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 35
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  targetCheckRadius: 1
-  targetCheckPoint: {fileID: 159470168}
 --- !u!114 &2125322184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37623,6 +37605,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
   onDamageDuration: 0.2
+--- !u!114 &2125322186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125322178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731e813bed8a4bfaa777ec9823b3225f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  targetCheckRadius: 1
+  targetCheckPoint: {fileID: 159470168}
+  counterDuration: 0.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

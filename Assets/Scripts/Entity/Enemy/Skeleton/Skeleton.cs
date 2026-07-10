@@ -7,6 +7,8 @@ namespace Entity.Enemy.Skeleton
     public class Skeleton : EnemyBase, ICounterable
     {
         #region Variables
+
+        public bool CanBeCountered => canBeStunned;
         
         #endregion
         
@@ -37,7 +39,7 @@ namespace Entity.Enemy.Skeleton
         [Button("TestStunned")]
         public void HandleCounter()
         {
-            if (!canBeStunned) return;
+            if (!CanBeCountered) return;
             fsm.ChangeState(SkeletonStateType.Stunned);
         }
     }

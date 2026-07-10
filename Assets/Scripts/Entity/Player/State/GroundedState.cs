@@ -27,6 +27,11 @@ namespace Entity.Player.State
             {
                 stateMachine.ChangeState(PlayerStateType.BasicAttack);
             }
+
+            if (player.InputSet.Player.CounterAttack.WasPressedThisFrame())
+            {
+                stateMachine.ChangeState(PlayerStateType.CounterAttack);
+            }
         }
     }
 }

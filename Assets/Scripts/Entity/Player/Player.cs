@@ -45,6 +45,7 @@ namespace Entity.Player
             fsm.AddState(PlayerStateType.BasicAttack, new BasicAttackState(this, fsm, "basicAttack"));
             fsm.AddState(PlayerStateType.JumpAttack, new JumpAttackState(this, fsm, "jumpAttack"));
             fsm.AddState(PlayerStateType.Death, new DeathState(this, fsm, "death"));
+            fsm.AddState(PlayerStateType.CounterAttack, new CounterAttackState(this, fsm, "counterAttack"));
         }
 
         public override void Death()
