@@ -1,5 +1,6 @@
 using Entity.Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Entity
 {
@@ -9,9 +10,10 @@ namespace Entity
 
         private EntityVFX _entityVFX;
         private EntityBase _entityBase;
+        private Slider _healthBar;
         
         [SerializeField] protected float maxHealth = 100f;
-        [SerializeField] protected float curHealth = 100f;
+        protected float curHealth = 100f;
         protected bool isDead = false;
         
         [Header("OnDamageKnockback")]
@@ -31,9 +33,18 @@ namespace Entity
         {
             _entityVFX = GetComponent<EntityVFX>();
             _entityBase = GetComponent<EntityBase>();
+            _healthBar = GetComponentInChildren<Slider>();
+            curHealth = maxHealth;
+            UpdateHealthBar();
         }
 
         #endregion
+
+        private void UpdateHealthBar()
+        {
+            if (_healthBar == null) return;
+            _healthBar.value = curHealth / maxHealth;
+        }
 
         public virtual void TakeDamage(float damage, Transform damageDealer)
         {
@@ -54,6 +65,7 @@ namespace Entity
         protected void ReduceHealth(float amount)
         {
             curHealth -= amount;
+            UpdateHealthBar();
 
             if (curHealth <= 0f)
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Core.State;
 using Core.Utils;
@@ -16,6 +17,8 @@ namespace Entity
         #endregion
 
         #region Variables
+
+        public event Action OnFlip;
         
         // state machine
         public string CurStateKey => fsm?.CurStateKey;
@@ -128,6 +131,7 @@ namespace Entity
             transform.Rotate(0, 180, 0);
             isFacingRight = !isFacingRight;
             facingDir *= -1;
+            OnFlip?.Invoke();
         }
         
         public void SetVelocity(float xVelocity, float yVelocity)
