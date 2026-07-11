@@ -1,30 +1,39 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Core.Pool
 {
     public class GameObjectPool
     {
+        private CancellationTokenSource cts;
+        private readonly Dictionary<int, IPoolRent> _rentDict = new();
+        private readonly Dictionary<int, IPoolReturn> _returnDict = new();
+        // 防止重复Return
+        private readonly HashSet<int> _poolSet = new();
         public bool IsDestroyed { get; private set; }
         public string PoolName { get; private set; }
         public Transform RootTransform { get; private set; }
         public Queue<GameObject> PoolQueue { get; } = new();
-        public HashSet<GameObject> RentSet { get; } = new();
-        private readonly Queue<GameObject> _rentQueue = new();
         // 对应的prefab，初始化后不再变化
         public GameObject Prefab { get; private set; }
         // 池创建出的对象总数，仅在 Expand 增加，Destroy 后失效
         public int Count { get; private set; }
         // 最大上限，初始化后不再变化
         public int Capacity { get; private set; }
-        // 单次扩容/缩容步数，初始化后不再变化
+        // 单次扩容步数，初始化后不再变化
         public int Step { get; private set; }
+        // 生存时间，-1表示无限
+        public float Duration { get; private set; }
 
         public void Initialize(string poolName, Transform upperRootTransform, GameObject prefab,
-            int step = 8, int capacity = -1, int prewarm = 0)
+            int step = 8, int capacity = -1, int prewarm = 0, float duration = -1)
         {
+            cts = new();
             Prefab = prefab;
             if (capacity != -1 )
             {
@@ -44,6 +53,7 @@ namespace Core.Pool
             RootTransform.name = $"[Pool] {PoolName}";
             Step = step;
             Capacity = capacity;
+            Duration = duration;
             // 预热
             Expand(prewarm);
         }
@@ -61,34 +71,32 @@ namespace Core.Pool
             {
                 GameObject gameObject = Object.Instantiate(Prefab, RootTransform);
                 gameObject.name = PoolName;
+                if (gameObject.TryGetComponent(out IPoolRent rent))
+                    _rentDict[gameObject.GetInstanceID()] = rent;
+                if (gameObject.TryGetComponent(out IPoolReturn ret))
+                    _returnDict[gameObject.GetInstanceID()] = ret;
                 Push(gameObject);
                 Count++;
             }
         }
 
-        private void Expand()
-        {
-            Expand(Step);
-        }
-
         private void Push(GameObject gameObject)
         {
             PoolQueue.Enqueue(gameObject);
+            _poolSet.Add(gameObject.GetInstanceID());
             gameObject.transform.SetParent(RootTransform);
             gameObject.SetActive(false);
         }
 
-        public GameObject Rent(PoolParentOverride parent = default)
+        private GameObject Rent(Vector3 position = default, Quaternion rotation = default, 
+            PoolParentOverride parent = default)
         {
-            // 如果超限了，还在借，便尝试回收一些
-            if (PoolQueue.Count == 0 && Capacity != -1 && Count >= Capacity)
-                Recycle();
             if (PoolQueue.Count == 0)
-                Expand();
+                Expand(Step);
             if (PoolQueue.Count == 0)
                 return null;
             var gameObject = PoolQueue.Dequeue();
-            gameObject.SetActive(true);
+            _poolSet.Remove(gameObject.GetInstanceID());
             // 未指定 parent 时保留池默认层级；显式传 null 时才脱离父级。
             if (parent.IsSpecified)
             {
@@ -98,55 +106,56 @@ namespace Core.Pool
                     SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
                 }
             }
-            RentSet.Add(gameObject);
-            _rentQueue.Enqueue(gameObject);
+            gameObject.transform.position = position;
+            gameObject.transform.rotation = rotation;
+            if (_rentDict.TryGetValue(gameObject.GetInstanceID(), out IPoolRent rent))
+                rent.OnRent();
+            // 做完全部后才active
+            gameObject.SetActive(true);
             return gameObject;
-        }
-
-        public void Return(GameObject gameObject)
-        {
-            Push(gameObject);
         }
 
         public bool TryReturn(GameObject gameObject)
         {
-            if (gameObject is null || !RentSet.Remove(gameObject))
+            // 判空，并防止重复入队
+            if (gameObject is null || _poolSet.Contains(gameObject.GetInstanceID()))
                 return false;
-            Return(gameObject);
+            if (_returnDict.TryGetValue(gameObject.GetInstanceID(), out IPoolReturn ret))
+                ret.OnReturn();
+            Push(gameObject);
             return true;
         }
 
-        public void Recycle()
+        public bool TryRent(out GameObject gameObject, Vector3 position = default, Quaternion rotation = default, 
+            PoolParentOverride parent = default)
         {
-            int count = 0;
-            while (count < Step && _rentQueue.Count > 0)
-            {
-                var gameObject = _rentQueue.Dequeue();
-                if (RentSet.Contains(gameObject))
-                {
-                    Return(gameObject);
-                    count++;
-                }
-            }
+            gameObject = Rent(position, rotation, parent);
+            return gameObject is not null;
         }
 
-        public bool TryRent(out GameObject gameObject, PoolParentOverride parent = default)
+        public async UniTaskVoid ReturnAsync(GameObject gameObject, float duration = -1)
         {
-            return (gameObject = Rent(parent)) is not null;
+            // 不接受生存时间不合法选项
+            duration = duration < 0 ? Duration : duration;
+            if (duration < 0) return;
+            await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: cts.Token);
+            TryReturn(gameObject);
         }
         
         public void Destroy()
         {
             IsDestroyed = true;
-            foreach (var gameObject in RentSet.Where(gameObject => gameObject != null))
-            {
-                Object.Destroy(gameObject);
-            }
+            cts.Cancel();
+            cts.Dispose();
             PoolQueue.Clear();
-            RentSet.Clear();
-            _rentQueue.Clear();
-            RootTransform = null;
+            _poolSet.Clear();
+            if (RootTransform != null)
+            {
+                Object.Destroy(RootTransform.gameObject);
+                RootTransform = null;
+            }
             Prefab = null;
+            Count = 0;
         }
     }
 }

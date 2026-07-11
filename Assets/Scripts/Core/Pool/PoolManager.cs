@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Pool
@@ -17,20 +15,20 @@ namespace Core.Pool
         }
 
         #region Register
-        
+
         public void Register(string poolName, GameObject prefab,
-            int step = 4, int capacity = -1, int prewarm = 0)
+            int step = 4, int capacity = -1, int prewarm = 0, float duration = -1)
         {
             if (PoolDict.ContainsKey(poolName))
                 return;
             var pool = new GameObjectPool();
-            pool.Initialize(poolName, _poolRootTransform, prefab, step, capacity, prewarm);
+            pool.Initialize(poolName, _poolRootTransform, prefab, step, capacity, prewarm, duration);
             PoolDict.Add(poolName, pool);
         }
 
         public void Register(PoolDataSO poolData) 
-            => Register(poolData.poolName, poolData.prefab, poolData.step, poolData.capacity, poolData.prewarm);
-        
+            => Register(poolData.poolName, poolData.prefab, poolData.step, poolData.capacity, poolData.prewarm, poolData.duration);
+
         #endregion
 
         #region Unregister
@@ -58,38 +56,38 @@ namespace Core.Pool
         #region Rent
 
         private bool TryRent(string poolName, out GameObjectPool pool, out GameObject gameObject,
-            Vector3? position = null, Quaternion? rotation = null, PoolParentOverride parent = default)
+            Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
         {
             gameObject = null;
-            if (!PoolDict.TryGetValue(poolName, out pool) || !pool.TryRent(out gameObject, parent))
-                return false;
-            if (position.HasValue) gameObject.transform.position = position.Value;
-            if (rotation.HasValue) gameObject.transform.rotation = rotation.Value;
-            return true;
+            if (PoolDict.TryGetValue(poolName, out pool) && pool.TryRent(out gameObject, position, rotation, parent))
+                return true;
+            return false;
         }
 
-        public GameObject Rent(string poolName,
-            Vector3? position = null, Quaternion? rotation = null, PoolParentOverride parent = default)
-            => TryRent(poolName, out _, out var gameObject, position, rotation, parent) ? gameObject : null;
-
         public bool TryRent(string poolName, out GameObject gameObject,
-            Vector3? position = null, Quaternion? rotation = null, PoolParentOverride parent = default)
+            Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
             => TryRent(poolName, out _, out gameObject, position, rotation, parent);
 
-        public async UniTaskVoid Rent(string poolName, float duration,
-            Vector3? position = null, Quaternion? rotation = null, PoolParentOverride parent = default)
+        public bool TryRent<T>(string poolName, out Component component,
+            Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
+            where T : Component
+        {
+            component = null;
+            if (TryRent(poolName, out _, out var gameObject, position, rotation, parent) &&
+                gameObject.TryGetComponent(out component))
+                return true;
+            return false;
+        }
+
+        public void RentAsync(string poolName, float duration = -1,
+            Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
         {
             if (TryRent(poolName, out var pool, out var gameObject, position, rotation, parent))
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(duration));
-                // 等待的这会，可能池/物体被销毁了，物体不会无端销毁，关心池因为场景切换注销的问题
-                if (!pool.IsDestroyed)
-                {
-                    pool.Return(gameObject);
-                }
+                pool.ReturnAsync(gameObject, duration).Forget();
             }
         }
-        
+
         #endregion
 
         #region Return
@@ -101,23 +99,18 @@ namespace Core.Pool
             poolName ??= gameObject.name;
             if (PoolDict.TryGetValue(poolName, out var pool))
             {
-                pool.Return(gameObject);
+                pool.TryReturn(gameObject);
             }
         }
 
-        public async UniTaskVoid Return(GameObject gameObject, float duration, string poolName = null)
+        public void ReturnAsync(GameObject gameObject, string poolName = null, float duration = -1)
         {
             if (gameObject == null)
                 return;
             poolName ??= gameObject.name;
             if (PoolDict.TryGetValue(poolName, out var pool))
             {
-                await UniTask.WaitForSeconds(duration);
-                // 等待的这会，可能池/物体被销毁了，物体不会无端销毁，关心池因为场景切换注销的问题
-                if (pool is not { IsDestroyed: true })
-                {
-                    pool.Return(gameObject);
-                }
+                pool.ReturnAsync(gameObject, duration).Forget();
             }
         }
         
