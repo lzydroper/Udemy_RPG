@@ -1,6 +1,6 @@
 using Entity.Enemy.State;
 using Entity.Interfaces;
-using NaughtyAttributes;
+using VInspector;
 
 namespace Entity.Enemy.Skeleton
 {

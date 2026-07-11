@@ -1,7 +1,7 @@
 using System;
 using Core.Pool;
-using NaughtyAttributes;
 using UnityEngine;
+using VInspector;
 using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
@@ -12,10 +12,12 @@ namespace DefaultNamespace
 
         [SerializeField] private bool randomOffset = true;
 
-        [ShowIf("randomOffset")][SerializeField] private float xMinOffset = -.3f;
-        [ShowIf("randomOffset")][SerializeField] private float xMaxOffset = 0.3f;
-        [ShowIf("randomOffset")][SerializeField] private float yMinOffset = -.3f;
-        [ShowIf("randomOffset")][SerializeField] private float yMaxOffset = 0.3f;
+        [ShowIf("randomOffset")]
+        [SerializeField] private float xMinOffset = -.3f;
+        [SerializeField] private float xMaxOffset = 0.3f;
+        [SerializeField] private float yMinOffset = -.3f;
+        [SerializeField] private float yMaxOffset = 0.3f;
+        [EndIf]
         
         [SerializeField] private bool randomRotation = true;
 
