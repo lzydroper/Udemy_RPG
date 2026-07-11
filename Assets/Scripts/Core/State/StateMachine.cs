@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Core.State
 {
-    [Serializable]
     public class StateMachine
     {
         private readonly Dictionary<string, IState> m_states = new();
