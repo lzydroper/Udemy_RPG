@@ -1,4 +1,5 @@
 using Core.Utils;
+using Generated;
 using UnityEngine;
 
 namespace Core.Pool
@@ -7,7 +8,7 @@ namespace Core.Pool
     public class PoolDataSO : ScriptableObject
     {
         [Tooltip("唯一标识符，对应 Rent/Return 调用中的 poolName 参数。")]
-        [StringDropdown(typeof(PoolDataType))]
+        [StringDropdown(typeof(Keys.Pool))]
         public string poolName;
 
         [Tooltip("扩容步长")] 
@@ -18,6 +19,9 @@ namespace Core.Pool
         
         [Tooltip("初始化预热数目，默认为0不预热")]
         public int prewarm = 0;
+
+        [Tooltip("生存时间")] 
+        public float duration = 1f;
 
         [Tooltip("预制体")]
         public GameObject prefab;
