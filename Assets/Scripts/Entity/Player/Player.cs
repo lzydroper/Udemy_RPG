@@ -1,5 +1,4 @@
-using System.Collections;
-using Core.State;
+using Core.Utils;
 using Entity.Player.State;
 using UnityEngine;
 
@@ -7,6 +6,10 @@ namespace Entity.Player
 {
     public class Player : EntityBase
     {
+        [Header("PlayerState")]
+        [TypeFilter(typeof(PlayerStateBase))]
+        [SerializeField] SerializableType playerState;
+        
         // input system
         public Vector2 MoveInput { get; private set; } 
         public PlayerInputSet InputSet { get; private set; }
