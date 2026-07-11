@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Entity.Enemy
 {
     public class EnemyAnimationTriggers : EntityAnimationTriggers

@@ -1,5 +1,4 @@
 using Core.State;
-using UnityEngine;
 
 namespace Entity.Enemy.State
 {

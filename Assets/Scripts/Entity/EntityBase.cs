@@ -1,8 +1,6 @@
 using System.Collections;
 using Core.State;
 using Core.Utils;
-using NaughtyAttributes;
-using Unity.VisualScripting;
 using UnityEngine;
 using StateMachine = Core.State.StateMachine;
 
