@@ -6,6 +6,8 @@ namespace Entity
     public class EntityCombat : MonoBehaviour
     {
         #region Variables
+        
+        private EntityVFX _entityVFX;
 
         public float damage;
         [Header("TargetDetection")]
@@ -15,11 +17,24 @@ namespace Entity
 
         #endregion
 
+        #region LifecycleMethods
+
+        private void Awake()
+        {
+            _entityVFX = GetComponent<EntityVFX>();
+        }
+
+        #endregion
+
         public void PerformAttack()
         {
             foreach (var target in GetDetectTargets())
             {
-                target.GetComponent<IDamageable>()?.TakeDamage(damage, transform);
+                var damageable = target.GetComponent<IDamageable>();
+                if (damageable == null) continue;
+                
+                damageable.TakeDamage(damage, transform);
+                _entityVFX.CreateOnHitVFX(target.transform);
             }
         }
 

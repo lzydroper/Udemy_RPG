@@ -1,4 +1,6 @@
 using System.Collections;
+using Core.Utils;
+using Generated;
 using UnityEngine;
 
 namespace Entity
@@ -8,11 +10,13 @@ namespace Entity
         #region Variables
 
         private SpriteRenderer sr;
-        [Header("OnDamageVFX")]
+        [Header("OnTakingDamageVFX")]
         [SerializeField] private Material onDamageMaterial;
         [SerializeField] private float onDamageDuration = .2f;
         private Material originalMaterial;
         private Coroutine onDamageCoroutine;
+        [Header("OnDoingDamageVFX")]
+        [SerializeField] private Color hitVFXColor = Color.white;
 
         #endregion
 
@@ -25,6 +29,15 @@ namespace Entity
         }
 
         #endregion
+
+        public void CreateOnHitVFX(Transform target)
+        {
+            if (GameManager.Pool.TryRent(Keys.Pool.OnHitVFX, out var vfx, target.position))
+            {
+                vfx.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
+                vfx.ReturnAsync(Keys.Pool.OnHitVFX);
+            }
+        }
 
         public void PlayOnDamageVFX()
         {
