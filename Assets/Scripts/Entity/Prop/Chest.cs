@@ -27,7 +27,7 @@ namespace Entity.Prop
 
         #endregion
 
-        public bool TryTakeDamage(float damage, Transform damageDealer)
+        public bool TryTakeDamage(in DamageContext context)
         {
             entityVFX.PlayOnDamageVFX();
             ani.SetBool("open", true);

@@ -1,5 +1,7 @@
 using Entity.Interfaces;
+using Stats;
 using UnityEngine;
+using VInspector;
 
 namespace Entity
 {
@@ -12,9 +14,14 @@ namespace Entity
         
         [Header("TargetDetection")]
         [SerializeField] private LayerMask targetLayer;
-        [SerializeField] private float targetCheckRadius;
+        [SerializeField] private float targetCheckRadius = 1;
         [SerializeField] private Transform targetCheckPoint;
-
+        [Header("StatusEffectDetails")]
+        [SerializeField] private float defaultDuration = 3;
+        [Tab("Ice Effect")]
+        [SerializeField] private float slowPercentage = 0.5f;
+        [EndTab]
+        
         #endregion
 
         #region LifecycleMethods
@@ -34,18 +41,27 @@ namespace Entity
                 var damageable = target.GetComponent<IDamageable>();
                 if (damageable == null) continue;
 
-                // who combat is to use the reduction value
+                var physicDamage = _entityStat.GetPhysicDamage(out var isCritical);
+                var elementDamage = _entityStat.GetElementDamage(out var elementType);
                 var armorReductionPer = _entityStat.GetArmorReductionPer();
-                var targetEntityStat = target.GetComponent<EntityStat>();
-                var armorMitigationPer = targetEntityStat ? 
-                    targetEntityStat.GetArmorMitigationPer(armorReductionPer) : 0;
-                var armorMitigationMultiplier = 1 - armorMitigationPer;
-                var physicalDamage = _entityStat.GetPhysicalDamage(out var isCritical);
-                var damage = physicalDamage * armorMitigationMultiplier;
-                if (damageable.TryTakeDamage(damage, transform))
+                var context = new DamageContext(transform, physicDamage, elementDamage, elementType, armorReductionPer);
+                if (damageable.TryTakeDamage(context))
                 {
-                    _entityVFX.CreateOnHitVFX(target.transform, isCritical);
+                    ApplyElementEffect(target.transform, elementType);
+                    _entityVFX?.UpdateUpdateOnHitColor(elementType);
+                    _entityVFX?.CreateOnHitVFX(target.transform, isCritical);
                 }
+            }
+        }
+
+        public void ApplyElementEffect(Transform target, ElementType type)
+        {
+            if (type == ElementType.None) return;
+            var handler = target.GetComponent<EntityStatusHandler>();
+            if (handler != null && handler.CanBeAppliedElementEffect(type))
+            {
+                if (type == ElementType.Ice)
+                    handler.ApplyIceEffect(defaultDuration, 1 - slowPercentage);
             }
         }
 

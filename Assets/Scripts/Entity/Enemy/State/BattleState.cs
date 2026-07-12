@@ -54,7 +54,7 @@ namespace Entity.Enemy.State
             }
             else
             {
-                enemy.SetVelocity(enemy.attackMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
+                enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
             }
         }
 

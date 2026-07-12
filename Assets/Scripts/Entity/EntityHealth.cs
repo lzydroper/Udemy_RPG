@@ -47,30 +47,50 @@ namespace Entity
             _healthBar.value = curHealth / _entityStat.GetMaxHealth();
         }
 
-        public virtual bool TryTakeDamage(float damage, Transform damageDealer)
+        public virtual bool TryTakeDamage(in DamageContext context)
         {
             if (isDead) return false;
             
             if (AttackEvasion()) return false;
 
-            if (damage > heavyDamageThreshold * _entityStat.GetMaxHealth())
-            {
-                _entityBase.ReceiveKnockback(CalKnockbackVelocity(heavyKnockbackVelocity, damageDealer), heavyKnockbackDuration);
-            }
-            else
-            {
-                _entityBase.ReceiveKnockback(CalKnockbackVelocity(knockbackVelocity, damageDealer), knockbackDuration);
-            }
-            _entityVFX?.PlayOnDamageVFX();
+            // calculate the armor and physic damage
+            var armorMitigationPer = _entityStat.GetArmorMitigationPer(context.ArmorReductionPer);
+            var physicDamage = context.PhysicDamage * (1 - armorMitigationPer);
+            // calculate the resistance and element damage
+            var elementResistancePer = _entityStat.GetElementResistancePer(context.ElementType);
+            var elementDamage = context.ElementDamage * (1 - elementResistancePer);
+            
+            var damage = physicDamage + elementDamage;
+            Debug.Log($"physicDamageOri: {context.PhysicDamage}, physicDamageAft: {physicDamage}\n" +
+                      $"elementDamageOri: {context.ElementDamage}, elementDamageAft: {elementDamage}");
+            
+            TakeKnockback(damage, context.DamageDealer);
             ReduceHealth(damage);
             
             return true;
         }
-        
+
+        private void TakeKnockback(float damage, Transform damageDealer)
+        {
+            if (damage > heavyDamageThreshold * _entityStat.GetMaxHealth())
+            {
+                _entityBase.ReceiveKnockback(
+                    CalKnockbackVelocity(heavyKnockbackVelocity, damageDealer), 
+                    heavyKnockbackDuration);
+            }
+            else
+            {
+                _entityBase.ReceiveKnockback(
+                    CalKnockbackVelocity(knockbackVelocity, damageDealer), 
+                    knockbackDuration);
+            }
+        }
+
         private bool AttackEvasion() => Random.Range(0f, 100f) < _entityStat.GetEvasion();
 
         protected void ReduceHealth(float amount)
         {
+            _entityVFX?.PlayOnDamageVFX();
             curHealth -= amount;
             UpdateHealthBar();
 

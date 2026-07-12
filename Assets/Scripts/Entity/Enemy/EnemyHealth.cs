@@ -1,3 +1,4 @@
+using Entity.Interfaces;
 using UnityEngine;
 
 namespace Entity.Enemy
@@ -20,13 +21,13 @@ namespace Entity.Enemy
 
         #endregion
 
-        public override bool TryTakeDamage(float damage, Transform damageDealer)
+        public override bool TryTakeDamage(in DamageContext context)
         {
-            if (base.TryTakeDamage(damage, damageDealer))
+            if (base.TryTakeDamage(context))
             {
-                if (!isDead && damageDealer.TryGetComponent<Player.Player>(out _))
+                if (!isDead && context.DamageDealer.TryGetComponent<Player.Player>(out _))
                 {
-                    _enemyBase.TryEnterBattleState(damageDealer);
+                    _enemyBase.TryEnterBattleState(context.DamageDealer);
                 }
                 return true;
             }

@@ -37,7 +37,58 @@ namespace Entity
 
         #endregion
 
-        public float GetPhysicalDamage(out bool isCritical)
+        public float GetElementDamage(out ElementType type)
+        {
+            var elementPairs = new (float damage, ElementType type)[]
+            {
+                (fireDamage.GetValue(), ElementType.Fire),
+                (iceDamage.GetValue(), ElementType.Ice),
+                (lightningDamage.GetValue(), ElementType.Lightning)
+            };
+
+            float highestElementDamage = 0f;
+            type = ElementType.None;
+            
+            foreach (var item in elementPairs)
+            {
+                if (item.damage > highestElementDamage)
+                {
+                    highestElementDamage = item.damage;
+                    type = item.type;
+                }
+            }
+
+            float bonusElementDamage = intelligence.GetValue();
+            if (type == ElementType.None) return bonusElementDamage;
+
+            float weakerElementDamage = 0;
+            foreach (var item in elementPairs)
+            {
+                if (item.type != type)
+                {
+                    weakerElementDamage += item.damage * 0.5f;
+                }
+            }
+            
+            return highestElementDamage + weakerElementDamage + bonusElementDamage;
+        }
+
+        public float GetElementResistancePer(ElementType type)
+        {
+            float basicElementResistance = type switch
+            {
+                ElementType.Fire => firResistance.GetValue(),
+                ElementType.Ice => iceResistance.GetValue(),
+                ElementType.Lightning => lightningResistance.GetValue(),
+                _ => 0
+            };
+            float bonusElementResistance = intelligence.GetValue() * .5f;
+            float totalResistance = basicElementResistance + bonusElementResistance;
+            float elementResistanceCap = .75f;
+            return Mathf.Clamp(totalResistance / 100f, 0, elementResistanceCap);
+        }
+        
+        public float GetPhysicDamage(out bool isCritical)
         {
             float basicDamage = damage.GetValue();
             float bonusDamage = strength.GetValue();

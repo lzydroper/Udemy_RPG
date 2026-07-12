@@ -31,8 +31,8 @@ namespace Entity
         // collision detect
         [Header("collision detection")]
         [SerializeField] protected LayerMask groundLayer;
-        [SerializeField] private float groundCheckDistance;
-        [SerializeField] private float wallCheckDistance;
+        [SerializeField] private float groundCheckDistance = 1;
+        [SerializeField] private float wallCheckDistance = 1;
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Transform wallCheckTopPoint;
         [SerializeField] private Transform wallCheckBottomPoint;
@@ -42,6 +42,8 @@ namespace Entity
 
         private bool isKnocked;
         private Coroutine knockbackCoroutine;
+
+        private Coroutine slowDownCoroutine;
 
         #endregion
         
@@ -79,6 +81,14 @@ namespace Entity
         }
 
         #endregion
+        
+        public void SlowDown(float duration, float slowMultiplier) 
+            => this.RestartCoroutine(ref slowDownCoroutine, SlowDownCo(duration, slowMultiplier));
+
+        protected virtual IEnumerator SlowDownCo(float duration, float slowMultiplier)
+        {
+            yield return null;
+        }
 
         public virtual void Death() { }
 

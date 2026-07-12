@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using Core.Utils;
 using Entity.Player.State;
 using UnityEngine;
@@ -16,22 +18,22 @@ namespace Entity.Player
     
         // attack
         [Header("attack details")] 
-        public float basicAttackDuration;
-        public float comboAttackTime;
+        public float basicAttackDuration = 0.25f;
+        public float comboAttackTime = 1f;
         public Vector2[] basicAttackVelocity;
-        public Vector2 jumpAttackVelocity;
+        public Vector2 jumpAttackVelocity = new(3, -6);
     
         // move
         [Header("movement details")]
-        public float moveSpeed;
-        public float jumpForce;
-        public Vector2 wallJumpForce;
+        public float moveSpeed = 8;
+        public float jumpForce = 15;
+        public Vector2 wallJumpForce = new(8, 15);
         [Range(0,1)]
-        public float inAirMultiplier;
+        public float inAirMultiplier = 0.65f;
         [Range(0,1)]
-        public float wallSlideSlowMultiplier;
-        public float dashDuration;
-        public float dashSpeed;
+        public float wallSlideSlowMultiplier = 0.35f;
+        public float dashDuration = 0.25f;
+        public float dashSpeed = 20f;
         
         #region InheritMethods
 
@@ -85,5 +87,33 @@ namespace Entity.Player
         }
 
         #endregion
+
+        protected override IEnumerator SlowDownCo(float duration, float slowMultiplier)
+        {
+            float oriMoveSpeed = moveSpeed;
+            float oriJumpForce = jumpForce;
+            float oriAniSpeed = ani.speed;
+            Vector2 oriWallJumpForce = wallJumpForce;
+            Vector2 oriJumpAttackVelocity = jumpAttackVelocity;
+            Vector2[] oriBasicAttackVelocities = basicAttackVelocity.ToArray();
+            
+            moveSpeed *= slowMultiplier;
+            jumpForce *= slowMultiplier;
+            ani.speed *= slowMultiplier;
+            wallJumpForce *= slowMultiplier;
+            jumpAttackVelocity *= slowMultiplier;
+            for (int i = 0; i < basicAttackVelocity.Length; i++)
+                basicAttackVelocity[i] *= slowMultiplier;
+            
+            yield return new WaitForSeconds(duration);
+            
+            moveSpeed = oriMoveSpeed;
+            jumpForce = oriJumpForce;
+            ani.speed = oriAniSpeed;
+            wallJumpForce = oriWallJumpForce;
+            jumpAttackVelocity = oriJumpAttackVelocity;
+            for (int i = 0; i < basicAttackVelocity.Length; i++)
+                basicAttackVelocity[i] = oriBasicAttackVelocities[i];
+        }
     }
 }

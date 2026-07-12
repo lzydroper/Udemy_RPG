@@ -17,7 +17,7 @@ namespace Entity.Enemy
         protected override void UpdateAnimationParas()
         {
             base.UpdateAnimationParas();
-            float aniBattleMultiplier = enemy.attackMoveSpeed / enemy.moveSpeed;
+            float aniBattleMultiplier = enemy.battleMoveSpeed / enemy.moveSpeed;
             enemy.ani.SetFloat("aniBattleMultiplier", aniBattleMultiplier);
             
             enemy.ani.SetFloat("aniMoveMultiplier", enemy.aniMoveMultiplier);

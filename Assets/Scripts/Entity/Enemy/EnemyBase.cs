@@ -1,3 +1,4 @@
+using System.Collections;
 using Core.Utils;
 using Entity.Enemy.Skeleton;
 using UnityEngine;
@@ -9,27 +10,27 @@ namespace Entity.Enemy
         #region Variables
 
         [Header("Battle")] 
-        public float attackDistance;
-        public float attackMoveSpeed;
-        public float battleDuration;
-        public float retreatDistance;
-        public Vector2 retreatVelocity;
+        public float attackDistance = 2;
+        public float battleMoveSpeed = 3;
+        public float battleDuration = 5;
+        public float retreatDistance = 1;
+        public Vector2 retreatVelocity = new(5, 3);
         
         [Header("Movement")] 
-        public float idleDuration;
-        public float moveSpeed;
+        public float idleDuration = 2;
+        public float moveSpeed = 1.5f;
         private float baseMoveSpeed = 1f;
         public float aniMoveMultiplier => moveSpeed / baseMoveSpeed;
         
         [Header("PlayerDetection")]
         [SerializeField] private LayerMask playerLayer;
-        [SerializeField] private float playerCheckDistance;
+        [SerializeField] private float playerCheckDistance = 10;
         [SerializeField] private Transform playerCheckPoint;
         public Transform playerTransform;
         
         [Header("Stunned")]
-        public float stunDuration;
-        public Vector2 stunVelocity;
+        public float stunDuration = 1;
+        public Vector2 stunVelocity = new(7, 7);
         protected bool canBeStunned;
 
         #endregion
@@ -43,6 +44,23 @@ namespace Entity.Enemy
         }
         
         #endregion
+
+        protected override IEnumerator SlowDownCo(float duration, float slowMultiplier)
+        {
+            float oriMoveSpeed = baseMoveSpeed;
+            float oriBattleMoveSpeed = battleMoveSpeed;
+            float oriAniSpeed = ani.speed;
+            
+            baseMoveSpeed *= slowMultiplier;
+            battleMoveSpeed *= slowMultiplier;
+            ani.speed *= slowMultiplier;
+            
+            yield return new WaitForSeconds(duration);
+            
+            baseMoveSpeed = oriMoveSpeed;
+            battleMoveSpeed = oriBattleMoveSpeed;
+            ani.speed = oriAniSpeed;
+        }
 
         public override void Death()
         {

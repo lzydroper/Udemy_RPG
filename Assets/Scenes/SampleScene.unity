@@ -1736,6 +1736,7 @@ MonoBehaviour:
   onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
   onDamageDuration: 0.2
   hitVFXColor: {r: 0, g: 0, b: 0, a: 0}
+  iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &1265691213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37902,6 +37903,7 @@ GameObject:
   - component: {fileID: 1776875633}
   - component: {fileID: 1776875634}
   - component: {fileID: 1776875635}
+  - component: {fileID: 1776875636}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -37994,7 +37996,7 @@ MonoBehaviour:
   wallCheckTopPoint: {fileID: 731780083}
   wallCheckBottomPoint: {fileID: 0}
   attackDistance: 2
-  attackMoveSpeed: 3
+  battleMoveSpeed: 3
   battleDuration: 5
   retreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -38047,6 +38049,8 @@ MonoBehaviour:
     m_Bits: 256
   targetCheckRadius: 1
   targetCheckPoint: {fileID: 1249709763}
+  defaultDuration: 3
+  slowPercentage: 0.5
 --- !u!114 &1776875633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38081,6 +38085,7 @@ MonoBehaviour:
   onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
   onDamageDuration: 0.2
   hitVFXColor: {r: 1, g: 0.84705883, b: 0, a: 1}
+  iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
   canCounterAlert: {fileID: 1274236250}
 --- !u!114 &1776875635
 MonoBehaviour:
@@ -38113,7 +38118,7 @@ MonoBehaviour:
   fireDamage:
     baseValue: 0
   iceDamage:
-    baseValue: 0
+    baseValue: 10
   lightningDamage:
     baseValue: 0
   maxHealth:
@@ -38128,6 +38133,18 @@ MonoBehaviour:
     baseValue: 0
   lightningResistance:
     baseValue: 0
+--- !u!114 &1776875636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776875627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eaf63e84cc74fee9b409fed4a267d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1917003446
 GameObject:
   m_ObjectHideFlags: 0
@@ -38625,6 +38642,7 @@ GameObject:
   - component: {fileID: 2125322184}
   - component: {fileID: 2125322185}
   - component: {fileID: 2125322187}
+  - component: {fileID: 2125322188}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -38787,6 +38805,7 @@ MonoBehaviour:
   onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
   onDamageDuration: 0.2
   hitVFXColor: {r: 1, g: 0.84705883, b: 0, a: 1}
+  iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &2125322186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38804,6 +38823,8 @@ MonoBehaviour:
     m_Bits: 128
   targetCheckRadius: 1
   targetCheckPoint: {fileID: 159470168}
+  defaultDuration: 3
+  slowPercentage: 0.5
   counterDuration: 0.25
 --- !u!114 &2125322187
 MonoBehaviour:
@@ -38836,7 +38857,7 @@ MonoBehaviour:
   fireDamage:
     baseValue: 0
   iceDamage:
-    baseValue: 0
+    baseValue: 10
   lightningDamage:
     baseValue: 0
   maxHealth:
@@ -38851,6 +38872,18 @@ MonoBehaviour:
     baseValue: 0
   lightningResistance:
     baseValue: 0
+--- !u!114 &2125322188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125322178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eaf63e84cc74fee9b409fed4a267d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ namespace Entity.Player
         #region Variables
 
         [Header("CounterAttack")] 
-        [SerializeField] private float counterDuration;
+        [SerializeField] private float counterDuration = 0.25f;
         public float CounterDuration => counterDuration;
 
         #endregion
