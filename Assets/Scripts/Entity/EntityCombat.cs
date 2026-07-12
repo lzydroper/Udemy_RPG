@@ -34,7 +34,15 @@ namespace Entity
                 var damageable = target.GetComponent<IDamageable>();
                 if (damageable == null) continue;
 
-                if (damageable.TryTakeDamage(_entityStat.GetPhysicalDamage(out var isCritical), transform))
+                // who combat is to use the reduction value
+                var armorReductionPer = _entityStat.GetArmorReductionPer();
+                var targetEntityStat = target.GetComponent<EntityStat>();
+                var armorMitigationPer = targetEntityStat ? 
+                    targetEntityStat.GetArmorMitigationPer(armorReductionPer) : 0;
+                var armorMitigationMultiplier = 1 - armorMitigationPer;
+                var physicalDamage = _entityStat.GetPhysicalDamage(out var isCritical);
+                var damage = physicalDamage * armorMitigationMultiplier;
+                if (damageable.TryTakeDamage(damage, transform))
                 {
                     _entityVFX.CreateOnHitVFX(target.transform, isCritical);
                 }

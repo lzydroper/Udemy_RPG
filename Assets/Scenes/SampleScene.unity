@@ -38101,13 +38101,15 @@ MonoBehaviour:
   intelligence:
     baseValue: 0
   vitality:
-    baseValue: 5
+    baseValue: 0
   damage:
     baseValue: 10
   critPower:
-    baseValue: 10
+    baseValue: 0
   critChance:
-    baseValue: 100
+    baseValue: 0
+  armorReduction:
+    baseValue: 0
   fireDamage:
     baseValue: 0
   iceDamage:
@@ -38822,13 +38824,15 @@ MonoBehaviour:
   intelligence:
     baseValue: 0
   vitality:
-    baseValue: 5
+    baseValue: 0
   damage:
     baseValue: 10
   critPower:
-    baseValue: 10
+    baseValue: 0
   critChance:
-    baseValue: 100
+    baseValue: 0
+  armorReduction:
+    baseValue: 0
   fireDamage:
     baseValue: 0
   iceDamage:

@@ -19,6 +19,7 @@ namespace Entity
         [SerializeField] private Stat damage;
         [SerializeField] private Stat critPower;
         [SerializeField] private Stat critChance;
+        [SerializeField] private Stat armorReduction;
         // elemental damage
         [SerializeField] private Stat fireDamage;
         [SerializeField] private Stat iceDamage;
@@ -52,6 +53,27 @@ namespace Entity
             
             isCritical = Random.Range(0f, 100f) < totalCritChance;
             return isCritical ? totalDamage * totalCritPowerMultiplier : totalDamage;
+        }
+
+        // can avoid how much percentage of the damage
+        public float GetArmorMitigationPer(float armorReductionPer)
+        {
+            float basicArmor = armor.GetValue();
+            float bonusArmor = vitality.GetValue();
+            float totalArmor = basicArmor + bonusArmor;
+            
+            float armorReductionMultiplier = Mathf.Clamp(1 - armorReductionPer, 0f, 1f);
+            float effectiveArmor = totalArmor * armorReductionMultiplier;
+
+            float mitigation = effectiveArmor / (effectiveArmor + 100);
+            float mitigationCap = .85f;
+            
+            return Mathf.Clamp(mitigation, 0, mitigationCap);
+        }
+
+        public float GetArmorReductionPer()
+        {
+            return armorReduction.GetValue() / 100f;
         }
         
         public float GetMaxHealth()
