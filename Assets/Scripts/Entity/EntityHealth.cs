@@ -8,13 +8,13 @@ namespace Entity
     {
         #region Variables
 
-        private EntityVFX _entityVFX;
         private EntityBase _entityBase;
+        private EntityVFX _entityVFX;
+        private EntityStat _entityStat;
         private Slider _healthBar;
         
-        [SerializeField] protected float maxHealth = 100f;
-        protected float curHealth = 100f;
-        protected bool isDead = false;
+        public float curHealth = 100f;
+        public bool isDead = false;
         
         [Header("OnDamageKnockback")]
         [SerializeField] private Vector2 knockbackVelocity = new(1.5f, 2.5f);
@@ -31,10 +31,11 @@ namespace Entity
 
         protected virtual void Awake()
         {
-            _entityVFX = GetComponent<EntityVFX>();
             _entityBase = GetComponent<EntityBase>();
+            _entityVFX = GetComponent<EntityVFX>();
+            _entityStat = GetComponent<EntityStat>();
             _healthBar = GetComponentInChildren<Slider>();
-            curHealth = maxHealth;
+            curHealth = _entityStat.GetMaxHealth();
             UpdateHealthBar();
         }
 
@@ -43,14 +44,14 @@ namespace Entity
         private void UpdateHealthBar()
         {
             if (_healthBar == null) return;
-            _healthBar.value = curHealth / maxHealth;
+            _healthBar.value = curHealth / _entityStat.GetMaxHealth();
         }
 
         public virtual void TakeDamage(float damage, Transform damageDealer)
         {
             if (isDead) return;
 
-            if (damage > heavyDamageThreshold * maxHealth)
+            if (damage > heavyDamageThreshold * _entityStat.GetMaxHealth())
             {
                 _entityBase.ReceiveKnockback(CalKnockbackVelocity(heavyKnockbackVelocity, damageDealer), heavyKnockbackDuration);
             }
