@@ -4,6 +4,6 @@ namespace Entity.Interfaces
 {
     public interface IDamageable
     {
-        void TakeDamage(float damage, Transform damageDealer);
+        bool TryTakeDamage(float damage, Transform damageDealer);
     }
 }

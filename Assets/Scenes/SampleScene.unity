@@ -38095,10 +38095,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808e057134ae436b80a89679d4b80173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 100
+  strength:
+    baseValue: 0
+  agility:
+    baseValue: 0
+  intelligence:
+    baseValue: 0
   vitality:
     baseValue: 5
+  damage:
+    baseValue: 0
+  critPower:
+    baseValue: 0
+  critChance:
+    baseValue: 0
+  fireDamage:
+    baseValue: 0
+  iceDamage:
+    baseValue: 0
+  lightningDamage:
+    baseValue: 0
+  maxHealth:
+    baseValue: 100
+  evasion:
+    baseValue: 100
+  armor:
+    baseValue: 0
+  firResistance:
+    baseValue: 0
+  iceResistance:
+    baseValue: 0
+  lightningResistance:
+    baseValue: 0
 --- !u!1 &1917003446
 GameObject:
   m_ObjectHideFlags: 0
@@ -38788,10 +38816,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808e057134ae436b80a89679d4b80173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth:
-    baseValue: 100
+  strength:
+    baseValue: 0
+  agility:
+    baseValue: 0
+  intelligence:
+    baseValue: 0
   vitality:
     baseValue: 5
+  damage:
+    baseValue: 0
+  critPower:
+    baseValue: 0
+  critChance:
+    baseValue: 0
+  fireDamage:
+    baseValue: 0
+  iceDamage:
+    baseValue: 0
+  lightningDamage:
+    baseValue: 0
+  maxHealth:
+    baseValue: 100
+  evasion:
+    baseValue: 100
+  armor:
+    baseValue: 0
+  firResistance:
+    baseValue: 0
+  iceResistance:
+    baseValue: 0
+  lightningResistance:
+    baseValue: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

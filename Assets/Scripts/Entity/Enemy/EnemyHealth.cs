@@ -20,14 +20,17 @@ namespace Entity.Enemy
 
         #endregion
 
-        public override void TakeDamage(float damage, Transform damageDealer)
+        public override bool TryTakeDamage(float damage, Transform damageDealer)
         {
-            base.TakeDamage(damage, damageDealer);
-            if (isDead) return;
-            if (damageDealer?.GetComponent<Player.Player>())
+            if (base.TryTakeDamage(damage, damageDealer))
             {
-                _enemyBase.TryEnterBattleState(damageDealer);
+                if (!isDead && damageDealer.TryGetComponent<Player.Player>(out _))
+                {
+                    _enemyBase.TryEnterBattleState(damageDealer);
+                }
+                return true;
             }
+            return false;
         }
     }
 }

@@ -47,9 +47,11 @@ namespace Entity
             _healthBar.value = curHealth / _entityStat.GetMaxHealth();
         }
 
-        public virtual void TakeDamage(float damage, Transform damageDealer)
+        public virtual bool TryTakeDamage(float damage, Transform damageDealer)
         {
-            if (isDead) return;
+            if (isDead) return false;
+            
+            if (AttackEvasion()) return false;
 
             if (damage > heavyDamageThreshold * _entityStat.GetMaxHealth())
             {
@@ -61,7 +63,11 @@ namespace Entity
             }
             _entityVFX?.PlayOnDamageVFX();
             ReduceHealth(damage);
+            
+            return true;
         }
+        
+        private bool AttackEvasion() => Random.Range(0f, 100f) < _entityStat.GetEvasion();
 
         protected void ReduceHealth(float amount)
         {

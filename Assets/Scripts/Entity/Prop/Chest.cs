@@ -27,11 +27,12 @@ namespace Entity.Prop
 
         #endregion
 
-        public void TakeDamage(float damage, Transform damageDealer)
+        public bool TryTakeDamage(float damage, Transform damageDealer)
         {
             entityVFX.PlayOnDamageVFX();
             ani.SetBool("open", true);
             rb.linearVelocity = openVelocity;
+            return true;
         }
     }
 }

@@ -32,9 +32,11 @@ namespace Entity
             {
                 var damageable = target.GetComponent<IDamageable>();
                 if (damageable == null) continue;
-                
-                damageable.TakeDamage(damage, transform);
-                _entityVFX.CreateOnHitVFX(target.transform);
+
+                if (damageable.TryTakeDamage(damage, transform))
+                {
+                    _entityVFX.CreateOnHitVFX(target.transform);
+                }
             }
         }
 
