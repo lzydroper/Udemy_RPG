@@ -38042,7 +38042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9502af36da9243b7b313daf10104173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -38104,11 +38103,11 @@ MonoBehaviour:
   vitality:
     baseValue: 5
   damage:
-    baseValue: 0
+    baseValue: 10
   critPower:
-    baseValue: 0
+    baseValue: 10
   critChance:
-    baseValue: 0
+    baseValue: 100
   fireDamage:
     baseValue: 0
   iceDamage:
@@ -38116,9 +38115,9 @@ MonoBehaviour:
   lightningDamage:
     baseValue: 0
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
   evasion:
-    baseValue: 100
+    baseValue: 0
   armor:
     baseValue: 0
   firResistance:
@@ -38503,6 +38502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolDataList:
   - {fileID: 11400000, guid: da372f5914386f044890c24bc47f1fdc, type: 2}
+  - {fileID: 11400000, guid: ed3396e867feb7848b6dda7cd8b92afb, type: 2}
 --- !u!4 &2035860807
 Transform:
   m_ObjectHideFlags: 0
@@ -38797,7 +38797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731e813bed8a4bfaa777ec9823b3225f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -38825,11 +38824,11 @@ MonoBehaviour:
   vitality:
     baseValue: 5
   damage:
-    baseValue: 0
+    baseValue: 10
   critPower:
-    baseValue: 0
+    baseValue: 10
   critChance:
-    baseValue: 0
+    baseValue: 100
   fireDamage:
     baseValue: 0
   iceDamage:
@@ -38837,9 +38836,9 @@ MonoBehaviour:
   lightningDamage:
     baseValue: 0
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
   evasion:
-    baseValue: 100
+    baseValue: 0
   armor:
     baseValue: 0
   firResistance:
@@ -38852,6 +38851,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1249652082}
   - {fileID: 719625398}
   - {fileID: 2035860807}
   - {fileID: 403196831}
@@ -38862,4 +38862,3 @@ SceneRoots:
   - {fileID: 954022596}
   - {fileID: 1371918708}
   - {fileID: 1265691216}
-  - {fileID: 1249652082}

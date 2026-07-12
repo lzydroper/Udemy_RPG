@@ -31,22 +31,41 @@ namespace Entity
         [SerializeField] private Stat firResistance;
         [SerializeField] private Stat iceResistance;
         [SerializeField] private Stat lightningResistance;
+
         [EndTab]
 
         #endregion
 
+        public float GetPhysicalDamage(out bool isCritical)
+        {
+            float basicDamage = damage.GetValue();
+            float bonusDamage = strength.GetValue();
+            float totalDamage = basicDamage + bonusDamage;
+            
+            float basicCritChance = critChance.GetValue();
+            float bonusCritChance = agility.GetValue() * .3f;
+            float totalCritChance = basicCritChance + bonusCritChance;
+            
+            float basicCritPower = critPower.GetValue();
+            float bonusCritPower = strength.GetValue() * .5f;
+            float totalCritPowerMultiplier = (basicCritPower + bonusCritPower) / 100 + 1;
+            
+            isCritical = Random.Range(0f, 100f) < totalCritChance;
+            return isCritical ? totalDamage * totalCritPowerMultiplier : totalDamage;
+        }
+        
         public float GetMaxHealth()
         {
-            float baseHealth = maxHealth.GetValue();
+            float basicHealth = maxHealth.GetValue();
             float bonusHealth = vitality.GetValue() * 5;
-            return baseHealth + bonusHealth;
+            return basicHealth + bonusHealth;
         }
 
         public float GetEvasion()
         {
-            float baseEvasion = evasion.GetValue();
+            float basicEvasion = evasion.GetValue();
             float bonusEvasion = agility.GetValue() * .5f;
-            float totalEvasion = baseEvasion + bonusEvasion;
+            float totalEvasion = basicEvasion + bonusEvasion;
             float evasionCap = 80f;
             return Mathf.Clamp(totalEvasion, 0, evasionCap);
         }

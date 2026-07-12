@@ -13,6 +13,7 @@ namespace Generated
         public static class Pool
         {
             public const string OnHitVFX = "OnHitVFX";
+            public const string OnCritHitVFX = "OnCritHitVFX";
         }
     }
 }

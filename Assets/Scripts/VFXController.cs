@@ -11,7 +11,6 @@ namespace DefaultNamespace
         #region Variables
 
         [SerializeField] private bool randomOffset = true;
-
         [ShowIf("randomOffset")]
         [SerializeField] private float xMinOffset = -.3f;
         [SerializeField] private float xMaxOffset = 0.3f;
@@ -20,7 +19,11 @@ namespace DefaultNamespace
         [EndIf]
         
         [SerializeField] private bool randomRotation = true;
-
+        [ShowIf("randomRotation")]
+        [SerializeField] private float minRotation = 0f;
+        [SerializeField] private float maxRotation = 360f;
+        [EndIf]
+        
         #endregion
 
         public void OnRent()
@@ -40,7 +43,7 @@ namespace DefaultNamespace
         private void ApplyRandomRotation()
         {
             if (!randomRotation) return;
-            var roration = Random.Range(0, 360);
+            var roration = Random.Range(minRotation, maxRotation);
             transform.Rotate(0, 0, roration);
         }
     }

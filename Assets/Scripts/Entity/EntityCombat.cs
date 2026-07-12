@@ -8,8 +8,8 @@ namespace Entity
         #region Variables
         
         private EntityVFX _entityVFX;
-
-        public float damage;
+        private EntityStat _entityStat;
+        
         [Header("TargetDetection")]
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private float targetCheckRadius;
@@ -22,6 +22,7 @@ namespace Entity
         private void Awake()
         {
             _entityVFX = GetComponent<EntityVFX>();
+            _entityStat = GetComponent<EntityStat>();
         }
 
         #endregion
@@ -33,9 +34,9 @@ namespace Entity
                 var damageable = target.GetComponent<IDamageable>();
                 if (damageable == null) continue;
 
-                if (damageable.TryTakeDamage(damage, transform))
+                if (damageable.TryTakeDamage(_entityStat.GetPhysicalDamage(out var isCritical), transform))
                 {
-                    _entityVFX.CreateOnHitVFX(target.transform);
+                    _entityVFX.CreateOnHitVFX(target.transform, isCritical);
                 }
             }
         }

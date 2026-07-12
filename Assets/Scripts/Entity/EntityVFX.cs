@@ -30,9 +30,11 @@ namespace Entity
 
         #endregion
 
-        public void CreateOnHitVFX(Transform target)
+        public void CreateOnHitVFX(Transform target, bool isCritical)
         {
-            if (GameManager.Pool.TryRent(Keys.Pool.OnHitVFX, out var vfx, target.position))
+            string vfxKey = isCritical ? Keys.Pool.OnCritHitVFX : Keys.Pool.OnHitVFX;
+            if (GameManager.Pool.TryRent(vfxKey, out var vfx,
+                    position: target.position, parent: target))
             {
                 vfx.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
                 vfx.ReturnAsync(Keys.Pool.OnHitVFX);
