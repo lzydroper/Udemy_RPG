@@ -9,35 +9,36 @@ namespace Entity
         #region Variables
 
         [Tab("Major Stats")]
-        [SerializeField] private Stat strength;
-        [SerializeField] private Stat agility;
-        [SerializeField] private Stat intelligence;
-        [SerializeField] private Stat vitality;
+        public Stat strength;
+        public Stat agility;
+        public Stat intelligence;
+        public Stat vitality;
         [EndTab]
         [Tab("Offense Stats")]
         // physical damage
-        [SerializeField] private Stat damage;
-        [SerializeField] private Stat critPower;
-        [SerializeField] private Stat critChance;
-        [SerializeField] private Stat armorReduction;
+        public Stat damage;
+        public Stat critPower;
+        public Stat critChance;
+        public Stat armorReduction;
         // elemental damage
-        [SerializeField] private Stat fireDamage;
-        [SerializeField] private Stat iceDamage;
-        [SerializeField] private Stat lightningDamage;
+        public Stat fireDamage;
+        public Stat iceDamage;
+        public Stat lightningDamage;
         [EndTab]
         [Tab("Defense Stats")]
-        [SerializeField] private Stat maxHealth;
-        [SerializeField] private Stat evasion;
-        [SerializeField] private Stat armor;
-        [SerializeField] private Stat firResistance;
-        [SerializeField] private Stat iceResistance;
-        [SerializeField] private Stat lightningResistance;
+        public Stat maxHealth;
+        public Stat evasion;
+        public Stat armor;
+        public Stat firResistance;
+        public Stat iceResistance;
+        public Stat lightningResistance;
 
         [EndTab]
 
         #endregion
 
-        public float GetElementDamage(out ElementType type)
+        //TODO:为什么scale要写在这里？
+        public float GetElementDamage(out ElementType type, float scale = 1f)
         {
             var elementPairs = new (float damage, ElementType type)[]
             {
@@ -70,7 +71,8 @@ namespace Entity
                 }
             }
             
-            return highestElementDamage + weakerElementDamage + bonusElementDamage;
+            float finalDamage = highestElementDamage + weakerElementDamage + bonusElementDamage;
+            return finalDamage * scale;
         }
 
         public float GetElementResistancePer(ElementType type)
@@ -88,7 +90,7 @@ namespace Entity
             return Mathf.Clamp(totalResistance / 100f, 0, elementResistanceCap);
         }
         
-        public float GetPhysicDamage(out bool isCritical)
+        public float GetPhysicDamage(out bool isCritical, float scale = 1f)
         {
             float basicDamage = damage.GetValue();
             float bonusDamage = strength.GetValue();
@@ -103,7 +105,8 @@ namespace Entity
             float totalCritPowerMultiplier = (basicCritPower + bonusCritPower) / 100 + 1;
             
             isCritical = Random.Range(0f, 100f) < totalCritChance;
-            return isCritical ? totalDamage * totalCritPowerMultiplier : totalDamage;
+            float finalDamage = isCritical ? totalDamage * totalCritPowerMultiplier : totalDamage;
+            return finalDamage * scale;
         }
 
         // can avoid how much percentage of the damage

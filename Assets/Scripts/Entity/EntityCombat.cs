@@ -42,26 +42,30 @@ namespace Entity
                 if (damageable == null) continue;
 
                 var physicDamage = _entityStat.GetPhysicDamage(out var isCritical);
-                var elementDamage = _entityStat.GetElementDamage(out var elementType);
+                var elementDamage = _entityStat.GetElementDamage(out var elementType, .5f);
                 var armorReductionPer = _entityStat.GetArmorReductionPer();
                 var context = new DamageContext(transform, physicDamage, elementDamage, elementType, armorReductionPer);
                 if (damageable.TryTakeDamage(context))
                 {
                     ApplyElementEffect(target.transform, elementType);
-                    _entityVFX?.UpdateUpdateOnHitColor(elementType);
+                    _entityVFX?.UpdateOnHitColor(elementType);
                     _entityVFX?.CreateOnHitVFX(target.transform, isCritical);
                 }
             }
         }
 
-        public void ApplyElementEffect(Transform target, ElementType type)
+        public void ApplyElementEffect(Transform target, ElementType type, float scale = 1f)
         {
             if (type == ElementType.None) return;
             var handler = target.GetComponent<EntityStatusHandler>();
             if (handler != null && handler.CanBeAppliedElementEffect(type))
             {
                 if (type == ElementType.Ice)
-                    handler.ApplyIceEffect(defaultDuration, 1 - slowPercentage);
+                    handler.ApplyIceEffect(defaultDuration, (1 - slowPercentage) * scale);
+                if (type == ElementType.Fire)
+                {
+                    handler.ApplyFireEffect(defaultDuration, _entityStat.fireDamage.GetValue() * scale);
+                }
             }
         }
 

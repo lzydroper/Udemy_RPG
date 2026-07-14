@@ -1,11 +1,21 @@
+using System;
 using Entity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
+using VInspector;
+using Random = UnityEngine.Random;
 
 namespace Entity
 {
     public class EntityHealth : MonoBehaviour, IDamageable
     {
+#if UNITY_EDITOR
+        [Foldout("DebugChoice")]
+        [SerializeField] private bool ifShowHealth;
+        [SerializeField] private bool ifShowDamageOri;
+        [SerializeField] private bool ifShowDamageAft;
+        [EndFoldout]
+#endif
         #region Variables
 
         private EntityBase _entityBase;
@@ -38,6 +48,14 @@ namespace Entity
             curHealth = _entityStat.GetMaxHealth();
             UpdateHealthBar();
         }
+        
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (ifShowHealth)
+                Logwin.Log("Health", $"{curHealth}/{_entityStat.GetMaxHealth()}", gameObject.name);
+        }
+#endif
 
         #endregion
 
@@ -61,9 +79,18 @@ namespace Entity
             var elementDamage = context.ElementDamage * (1 - elementResistancePer);
             
             var damage = physicDamage + elementDamage;
-            Debug.Log($"physicDamageOri: {context.PhysicDamage}, physicDamageAft: {physicDamage}\n" +
-                      $"elementDamageOri: {context.ElementDamage}, elementDamageAft: {elementDamage}");
-            
+#if UNITY_EDITOR
+            if (ifShowDamageOri)
+            {
+                Logwin.Log("physicDamageOri", context.PhysicDamage, gameObject.name);
+                Logwin.Log("elementDamageOri", context.ElementDamage, gameObject.name);
+            }
+            if (ifShowDamageAft)
+            {
+                Logwin.Log("physicDamageAft", physicDamage, gameObject.name);
+                Logwin.Log("elementDamageAft", elementDamage, gameObject.name);
+            }
+#endif
             TakeKnockback(damage, context.DamageDealer);
             ReduceHealth(damage);
             
@@ -88,7 +115,7 @@ namespace Entity
 
         private bool AttackEvasion() => Random.Range(0f, 100f) < _entityStat.GetEvasion();
 
-        protected void ReduceHealth(float amount)
+        public void ReduceHealth(float amount)
         {
             _entityVFX?.PlayOnDamageVFX();
             curHealth -= amount;
