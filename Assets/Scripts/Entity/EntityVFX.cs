@@ -11,17 +11,20 @@ namespace Entity
         #region Variables
 
         private SpriteRenderer sr;
-        private Material originalMaterial;
-        private Color originalColor;
-        private Coroutine onDamageCoroutine;
-        private Coroutine onStatusCoroutine;
+        // 受到伤害
         [Header("OnTakingDamageVFX")]
+        private Coroutine onDamageCoroutine;
+        private Material originalMaterial;
         [SerializeField] private Material onDamageMaterial;
         [SerializeField] private float onDamageDuration = .2f;
+        // 造成伤害
         [Header("OnDoingDamageVFX")]
         [SerializeField] private Color hitVFXColor = Color.white;
         [Header("ElementColor")]
+        private Color originalColor;
         [SerializeField] private Color iceEffectColor = Color.cyan;
+        [SerializeField] private Color fireEffectColor = Color.red;
+        [SerializeField] private Color lightningColor = Color.yellow;
 
         #endregion
 
@@ -36,11 +39,22 @@ namespace Entity
 
         #endregion
 
+        #region ToolMethods
+
+        private Color _GetColorByType(ElementType type) => type switch
+        {
+            ElementType.Fire => fireEffectColor,
+            ElementType.Ice => iceEffectColor,
+            ElementType.Lightning => lightningColor,
+            _ => originalColor
+        };
+
+        #endregion
+
         public void PlayOnStatusVFX(float duration, ElementType type)
         {
             if (type == ElementType.None) return;
-            if (type == ElementType.Ice) 
-                this.RestartCoroutine(ref onStatusCoroutine, OnStatusVFXCo(duration, iceEffectColor));
+            StartCoroutine(OnStatusVFXCo(duration, _GetColorByType(type)));
         }
 
         private IEnumerator OnStatusVFXCo(float duration, Color color)
@@ -71,13 +85,9 @@ namespace Entity
             }
         }
 
-        public void UpdateUpdateOnHitColor(ElementType type)
+        public void UpdateOnHitColor(ElementType type)
         {
-            hitVFXColor = type switch
-            {
-                ElementType.Ice => iceEffectColor,
-                _ => originalColor,
-            };
+            hitVFXColor = _GetColorByType(type);
         }
 
         public void PlayOnDamageVFX()

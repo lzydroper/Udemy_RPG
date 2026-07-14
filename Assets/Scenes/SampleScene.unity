@@ -1737,6 +1737,8 @@ MonoBehaviour:
   onDamageDuration: 0.2
   hitVFXColor: {r: 0, g: 0, b: 0, a: 0}
   iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
+  fireEffectColor: {r: 1, g: 0, b: 0, a: 1}
+  lightningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &1265691213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37987,6 +37989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fa45f86fda4b0097f50d92ecb526cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowFsmState: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -38063,6 +38066,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee55b29c603142a08a80ee2d17c97ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowHealth: 0
+  ifShowDamageOri: 0
+  ifShowDamageAft: 0
   curHealth: 100
   isDead: 0
   knockbackVelocity: {x: 1.5, y: 2.5}
@@ -38086,6 +38092,8 @@ MonoBehaviour:
   onDamageDuration: 0.2
   hitVFXColor: {r: 1, g: 0.84705883, b: 0, a: 1}
   iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
+  fireEffectColor: {r: 0.9411765, g: 0.3529412, b: 0.3254902, a: 1}
+  lightningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   canCounterAlert: {fileID: 1274236250}
 --- !u!114 &1776875635
 MonoBehaviour:
@@ -38108,7 +38116,7 @@ MonoBehaviour:
   vitality:
     baseValue: 0
   damage:
-    baseValue: 10
+    baseValue: 0
   critPower:
     baseValue: 0
   critChance:
@@ -38116,9 +38124,9 @@ MonoBehaviour:
   armorReduction:
     baseValue: 0
   fireDamage:
-    baseValue: 0
-  iceDamage:
     baseValue: 10
+  iceDamage:
+    baseValue: 0
   lightningDamage:
     baseValue: 0
   maxHealth:
@@ -38145,6 +38153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eaf63e84cc74fee9b409fed4a267d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowCurElementType: 0
 --- !u!1 &1917003446
 GameObject:
   m_ObjectHideFlags: 0
@@ -38522,6 +38531,7 @@ MonoBehaviour:
   poolDataList:
   - {fileID: 11400000, guid: da372f5914386f044890c24bc47f1fdc, type: 2}
   - {fileID: 11400000, guid: ed3396e867feb7848b6dda7cd8b92afb, type: 2}
+  - {fileID: 11400000, guid: 2cc981b74be030f4c980241bd15d907d, type: 2}
 --- !u!4 &2035860807
 Transform:
   m_ObjectHideFlags: 0
@@ -38746,6 +38756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e815b88dde4387a51eb8abe850aa5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowFsmState: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -38783,6 +38794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255ce2710e374ca1b19d3070b8924279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowHealth: 0
+  ifShowDamageOri: 0
+  ifShowDamageAft: 0
   curHealth: 100
   isDead: 0
   knockbackVelocity: {x: 1.5, y: 2.5}
@@ -38806,6 +38820,8 @@ MonoBehaviour:
   onDamageDuration: 0.2
   hitVFXColor: {r: 1, g: 0.84705883, b: 0, a: 1}
   iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
+  fireEffectColor: {r: 0.9411765, g: 0.3529412, b: 0.3254902, a: 1}
+  lightningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &2125322186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38847,7 +38863,7 @@ MonoBehaviour:
   vitality:
     baseValue: 0
   damage:
-    baseValue: 10
+    baseValue: 0
   critPower:
     baseValue: 0
   critChance:
@@ -38855,9 +38871,9 @@ MonoBehaviour:
   armorReduction:
     baseValue: 0
   fireDamage:
-    baseValue: 0
-  iceDamage:
     baseValue: 10
+  iceDamage:
+    baseValue: 0
   lightningDamage:
     baseValue: 0
   maxHealth:
@@ -38884,6 +38900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eaf63e84cc74fee9b409fed4a267d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ifShowCurElementType: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
