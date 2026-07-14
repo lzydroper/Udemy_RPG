@@ -3,12 +3,19 @@ using System.Collections;
 using Core.State;
 using Core.Utils;
 using UnityEngine;
+using VInspector;
 using StateMachine = Core.State.StateMachine;
 
 namespace Entity
 {
     public abstract class EntityBase : MonoBehaviour, IStateOwner
     {
+#if UNITY_EDITOR
+        [Foldout("DebugChoice")]
+        [SerializeField] private bool ifShowFsmState;
+        [EndFoldout]
+#endif
+        
         #region IStateOwner
         
         public Animator ani { get; private set; }
@@ -20,9 +27,6 @@ namespace Entity
 
         public event Action OnFlip;
         
-        // state machine
-        public string CurStateKey => fsm?.CurStateKey;
-        public string PreStateKey => fsm?.PreStateKey;
         protected StateMachine fsm;
 
         // move
@@ -78,6 +82,13 @@ namespace Entity
         {
             HandleCollisionDetect();
             fsm.OnUpdate();
+#if UNITY_EDITOR
+            if (ifShowFsmState && fsm is not null)
+            {
+                Logwin.Log("PreStateKey", fsm.PreStateKey, gameObject.name);
+                Logwin.Log("CurStateKey", fsm.CurStateKey, gameObject.name);
+            }
+#endif
         }
 
         #endregion
