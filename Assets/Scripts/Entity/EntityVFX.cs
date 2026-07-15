@@ -51,6 +51,13 @@ namespace Entity
 
         #endregion
 
+        public void ResetAllVFX()
+        {
+            StopAllCoroutines();
+            sr.material = originalMaterial;
+            sr.color = originalColor;
+        }
+
         public void PlayOnStatusVFX(float duration, ElementType type)
         {
             if (type == ElementType.None) return;

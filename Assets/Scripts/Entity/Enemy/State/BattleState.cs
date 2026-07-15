@@ -56,6 +56,8 @@ namespace Entity.Enemy.State
             {
                 enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
             }
+            
+            Logwin.Log("DistanceToPlayer", DistanceToPlayer(), enemy.gameObject.name);
         }
 
         private bool WithInAttackRange() => DistanceToPlayer() < enemy.attackDistance;

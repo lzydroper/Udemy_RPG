@@ -42,7 +42,12 @@ namespace Entity.Enemy
             base.Awake();
             baseMoveSpeed = moveSpeed != 0 ? moveSpeed : 1f;
         }
-        
+
+        protected override void Update()
+        {
+            base.Update();
+        }
+
         #endregion
 
         protected override IEnumerator SlowDownCo(float duration, float slowMultiplier)
@@ -98,9 +103,6 @@ namespace Entity.Enemy
         public void SwitchStunEnable(bool enable) => canBeStunned = enable;
         
 #if UNITY_EDITOR
-        [ContextMenu("TestToAttackState")]
-        private void TestToAttackState() => fsm.ChangeState(EnemyStateType.Attack);
-        
         #region GizmosMethods
 
         protected override void OnDrawGizmos()

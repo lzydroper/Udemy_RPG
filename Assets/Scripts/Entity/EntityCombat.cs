@@ -18,9 +18,8 @@ namespace Entity
         [SerializeField] private Transform targetCheckPoint;
         [Header("StatusEffectDetails")]
         [SerializeField] private float defaultDuration = 3;
-        [Tab("Ice Effect")]
         [SerializeField] private float slowPercentage = 0.5f;
-        [EndTab]
+        [SerializeField] private float chargeBuildUp = 0.4f;
         
         #endregion
 
@@ -61,10 +60,18 @@ namespace Entity
             if (handler != null && handler.CanBeAppliedElementEffect(type))
             {
                 if (type == ElementType.Ice)
+                {
                     handler.ApplyIceEffect(defaultDuration, (1 - slowPercentage) * scale);
+                }
                 if (type == ElementType.Fire)
                 {
                     handler.ApplyFireEffect(defaultDuration, _entityStat.fireDamage.GetValue() * scale);
+                }
+                if (type == ElementType.Lightning)
+                {
+                    handler.ApplyLightningEffect(defaultDuration, 
+                        _entityStat.lightningDamage.GetValue() * scale,
+                        chargeBuildUp);
                 }
             }
         }

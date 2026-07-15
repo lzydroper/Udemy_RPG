@@ -37989,7 +37989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fa45f86fda4b0097f50d92ecb526cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ifShowFsmState: 0
+  ifShowFsmState: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -38054,6 +38054,7 @@ MonoBehaviour:
   targetCheckPoint: {fileID: 1249709763}
   defaultDuration: 3
   slowPercentage: 0.5
+  chargeBuildUp: 0.4
 --- !u!114 &1776875633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38124,11 +38125,11 @@ MonoBehaviour:
   armorReduction:
     baseValue: 0
   fireDamage:
-    baseValue: 10
+    baseValue: 0
   iceDamage:
     baseValue: 0
   lightningDamage:
-    baseValue: 0
+    baseValue: 10
   maxHealth:
     baseValue: 1000
   evasion:
@@ -38154,6 +38155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ifShowCurElementType: 0
+  ifShowCurCharge: 0
 --- !u!1 &1917003446
 GameObject:
   m_ObjectHideFlags: 0
@@ -38765,9 +38767,6 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 2125322179}
   wallCheckTopPoint: {fileID: 1107493144}
   wallCheckBottomPoint: {fileID: 2006900474}
-  playerState:
-    assemblyQualifiedName: Entity.Player.State.BasicAttackState, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   basicAttackDuration: 0.25
   comboAttackTime: 1
   basicAttackVelocity:
@@ -38841,6 +38840,7 @@ MonoBehaviour:
   targetCheckPoint: {fileID: 159470168}
   defaultDuration: 3
   slowPercentage: 0.5
+  chargeBuildUp: 0.4
   counterDuration: 0.25
 --- !u!114 &2125322187
 MonoBehaviour:
@@ -38871,11 +38871,11 @@ MonoBehaviour:
   armorReduction:
     baseValue: 0
   fireDamage:
-    baseValue: 10
+    baseValue: 0
   iceDamage:
     baseValue: 0
   lightningDamage:
-    baseValue: 0
+    baseValue: 10
   maxHealth:
     baseValue: 1000
   evasion:
@@ -38900,7 +38900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eaf63e84cc74fee9b409fed4a267d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ifShowCurElementType: 0
+  ifShowCurElementType: 1
+  ifShowCurCharge: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
