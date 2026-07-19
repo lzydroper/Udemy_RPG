@@ -11,7 +11,7 @@ namespace Stats
         [SerializeField] private SerializedDictionary<int, List<StatModifier>> modifierDict = new();
         [SerializeField] private float baseValue;
         private float finalValue;
-        private bool needUpdate;
+        private bool needUpdate = true;
 
         private void UpdateFinalValue()
         {
