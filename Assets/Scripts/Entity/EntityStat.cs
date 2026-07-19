@@ -8,6 +8,8 @@ namespace Entity
     {
         #region Variables
 
+        [SerializeField] private StatDataSO defaultStatDataSO;
+
         [Tab("Resources")]
         public Stat maxHealth;
         public Stat healthRegen;
@@ -178,5 +180,40 @@ namespace Entity
             StatType.LightningResistance => lightningResistance,
             _ => null
         };
+
+        [Button]
+        public void ApplyDefaultStatDataSO()
+        {
+            if (defaultStatDataSO == null)
+            {
+                Debug.Log("No default stat setup assigned");
+                return;
+            }
+
+            maxHealth.SetBaseValue(defaultStatDataSO.maxHealth);
+            healthRegen.SetBaseValue(defaultStatDataSO.healthRegen);
+
+            strength.SetBaseValue(defaultStatDataSO.strength);
+            agility.SetBaseValue(defaultStatDataSO.agility);
+            intelligence.SetBaseValue(defaultStatDataSO.intelligence);
+            vitality.SetBaseValue(defaultStatDataSO.vitality);
+
+            attackSpeed.SetBaseValue(defaultStatDataSO.attackSpeed);
+            damage.SetBaseValue(defaultStatDataSO.damage);
+            critChance.SetBaseValue(defaultStatDataSO.critChance);
+            critPower.SetBaseValue(defaultStatDataSO.critPower);
+            armorReduction.SetBaseValue(defaultStatDataSO.armorReduction);
+
+            iceDamage.SetBaseValue(defaultStatDataSO.iceDamage);
+            fireDamage.SetBaseValue(defaultStatDataSO.fireDamage);  
+            lightningDamage.SetBaseValue(defaultStatDataSO.lightningDamage);
+
+            armor.SetBaseValue(defaultStatDataSO.armor);
+            evasion.SetBaseValue(defaultStatDataSO.evasion);
+
+            iceResistance.SetBaseValue(defaultStatDataSO.iceResistance);
+            firResistance.SetBaseValue(defaultStatDataSO.firResistance);
+            lightningResistance.SetBaseValue(defaultStatDataSO.lightningResistance);
+        }
     }
 }

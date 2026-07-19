@@ -49,6 +49,8 @@ namespace Stats
             
             needUpdate = true;
         }
+        
+        public void SetBaseValue(float value) => baseValue = value;
     }
     
     [Serializable]
