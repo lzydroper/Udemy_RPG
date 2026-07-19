@@ -8,13 +8,20 @@ namespace Entity
     {
         #region Variables
 
+        [Tab("Resources")]
+        public Stat maxHealth;
+        public Stat healthRegen;
+        // public Stat maxMana;
+        // public Stat manaRegen;
+        [EndTab]
         [Tab("Major Stats")]
         public Stat strength;
         public Stat agility;
         public Stat intelligence;
         public Stat vitality;
-        [EndTab]
-        [Tab("Offense Stats")]
+        [EndTab] 
+        [Tab("Offense Stats")] 
+        public Stat attackSpeed;
         // physical damage
         public Stat damage;
         public Stat critPower;
@@ -26,13 +33,11 @@ namespace Entity
         public Stat lightningDamage;
         [EndTab]
         [Tab("Defense Stats")]
-        public Stat maxHealth;
         public Stat evasion;
         public Stat armor;
         public Stat firResistance;
         public Stat iceResistance;
         public Stat lightningResistance;
-
         [EndTab]
 
         #endregion
@@ -47,7 +52,7 @@ namespace Entity
                 (lightningDamage.GetValue(), ElementType.Lightning)
             };
 
-            float highestElementDamage = 0f;
+            var highestElementDamage = 0f;
             type = ElementType.None;
             
             foreach (var item in elementPairs)
@@ -146,5 +151,32 @@ namespace Entity
             return Mathf.Clamp(totalEvasion, 0, evasionCap);
         }
 
+        public Stat GetStatByType(StatType type) => type switch
+        {
+            // resource
+            StatType.MaxHealth => maxHealth,
+            StatType.HealthRegen => healthRegen,
+            // major
+            StatType.Strength => strength,
+            StatType.Agility => agility,
+            StatType.Intelligence => intelligence,
+            StatType.Vitality => vitality,
+            // offensive
+            StatType.AttackSpeed => attackSpeed,
+            StatType.Damage => damage,
+            StatType.CritChance => critChance,
+            StatType.CritPower => critPower,
+            StatType.ArmorReduction => armorReduction,
+            StatType.FireDamage => fireDamage,
+            StatType.IceDamage => iceDamage,
+            StatType.LightningDamage => lightningDamage,
+            // defensive
+            StatType.Evasion => evasion,
+            StatType.Armor => armor,
+            StatType.IceResistance => iceResistance,
+            StatType.FireResistance => firResistance,
+            StatType.LightningResistance => lightningResistance,
+            _ => null
+        };
     }
 }

@@ -1,17 +1,19 @@
+using Core.State;
 using UnityEngine;
 
-namespace Core.State
+namespace Entity
 {
-    public abstract class StateBase : IState 
+    public abstract class EntityStateBase : IState 
     {
         protected Animator ani;
         protected Rigidbody2D rb;
+        protected EntityStat stat;
         protected readonly StateMachine stateMachine;
         protected readonly string animBoolName;
         protected float stateTimer;
         protected bool stateTrigger;
 
-        protected StateBase(StateMachine stateMachine, string animBoolName)
+        protected EntityStateBase(StateMachine stateMachine, string animBoolName)
         {
             this.stateMachine = stateMachine;
             this.animBoolName = animBoolName;
@@ -42,6 +44,11 @@ namespace Core.State
         
         protected virtual void UpdateAnimationParas()
         {
+        }
+
+        protected void UpdateAttackSpeed()
+        {
+            ani.SetFloat("attackSpeed", stat.attackSpeed.GetValue());
         }
     }
 }

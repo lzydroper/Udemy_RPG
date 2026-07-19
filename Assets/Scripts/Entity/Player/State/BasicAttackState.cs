@@ -33,6 +33,8 @@ namespace Entity.Player.State
             _comboIndex %= _comboLimit;
             _attackDir = (player.MoveInput.x != 0) ? player.MoveInput.x : player.facingDir; // works as when attacking but move other side
         
+            UpdateAttackSpeed();
+            
             // apply attack velocity
             _basicAttackVelocityTimer = player.basicAttackDuration;
             Vector2 attackVelocity = player.basicAttackVelocity[_comboIndex];

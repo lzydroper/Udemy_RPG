@@ -1,4 +1,3 @@
-using System;
 using Entity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +33,10 @@ namespace Entity
         [SerializeField] private float heavyDamageThreshold = 0.3f;
         [SerializeField] private Vector2 heavyKnockbackVelocity = new(7f, 7f);
         [SerializeField] private float heavyKnockbackDuration = 0.5f;
+        
+        [Header("Health Regen Detail")]
+        [SerializeField] private bool canRegen = true;
+        [SerializeField] private float reganInterval = 1f;
 
         #endregion
         
@@ -47,6 +50,8 @@ namespace Entity
             _healthBar = GetComponentInChildren<Slider>();
             curHealth = _entityStat.GetMaxHealth();
             UpdateHealthBar();
+            
+            InvokeRepeating(nameof(RegenerateHealth), 0, reganInterval);
         }
         
 #if UNITY_EDITOR
@@ -117,14 +122,36 @@ namespace Entity
 
         public void ReduceHealth(float amount)
         {
+            if (isDead) return;
+            // play vfx
             _entityVFX?.PlayOnDamageVFX();
+            // update health value
             curHealth -= amount;
+            // update health bar
             UpdateHealthBar();
 
             if (curHealth <= 0f)
             {
                 Die();
             }
+        }
+
+        public void IncreaseHealth(float amount)
+        {
+            if (isDead) return;
+            // play vfx
+            // update health value
+            float maxHealth = _entityStat.GetMaxHealth();
+            curHealth = Mathf.Min(curHealth + amount, maxHealth);
+            // update health bar
+            UpdateHealthBar();
+        }
+
+        private void RegenerateHealth()
+        {
+            if (!canRegen || isDead) return;
+            float amount = _entityStat.healthRegen.GetValue();
+            IncreaseHealth(amount);
         }
 
         protected virtual void Die()

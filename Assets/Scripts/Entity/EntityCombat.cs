@@ -1,7 +1,6 @@
 using Entity.Interfaces;
 using Stats;
 using UnityEngine;
-using VInspector;
 
 namespace Entity
 {

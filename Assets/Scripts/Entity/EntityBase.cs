@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Core.State;
 using Core.Utils;
 using UnityEngine;
 using VInspector;
@@ -8,18 +7,18 @@ using StateMachine = Core.State.StateMachine;
 
 namespace Entity
 {
-    public abstract class EntityBase : MonoBehaviour, IStateOwner
+    public abstract class EntityBase : MonoBehaviour
     {
 #if UNITY_EDITOR
         [Foldout("DebugChoice")]
         [SerializeField] private bool ifShowFsmState;
-        [EndFoldout]
 #endif
         
         #region IStateOwner
         
         public Animator ani { get; private set; }
         public Rigidbody2D rb { get; private set; }
+        public EntityStat stat { get; private set; }
 
         #endregion
 
@@ -33,6 +32,7 @@ namespace Entity
         protected bool isFacingRight = true;
         public float facingDir { get; private set; } = 1;
         // collision detect
+        [EndFoldout]
         [Header("collision detection")]
         [SerializeField] protected LayerMask groundLayer;
         [SerializeField] private float groundCheckDistance = 1;
@@ -57,6 +57,7 @@ namespace Entity
         {
             ani = GetComponentInChildren<Animator>();
             rb = GetComponentInChildren<Rigidbody2D>();
+            stat = GetComponent<EntityStat>();
         }
 
         protected virtual void BuildStateMachine()

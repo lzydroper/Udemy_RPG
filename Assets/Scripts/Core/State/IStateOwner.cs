@@ -1,3 +1,4 @@
+using Entity;
 using UnityEngine;
 
 namespace Core.State
@@ -6,5 +7,6 @@ namespace Core.State
     {
         Animator ani { get; }
         Rigidbody2D rb { get; }
+        EntityStat stat { get; }
     }
 }

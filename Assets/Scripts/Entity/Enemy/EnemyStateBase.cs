@@ -2,7 +2,7 @@ using Core.State;
 
 namespace Entity.Enemy
 {
-    public abstract class EnemyStateBase : StateBase
+    public abstract class EnemyStateBase : EntityStateBase
     {
         protected readonly EnemyBase enemy;
         
@@ -12,6 +12,7 @@ namespace Entity.Enemy
             this.enemy = enemy;
             this.ani = enemy.ani;
             this.rb = enemy.rb;
+            this.stat = enemy.stat;
         }
 
         protected override void UpdateAnimationParas()

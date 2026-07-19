@@ -9,11 +9,11 @@ namespace Entity.Enemy.State
         {
         }
 
-        // public override void OnEnter()
-        // {
-        //     base.OnEnter();
-        //     enemy.SetVelocity(0, rb.linearVelocity.y);
-        // }
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            UpdateAttackSpeed();
+        }
 
         public override void OnUpdate()
         {

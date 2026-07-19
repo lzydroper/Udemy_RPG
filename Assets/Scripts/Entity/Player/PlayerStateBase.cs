@@ -2,7 +2,7 @@ using Core.State;
 
 namespace Entity.Player
 {
-    public abstract class PlayerStateBase : StateBase
+    public abstract class PlayerStateBase : EntityStateBase
     {
         protected readonly Player player;
         
@@ -12,6 +12,7 @@ namespace Entity.Player
             this.player = player;
             this.ani = player.ani;
             this.rb = player.rb;
+            this.stat = player.stat;
         }
 
         public override void OnUpdate()
