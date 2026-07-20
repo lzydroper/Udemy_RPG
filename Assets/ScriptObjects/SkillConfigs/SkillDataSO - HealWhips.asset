@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49922fcb25c46aa8697fa0ac06b055e, type: 3}
   m_Name: SkillDataSO - HealWhips
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Icon: {fileID: 0}
+  Name: HealWhips
+  Description: Release a healing wisp that moves toward you and heals on contact.
+  Icon: {fileID: 925798550, guid: d4c62e87250187549af36c36e331377f, type: 3}

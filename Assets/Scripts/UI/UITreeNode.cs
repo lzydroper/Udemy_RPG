@@ -9,6 +9,9 @@ namespace UI
     {
         #region Variables
         
+        private UICanvas uiCanvas;
+        private RectTransform rct;
+        
         [SerializeField] private SkillDataSo skillDataSo;
         [SerializeField] private string skillName;
         [SerializeField] private Image skillIcon;
@@ -20,12 +23,15 @@ namespace UI
         // 用完无需交互，作为提醒
         public bool isDoneUp;
         [SerializeField] private Color doneUpColor = Color.white;
+        
         #endregion
 
         #region LifecycleMethods
 
         private void Awake()
         {
+            uiCanvas = GetComponentInParent<UICanvas>();
+            rct = GetComponent<RectTransform>();
             // Test
             skillIcon.color = lockedColor;
         }
@@ -53,12 +59,14 @@ namespace UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!CanInteract()) return;
+            uiCanvas.uiTooltipSkill.Show(true, rct, skillDataSo);
             SetIconColor(hoverColor);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (!CanInteract()) return;
+            uiCanvas.uiTooltipSkill.Show(false, rct);
             SetIconColor(lockedColor);
         }
 

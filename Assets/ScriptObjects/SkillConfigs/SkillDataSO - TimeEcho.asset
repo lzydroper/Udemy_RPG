@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49922fcb25c46aa8697fa0ac06b055e, type: 3}
   m_Name: SkillDataSO - TimeEcho
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Icon: {fileID: 0}
+  Name: TimeEcho
+  Description: 'Create a time echo (clone) of yourself.
+
+    The echo distracts
+    enemies.'
+  Icon: {fileID: 889661406, guid: d4c62e87250187549af36c36e331377f, type: 3}

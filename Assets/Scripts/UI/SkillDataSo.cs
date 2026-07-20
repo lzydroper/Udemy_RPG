@@ -10,5 +10,6 @@ namespace UI
         [TextArea]
         public string Description;
         public Sprite Icon;
+        public int Cost = 1;
     }
 }
