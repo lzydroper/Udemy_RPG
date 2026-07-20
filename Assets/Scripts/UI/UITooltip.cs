@@ -15,7 +15,7 @@ namespace UI
 
         #region LifecycleMethods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             rct = GetComponent<RectTransform>();
         }

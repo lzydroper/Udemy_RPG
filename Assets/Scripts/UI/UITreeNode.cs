@@ -11,12 +11,18 @@ namespace UI
         
         private UICanvas uiCanvas;
         private RectTransform rct;
+        private UITreeNodeConHandler uiTreeConHandler;
         
-        [SerializeField] private SkillDataSo skillDataSo;
+        [Header("Lock Details")]
+        [SerializeField] public UITreeNode[] neededNodes;
+        [SerializeField] public UITreeNode[] conflictNodes;
+        [Header("Skill Details")]
+        [SerializeField] public SkillDataSo skillDataSo;
         [SerializeField] private string skillName;
+        [SerializeField] private int skillCost;
         [SerializeField] private Image skillIcon;
-
-        [SerializeField] private Color hoverColor = Color.white * 0.9f;
+        [Header("Color Details")]
+        [SerializeField] private Color hoverColor = new(0.9f, 0.9f, 0.9f, 1f);
         // 锁住无法交互
         public bool isLocked;
         [SerializeField] private Color lockedColor = Color.gray;
@@ -31,6 +37,7 @@ namespace UI
         private void Awake()
         {
             uiCanvas = GetComponentInParent<UICanvas>();
+            uiTreeConHandler = GetComponent<UITreeNodeConHandler>();
             rct = GetComponent<RectTransform>();
             // Test
             skillIcon.color = lockedColor;
@@ -41,42 +48,93 @@ namespace UI
             if (skillDataSo == null) return;
             skillName = skillDataSo.Name;
             skillIcon.sprite = skillDataSo.Icon;
+            skillCost = skillDataSo.Cost;
             gameObject.name = $"UITreeNode - {skillName}";
         }
 
-        #endregion
+        private void OnDisable()
+        {
+            if (!isDoneUp)
+                SetIconColor(lockedColor);
+        }
 
-        private bool CanInteract()
+        #endregion
+        
+        #region PrivateMethods
+
+        private bool CanUnlock()
         {
             if (isLocked || isDoneUp) return false;
+            
+            if (!uiCanvas.uiTreeSkill.EnoughSkillPoints(skillCost)) return false;
+
+            foreach (var node in neededNodes)
+            {
+                if (!node.isDoneUp) return false;
+            }
+
+            foreach (var node in conflictNodes)
+            {
+                if (node.isDoneUp) return false;
+            }
+            
             return true;
         }
         
         private void SetIconColor(Color color) => skillIcon.color = color;
+
+        private void LockConflictNodes()
+        {
+            foreach (var node in conflictNodes)
+            {
+                node.isLocked = true;
+            }
+        }
+
+        private void DoneUp()
+        {
+            isDoneUp = true;
+            SetIconColor(doneUpColor);
+            uiCanvas.uiTreeSkill.RemoveSkillPoints(skillCost);
+            LockConflictNodes();
+            uiTreeConHandler.UpdateConColor(true);
+        }
+        
+        #endregion
         
         #region PointerMethods
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!CanInteract()) return;
-            uiCanvas.uiTooltipSkill.Show(true, rct, skillDataSo);
+            uiCanvas.uiTooltipSkill.Show(true, rct, this);
+            if (!CanUnlock()) return;
             SetIconColor(hoverColor);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (!CanInteract()) return;
             uiCanvas.uiTooltipSkill.Show(false, rct);
+            if (!CanUnlock()) return;
             SetIconColor(lockedColor);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (!CanInteract()) return;
-            isDoneUp = true;
-            SetIconColor(doneUpColor);
+            if (CanUnlock())
+                DoneUp();
+            else if (isLocked)
+                uiCanvas.uiTooltipSkill.AlertEffect();
         }
-        
+
         #endregion
+        
+        // TODO: isLocked需要归他管吗？
+        public void Refund()
+        {
+            isDoneUp = false;
+            SetIconColor(lockedColor);
+            uiCanvas.uiTreeSkill.IncreaseSkillPoints(skillCost);
+            uiTreeConHandler.UpdateConColor(false);
+        }
     }
 }

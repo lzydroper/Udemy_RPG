@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using Entity.Player.State;
+using UI;
 using UnityEngine;
 
 namespace Entity.Player
@@ -8,6 +9,7 @@ namespace Entity.Player
     public class Player : EntityBase
     {
         // input system
+        private UICanvas uiCanvas;
         public Vector2 MoveInput { get; private set; } 
         public PlayerInputSet InputSet { get; private set; }
     
@@ -61,6 +63,7 @@ namespace Entity.Player
         protected override void Awake()
         {
             base.Awake();
+            uiCanvas = FindFirstObjectByType<UICanvas>();
             InputSet = new PlayerInputSet();
         }
 
@@ -68,7 +71,8 @@ namespace Entity.Player
         {
             InputSet.Enable();
             InputSet.Player.Movement.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
-            InputSet.Player.Movement.canceled += ctx => MoveInput = Vector2.zero;
+            InputSet.Player.Movement.canceled += _ => MoveInput = Vector2.zero;
+            InputSet.Player.ToggleUITreeSkill.performed += _ => uiCanvas.ToggleUITreeSkill();
         }
 
         private void OnDisable()

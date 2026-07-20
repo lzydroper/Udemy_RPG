@@ -136,6 +136,15 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleUITreeSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebf08655-6057-4c62-aaa0-13c3bf9ebb97"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -237,6 +246,17 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""action"": ""CounterAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b44a87d2-73a7-477a-bc2f-8f5974f67412"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleUITreeSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +270,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_BasicAttack = m_Player.FindAction("BasicAttack", throwIfNotFound: true);
         m_Player_CounterAttack = m_Player.FindAction("CounterAttack", throwIfNotFound: true);
+        m_Player_ToggleUITreeSkill = m_Player.FindAction("ToggleUITreeSkill", throwIfNotFound: true);
     }
 
     ~@PlayerInputSet()
@@ -335,6 +356,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_BasicAttack;
     private readonly InputAction m_Player_CounterAttack;
+    private readonly InputAction m_Player_ToggleUITreeSkill;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -366,6 +388,10 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/CounterAttack".
         /// </summary>
         public InputAction @CounterAttack => m_Wrapper.m_Player_CounterAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ToggleUITreeSkill".
+        /// </summary>
+        public InputAction @ToggleUITreeSkill => m_Wrapper.m_Player_ToggleUITreeSkill;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -407,6 +433,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @CounterAttack.started += instance.OnCounterAttack;
             @CounterAttack.performed += instance.OnCounterAttack;
             @CounterAttack.canceled += instance.OnCounterAttack;
+            @ToggleUITreeSkill.started += instance.OnToggleUITreeSkill;
+            @ToggleUITreeSkill.performed += instance.OnToggleUITreeSkill;
+            @ToggleUITreeSkill.canceled += instance.OnToggleUITreeSkill;
         }
 
         /// <summary>
@@ -433,6 +462,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @CounterAttack.started -= instance.OnCounterAttack;
             @CounterAttack.performed -= instance.OnCounterAttack;
             @CounterAttack.canceled -= instance.OnCounterAttack;
+            @ToggleUITreeSkill.started -= instance.OnToggleUITreeSkill;
+            @ToggleUITreeSkill.performed -= instance.OnToggleUITreeSkill;
+            @ToggleUITreeSkill.canceled -= instance.OnToggleUITreeSkill;
         }
 
         /// <summary>
@@ -508,5 +540,12 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCounterAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleUITreeSkill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleUITreeSkill(InputAction.CallbackContext context);
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -12,10 +13,10 @@ namespace UI
 
         #endregion
 
-        public void SetConnectionLine(UITreeNodeConDirType direction, float length)
+        public void SetConnectionLine(UITreeNodeConDirType direction, float length, float rotationOffset)
         {
             if (direction == UITreeNodeConDirType.None) length = 0;
-            rotationPoint.localRotation = Quaternion.Euler(0, 0, GetAngleByType(direction));
+            rotationPoint.localRotation = Quaternion.Euler(0, 0, GetAngleByType(direction) + rotationOffset);
             connectionLine.sizeDelta = new Vector2(connectionLine.sizeDelta.x, length);
         }
 
@@ -41,6 +42,8 @@ namespace UI
                 );
             return localPoint;
         }
+        
+        public Image GetConnectionLineImage() => connectionLine.GetComponent<Image>();
 
         private float GetAngleByType(UITreeNodeConDirType type) => type switch
         {
