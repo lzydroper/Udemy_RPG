@@ -7,8 +7,8 @@ namespace UI
     {
         #region Variables
 
-        public UITooltipSkill uiTooltipSkill;
-        public UITreeSkill uiTreeSkill;
+        [HideInInspector] public UITooltipSkill uiTooltipSkill;
+        [HideInInspector] public UITreeSkill uiTreeSkill;
         public bool ifShowUITreeSkill;
 
         #endregion
