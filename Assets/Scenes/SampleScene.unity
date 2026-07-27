@@ -41270,6 +41270,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da372f5914386f044890c24bc47f1fdc, type: 2}
   - {fileID: 11400000, guid: ed3396e867feb7848b6dda7cd8b92afb, type: 2}
   - {fileID: 11400000, guid: 2cc981b74be030f4c980241bd15d907d, type: 2}
+  - {fileID: 11400000, guid: 2821ddbabd51dcd479379b4fa5e69cd5, type: 2}
 --- !u!4 &2035860807
 Transform:
   m_ObjectHideFlags: 0
@@ -41745,7 +41746,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125322178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a5e3bc869b4b32ae655ce55ba10828, type: 3}
+  m_Script: {fileID: 11500000, guid: 212cbcf6c2aa40fa97218a3386237180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: 6f23d1f513438db42b70b975099054b4, type: 2}
@@ -41754,6 +41755,7 @@ MonoBehaviour:
   iceEffectColor: {r: 0, g: 1, b: 1, a: 1}
   fireEffectColor: {r: 0.9411765, g: 0.3529412, b: 0.3254902, a: 1}
   lightningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  timeEchoInterval: 0.05
 --- !u!114 &2125322186
 MonoBehaviour:
   m_ObjectHideFlags: 0

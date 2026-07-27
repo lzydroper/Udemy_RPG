@@ -10,7 +10,7 @@ namespace Entity
     {
         #region Variables
 
-        private SpriteRenderer sr;
+        protected SpriteRenderer sr;
         // 受到伤害
         [Header("OnTakingDamageVFX")]
         private Coroutine onDamageCoroutine;

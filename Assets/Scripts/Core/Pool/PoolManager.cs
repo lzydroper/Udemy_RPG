@@ -68,7 +68,7 @@ namespace Core.Pool
             Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
             => TryRent(poolName, out _, out gameObject, position, rotation, parent);
 
-        public bool TryRent<T>(string poolName, out Component component,
+        public bool TryRent<T>(string poolName, out T component,
             Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
             where T : Component
         {

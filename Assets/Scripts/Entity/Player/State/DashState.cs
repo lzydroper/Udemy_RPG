@@ -20,6 +20,7 @@ namespace Entity.Player.State
             rb.gravityScale = 0;
 
             stateTimer = player.dashDuration;
+            player.VFX.PlayTimeEchoEffect(player.dashDuration);
         }
 
         public override void OnUpdate()

@@ -12,6 +12,7 @@ namespace Entity.Player
         private UICanvas uiCanvas;
         public Vector2 MoveInput { get; private set; } 
         public PlayerInputSet InputSet { get; private set; }
+        public PlayerVFX VFX { get; private set; }
     
         // attack
         [Header("attack details")] 
@@ -33,6 +34,13 @@ namespace Entity.Player
         public float dashSpeed = 20f;
         
         #region InheritMethods
+
+        protected override void FetchComponents()
+        {
+            base.FetchComponents();
+            uiCanvas = FindFirstObjectByType<UICanvas>();
+            VFX = GetComponent<PlayerVFX>();
+        }
 
         protected override void BuildStateMachine()
         {
@@ -63,7 +71,6 @@ namespace Entity.Player
         protected override void Awake()
         {
             base.Awake();
-            uiCanvas = FindFirstObjectByType<UICanvas>();
             InputSet = new PlayerInputSet();
         }
 
