@@ -16,8 +16,8 @@ namespace Entity.Interfaces
         public ElementType ElementType { get; }
         public float ArmorReductionPer { get; }
         
-        public DamageContext(Transform damageDealer, float physicDamage, float elementDamage, 
-            ElementType elementType, float armorReductionPer)
+        public DamageContext(Transform damageDealer, float physicDamage = 0f, float elementDamage = 0f, 
+            ElementType elementType = ElementType.None, float armorReductionPer = 0f)
         {
             DamageDealer = damageDealer;
             PhysicDamage = physicDamage;

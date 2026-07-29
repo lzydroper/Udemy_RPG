@@ -21,3 +21,5 @@ MonoBehaviour:
     - OnCritHitVFX
     - OnLightningtHitVFX
     - TimeEchoVFX
+    - TimeShardVFX
+    - SkillObjShard

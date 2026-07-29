@@ -79,6 +79,14 @@ namespace Core.Pool
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="poolName"></param>
+        /// <param name="duration">-1则使用SO配置界面的默认值，若最终值为-1则为非法操作，不会执行</param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="parent"></param>
         public void RentAsync(string poolName, float duration = -1,
             Vector3 position = default, Quaternion rotation = default, PoolParentOverride parent = default)
         {
