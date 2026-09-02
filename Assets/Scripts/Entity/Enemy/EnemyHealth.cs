@@ -1,4 +1,4 @@
-using Entity.Interfaces;
+using Data;
 
 namespace Entity.Enemy
 {

@@ -1,4 +1,4 @@
-using System;
+using SkillSystem.UI;
 using UnityEngine;
 
 namespace UI
@@ -7,9 +7,9 @@ namespace UI
     {
         #region Variables
 
-        [HideInInspector] public UITooltipSkill uiTooltipSkill;
-        [HideInInspector] public UITreeSkill uiTreeSkill;
-        public bool ifShowUITreeSkill;
+        public SkillUITree skillUITree;
+        public SkillUITooltip skillUITooltip;
+        public bool ifShowSkillUITree;
 
         #endregion
 
@@ -17,17 +17,17 @@ namespace UI
 
         private void Awake()
         {
-            uiTooltipSkill = GetComponentInChildren<UITooltipSkill>();
-            uiTreeSkill = GetComponentInChildren<UITreeSkill>(true);
+            skillUITooltip = GetComponentInChildren<SkillUITooltip>(true);
+            skillUITree = GetComponentInChildren<SkillUITree>(true);
         }
 
         #endregion
 
         public void ToggleUITreeSkill()
         {
-            ifShowUITreeSkill = !ifShowUITreeSkill;
-            uiTreeSkill.gameObject.SetActive(ifShowUITreeSkill);
-            uiTooltipSkill.Show(false, null);
+            ifShowSkillUITree = !ifShowSkillUITree;
+            skillUITree.gameObject.SetActive(ifShowSkillUITree);
+            skillUITooltip.Show(false, null);
         }
     }
 }

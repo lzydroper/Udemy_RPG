@@ -18,13 +18,13 @@ namespace Stats
         ArmorReduction,
         FireDamage,
         IceDamage,
-        LightningDamage,
+        ThunderDamage,
         // defensive
         Evasion,
         Armor,
         IceResistance,
         FireResistance,
-        LightningResistance
+        ThunderResistance
     }
 
     public static class StatTypeExtensions

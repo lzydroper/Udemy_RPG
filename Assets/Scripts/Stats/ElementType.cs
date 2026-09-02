@@ -5,6 +5,6 @@ namespace Stats
         None,
         Fire,
         Ice,
-        Lightning,
+        Thunder,
     }
 }

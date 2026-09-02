@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Linq;
 using Entity.Player.State;
+using SkillSystem;
+using SkillSystem.Runtime;
 using UI;
 using UnityEngine;
 
@@ -8,6 +10,8 @@ namespace Entity.Player
 {
     public class Player : EntityBase
     {
+        public EntityHealth health;
+        public SkillManager skillManager;
         // input system
         private UICanvas uiCanvas;
         public Vector2 MoveInput { get; private set; } 
@@ -32,6 +36,8 @@ namespace Entity.Player
         public float wallSlideSlowMultiplier = 0.35f;
         public float dashDuration = 0.25f;
         public float dashSpeed = 20f;
+        
+        public void Teleport(Vector3 position) => transform.position = position;
         
         #region InheritMethods
 
@@ -72,6 +78,8 @@ namespace Entity.Player
         {
             base.Awake();
             InputSet = new PlayerInputSet();
+            skillManager = GetComponent<SkillManager>();
+            health = GetComponent<EntityHealth>();
         }
 
         private void OnEnable()
@@ -80,6 +88,7 @@ namespace Entity.Player
             InputSet.Player.Movement.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
             InputSet.Player.Movement.canceled += _ => MoveInput = Vector2.zero;
             InputSet.Player.ToggleUITreeSkill.performed += _ => uiCanvas.ToggleUITreeSkill();
+            InputSet.Player.Spell.performed += _ => skillManager.GetSkillByType(SkillType.TimeShard).UseSkill();
         }
 
         private void OnDisable()

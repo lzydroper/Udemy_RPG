@@ -28,13 +28,13 @@ namespace Stats
         // elemental damage
         public float fireDamage;
         public float iceDamage;
-        public float lightningDamage;
+        public float thunderDamage;
         [EndTab]
         [Tab("Defense Stats")]
         public float evasion;
         public float armor;
         public float firResistance;
         public float iceResistance;
-        public float lightningResistance;
+        public float thunderResistance;
     }
 }

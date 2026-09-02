@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49922fcb25c46aa8697fa0ac06b055e, type: 3}
+  m_Name: SkillDataSO - Time Shard Teleport Hp Rewind
+  m_EditorClassIdentifier: 
+  displayName: Time Shard Teleport Hp Rewind
+  description: 'Create a time shard filled with elemental magic.
+
+    The shard explodes
+    when touched by an enemy or when time goes up.'
+  icon: {fileID: -502795071, guid: d4c62e87250187549af36c36e331377f, type: 3}
+  cost: 3
+  isUnlockedDefault: 0
+  prerequisites:
+  - {fileID: 11400000, guid: b4b9c19bf610ccb498e148f5a1a3b612, type: 2}
+  conflicts: []
+  skillType: 2
+  upgradeData:
+    upgradeType: 10
+    cooldown: 4
+    damageScaleData:
+      physic: 1
+      element: 1
+      iceDuration: 3
+      iceSlowMultiplier: 0.5
+      fireDuration: 3
+      fireTotalDamageScale: 1
+      thunderDuration: 3
+      thunderDamageScale: 1
+      thunderCharge: 0.4

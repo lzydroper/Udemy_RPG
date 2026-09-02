@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Utils;
+using Data;
 using Generated;
 using Stats;
 using UnityEngine;
@@ -23,10 +24,10 @@ namespace Entity
         private EntityHealth _entityHealth;
         private EntityVFX _entityVFX;
         private ElementType _curElementType = ElementType.None;
-        [Header("Lightning Effect Details")] 
+        [Header("Thunder Effect Details")] 
         private float _curCharge;
         private const float ChargeThreshold = 1f;
-        private Coroutine lightningCoroutine;
+        private Coroutine thunderCoroutine;
 
         #endregion
 
@@ -52,10 +53,20 @@ namespace Entity
 
         #endregion
 
-        public bool CanBeAppliedElementEffect(ElementType type)
+        public void ApplyElementEffect(ElementType elementType, ElementalEffectData effectData)
+        {
+            if (elementType == ElementType.Ice && CanBeAppliedElementEffect(ElementType.Ice))
+                ApplyIceEffect(effectData.iceDuration, effectData.iceSlowMultiplier);
+            if (elementType == ElementType.Fire && CanBeAppliedElementEffect(ElementType.Fire))
+                ApplyFireEffect(effectData.fireDuration, effectData.fireTotalDamage);
+            if (elementType == ElementType.Thunder && CanBeAppliedElementEffect(ElementType.Thunder))
+                ApplyThunderEffect(effectData.thunderDuration, effectData.thunderDamage, effectData.thunderCharge);
+        }
+        
+        private bool CanBeAppliedElementEffect(ElementType type)
         {
             // 电属性效果可以被自身刷新
-            if (type == ElementType.Lightning && _curElementType == ElementType.Lightning)
+            if (type == ElementType.Thunder && _curElementType == ElementType.Thunder)
                 return true;
             return _curElementType == ElementType.None;
         }
@@ -71,47 +82,47 @@ namespace Entity
          * 6.雷劈和电流独立
          */
 
-        public void ApplyLightningEffect(float duration, float damage, float charge)
+        private void ApplyThunderEffect(float duration, float damage, float charge)
         {
-            var multiplier = 1 - _entityStat.GetElementResistancePer(ElementType.Lightning);
+            var multiplier = 1 - _entityStat.GetElementResistancePer(ElementType.Thunder);
             _curCharge += charge * multiplier;
             if (_curCharge > ChargeThreshold)
             {
-                DoLightningStrike(damage);
-                StopLightningEffect();
+                DoThunderStrike(damage);
+                StopThunderEffect();
                 //TODO:感觉不应该Return，因为触发雷劈的那次攻击，也应该继续刷新电流
                 return;
             }
-            this.RestartCoroutine(ref lightningCoroutine, LightningEffectCo(duration));
+            this.RestartCoroutine(ref thunderCoroutine, ThunderEffectCo(duration));
         }
 
-        private IEnumerator LightningEffectCo(float duration)
+        private IEnumerator ThunderEffectCo(float duration)
         {
             // set type
-            _curElementType = ElementType.Lightning;
+            _curElementType = ElementType.Thunder;
             // play vfx
-            _entityVFX?.PlayOnStatusVFX(duration, ElementType.Lightning);
+            _entityVFX?.PlayOnStatusVFX(duration, ElementType.Thunder);
             // apply specific effect
             yield return new WaitForSeconds(duration);
             // reset type
-            StopLightningEffect();
+            StopThunderEffect();
         }
 
-        private void DoLightningStrike(float damage)
+        private void DoThunderStrike(float damage)
         {
-            GameManager.Pool.RentAsync(Keys.Pool.OnLightningtHitVFX, 
+            GameManager.Pool.RentAsync(Keys.Pool.OnThundertHitVFX, 
                 position: transform.position, parent: transform);
             _entityHealth.ReduceHealth(damage);
         }
 
-        private void StopLightningEffect()
+        private void StopThunderEffect()
         {
             _curElementType = ElementType.None;
             _entityVFX?.ResetAllVFX();
             _curCharge = 0;
         }
         
-        public void ApplyFireEffect(float duration, float totalDamage)
+        private void ApplyFireEffect(float duration, float totalDamage)
         {
             var multiplier = 1 - _entityStat.GetElementResistancePer(ElementType.Fire);
             totalDamage *= multiplier;
@@ -138,7 +149,7 @@ namespace Entity
             _curElementType = ElementType.None;
         }
 
-        public void ApplyIceEffect(float duration, float slowMultiplier)
+        private void ApplyIceEffect(float duration, float slowMultiplier)
         {
             var multiplier =  1 - _entityStat.GetElementResistancePer(ElementType.Ice);
             duration *= multiplier;

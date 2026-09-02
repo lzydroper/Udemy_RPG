@@ -32,26 +32,27 @@ namespace Entity
         // elemental damage
         public Stat fireDamage;
         public Stat iceDamage;
-        public Stat lightningDamage;
+        public Stat thunderDamage;
         [EndTab]
         [Tab("Defense Stats")]
         public Stat evasion;
         public Stat armor;
         public Stat firResistance;
         public Stat iceResistance;
-        public Stat lightningResistance;
+        public Stat thunderResistance;
         [EndTab]
 
         #endregion
 
-        //TODO:为什么scale要写在这里？
+        // TODO:如果原始数据没变化的话，是不需要重新计算一遍的，可以加缓存
+        // 为什么scale要写在这里？ -> 因为EntityStat作为对外唯一入口，所以只能在这里写，再往里公开不符合逻辑且拿不到或者过耦合
         public float GetElementDamage(out ElementType type, float scale = 1f)
         {
             var elementPairs = new (float damage, ElementType type)[]
             {
                 (fireDamage.GetValue(), ElementType.Fire),
                 (iceDamage.GetValue(), ElementType.Ice),
-                (lightningDamage.GetValue(), ElementType.Lightning)
+                (thunderDamage.GetValue(), ElementType.Thunder)
             };
 
             var highestElementDamage = 0f;
@@ -88,7 +89,7 @@ namespace Entity
             {
                 ElementType.Fire => firResistance.GetValue(),
                 ElementType.Ice => iceResistance.GetValue(),
-                ElementType.Lightning => lightningResistance.GetValue(),
+                ElementType.Thunder => thunderResistance.GetValue(),
                 _ => 0
             };
             float bonusElementResistance = intelligence.GetValue() * .5f;
@@ -171,13 +172,13 @@ namespace Entity
             StatType.ArmorReduction => armorReduction,
             StatType.FireDamage => fireDamage,
             StatType.IceDamage => iceDamage,
-            StatType.LightningDamage => lightningDamage,
+            StatType.ThunderDamage => thunderDamage,
             // defensive
             StatType.Evasion => evasion,
             StatType.Armor => armor,
             StatType.IceResistance => iceResistance,
             StatType.FireResistance => firResistance,
-            StatType.LightningResistance => lightningResistance,
+            StatType.ThunderResistance => thunderResistance,
             _ => null
         };
 
@@ -206,14 +207,14 @@ namespace Entity
 
             iceDamage.SetBaseValue(defaultStatDataSO.iceDamage);
             fireDamage.SetBaseValue(defaultStatDataSO.fireDamage);  
-            lightningDamage.SetBaseValue(defaultStatDataSO.lightningDamage);
+            thunderDamage.SetBaseValue(defaultStatDataSO.thunderDamage);
 
             armor.SetBaseValue(defaultStatDataSO.armor);
             evasion.SetBaseValue(defaultStatDataSO.evasion);
 
             iceResistance.SetBaseValue(defaultStatDataSO.iceResistance);
             firResistance.SetBaseValue(defaultStatDataSO.firResistance);
-            lightningResistance.SetBaseValue(defaultStatDataSO.lightningResistance);
+            thunderResistance.SetBaseValue(defaultStatDataSO.thunderResistance);
         }
     }
 }

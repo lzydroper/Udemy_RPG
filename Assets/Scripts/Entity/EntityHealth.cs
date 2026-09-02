@@ -1,3 +1,4 @@
+using Data;
 using Entity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -74,7 +75,7 @@ namespace Entity
         {
             if (isDead) return false;
             
-            if (AttackEvasion()) return false;
+            if (IsAttackEvasion()) return false;
 
             // calculate the armor and physic damage
             var armorMitigationPer = _entityStat.GetArmorMitigationPer(context.ArmorReductionPer);
@@ -102,6 +103,7 @@ namespace Entity
             return true;
         }
 
+        // TODO: 这个方法不应该在这里
         private void TakeKnockback(float damage, Transform damageDealer)
         {
             if (damage > heavyDamageThreshold * _entityStat.GetMaxHealth())
@@ -118,7 +120,15 @@ namespace Entity
             }
         }
 
-        private bool AttackEvasion() => Random.Range(0f, 100f) < _entityStat.GetEvasion();
+        private bool IsAttackEvasion() => Random.Range(0f, 100f) < _entityStat.GetEvasion();
+        
+        public float GetHealthPercent() => curHealth / _entityStat.GetMaxHealth();
+        
+        public void SetHealthToPercent(float percent)
+        {
+            curHealth = _entityStat.GetMaxHealth() * Mathf.Clamp01(percent);
+            UpdateHealthBar();
+        }
 
         public void ReduceHealth(float amount)
         {

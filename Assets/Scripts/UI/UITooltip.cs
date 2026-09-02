@@ -25,6 +25,11 @@ namespace UI
             Show(false, rct);
         }
 
+        private void OnDisable()
+        {
+            Show(false, null);
+        }
+
         #endregion
 
         public virtual void Show(bool enable, RectTransform targetRct)

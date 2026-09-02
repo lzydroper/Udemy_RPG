@@ -1,4 +1,6 @@
 using Core.State;
+using SkillSystem;
+using SkillSystem.Runtime;
 
 namespace Entity.Player.State
 {
@@ -15,6 +17,8 @@ namespace Entity.Player.State
         public override void OnEnter()
         {
             base.OnEnter();
+            var skill = player.skillManager.GetSkillByType(SkillType.Dash) as SkillDash;
+            skill?.OnStartEffect();
             _dashDir = (player.MoveInput.x != 0) ? player.MoveInput.x : player.facingDir;
             _originalGravityScale = rb.gravityScale;
             rb.gravityScale = 0;
@@ -58,7 +62,8 @@ namespace Entity.Player.State
         public override void OnExit()
         {
             base.OnExit();
-        
+            var skill = player.skillManager.GetSkillByType(SkillType.Dash) as SkillDash;
+            skill?.OnEndEffect();
             player.SetVelocity(0, 0);
             rb.gravityScale = _originalGravityScale;
         

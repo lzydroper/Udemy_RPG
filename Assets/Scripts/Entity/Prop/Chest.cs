@@ -1,3 +1,5 @@
+using System.Collections;
+using Data;
 using Entity.Interfaces;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ namespace Entity.Prop
 
         private Animator ani;
         private Rigidbody2D rb;
+        private Collider2D col;
         private EntityVFX entityVFX;
 
         [Header("OpenDetail")] 
@@ -22,6 +25,7 @@ namespace Entity.Prop
         {
             ani = GetComponentInChildren<Animator>();
             rb = GetComponent<Rigidbody2D>();
+            col = GetComponent<Collider2D>();
             entityVFX = GetComponent<EntityVFX>();
         }
 
@@ -32,7 +36,16 @@ namespace Entity.Prop
             entityVFX.PlayOnDamageVFX();
             ani.SetBool("open", true);
             rb.linearVelocity = openVelocity;
+            StartCoroutine(DelayClose());
             return true;
+        }
+
+        private IEnumerator DelayClose()
+        {
+            yield return new WaitForSeconds(1f);
+            rb.simulated = false;
+            col.enabled = false;
+            this.enabled = false;
         }
     }
 }

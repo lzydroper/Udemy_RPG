@@ -17,14 +17,11 @@ namespace Entity
         private Material originalMaterial;
         [SerializeField] private Material onDamageMaterial;
         [SerializeField] private float onDamageDuration = .2f;
-        // 造成伤害
-        [Header("OnDoingDamageVFX")]
-        [SerializeField] private Color hitVFXColor = Color.white;
         [Header("ElementColor")]
         private Color originalColor;
         [SerializeField] private Color iceEffectColor = Color.cyan;
         [SerializeField] private Color fireEffectColor = Color.red;
-        [SerializeField] private Color lightningColor = Color.yellow;
+        [SerializeField] private Color thunderColor = Color.yellow;
 
         #endregion
 
@@ -41,11 +38,11 @@ namespace Entity
 
         #region ToolMethods
 
-        private Color _GetColorByType(ElementType type) => type switch
+        public Color GetColorByType(ElementType type) => type switch
         {
             ElementType.Fire => fireEffectColor,
             ElementType.Ice => iceEffectColor,
-            ElementType.Lightning => lightningColor,
+            ElementType.Thunder => thunderColor,
             _ => originalColor
         };
 
@@ -61,7 +58,7 @@ namespace Entity
         public void PlayOnStatusVFX(float duration, ElementType type)
         {
             if (type == ElementType.None) return;
-            StartCoroutine(OnStatusVFXCo(duration, _GetColorByType(type)));
+            StartCoroutine(OnStatusVFXCo(duration, GetColorByType(type)));
         }
 
         private IEnumerator OnStatusVFXCo(float duration, Color color)
@@ -81,20 +78,15 @@ namespace Entity
             sr.color = originalColor;
         }
 
-        public void CreateOnHitVFX(Transform target, bool isCritical)
+        public void CreateOnHitVFX(Transform target, bool isCritical, ElementType type)
         {
             string vfxKey = isCritical ? Keys.Pool.OnCritHitVFX : Keys.Pool.OnHitVFX;
             if (GameManager.Pool.TryRent(vfxKey, out var vfx,
                     position: target.position, parent: target))
             {
-                vfx.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
+                // vfx.GetComponentInChildren<SpriteRenderer>().color = _GetColorByType(type);
                 vfx.ReturnAsync(Keys.Pool.OnHitVFX);
             }
-        }
-
-        public void UpdateOnHitColor(ElementType type)
-        {
-            hitVFXColor = _GetColorByType(type);
         }
 
         public void PlayOnDamageVFX()

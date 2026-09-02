@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49922fcb25c46aa8697fa0ac06b055e, type: 3}
+  m_Name: SkillDataSO - Dash With Echo 2
+  m_EditorClassIdentifier: 
+  displayName: Dash With Echo 2
+  description: 'Create a time echo on arrival.
+
+    (Inherits all upgrades of Time
+    echo Ability)'
+  icon: {fileID: 39785269, guid: d4c62e87250187549af36c36e331377f, type: 3}
+  cost: 3
+  isUnlockedDefault: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 88e519c17bc6c47499253ed39d0f47b6, type: 2}
+  conflicts: []
+  skillType: 0
+  upgradeData:
+    upgradeType: 5
+    cooldown: 3
+    damageScaleData:
+      physic: 1
+      element: 1
+      iceDuration: 3
+      iceSlowMultiplier: 0.5
+      fireDuration: 3
+      fireTotalDamageScale: 1
+      thunderDuration: 3
+      thunderDamageScale: 1
+      thunderCharge: 0.4

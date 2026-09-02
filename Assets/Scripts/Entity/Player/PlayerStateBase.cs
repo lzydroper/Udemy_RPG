@@ -1,4 +1,5 @@
 using Core.State;
+using SkillSystem;
 
 namespace Entity.Player
 {
@@ -21,6 +22,7 @@ namespace Entity.Player
             
             if (player.InputSet.Player.Dash.WasPressedThisFrame() && CanDash())
             {
+                player.skillManager.GetSkillByType(SkillType.Dash).SetOnCooldown();
                 stateMachine.ChangeState(PlayerStateType.Dash);
             }
         }
@@ -33,6 +35,9 @@ namespace Entity.Player
 
         private bool CanDash()
         {
+            if (!player.skillManager.GetSkillByType(SkillType.Dash).IsCanUseSkill())
+                return false;
+            
             if (player.WallDetected)
                 return false;
 
