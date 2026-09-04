@@ -23,6 +23,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c319f7e4e2544864faae034c449d6775, type: 2}
   - {fileID: 11400000, guid: b4b9c19bf610ccb498e148f5a1a3b612, type: 2}
   - {fileID: 11400000, guid: 75b4192021c068742a198ab2e94038e3, type: 2}
+  - {fileID: 11400000, guid: 1594c7134bb049d48992c44390658df1, type: 2}
+  - {fileID: 11400000, guid: 56d62827c07b511439502907b2df4f39, type: 2}
+  - {fileID: 11400000, guid: 317243abcb9fe264c8fdfc49b5b32fe5, type: 2}
+  - {fileID: 11400000, guid: 2257dfa1a1eecff4ba9dc952980f8ac7, type: 2}
   connections:
   - parent: {fileID: 11400000, guid: 102f4a9dbf0ce5b4eb4c6a026ec66d45, type: 2}
     child: {fileID: 11400000, guid: 88e519c17bc6c47499253ed39d0f47b6, type: 2}
@@ -62,5 +66,20 @@ MonoBehaviour:
   - parent: {fileID: 11400000, guid: b4b9c19bf610ccb498e148f5a1a3b612, type: 2}
     child: {fileID: 11400000, guid: 75b4192021c068742a198ab2e94038e3, type: 2}
     direction: 4
+    length: 2
+    rotationOffset: 0
+  - parent: {fileID: 11400000, guid: 1594c7134bb049d48992c44390658df1, type: 2}
+    child: {fileID: 11400000, guid: 2257dfa1a1eecff4ba9dc952980f8ac7, type: 2}
+    direction: 5
+    length: 2
+    rotationOffset: 0
+  - parent: {fileID: 11400000, guid: 1594c7134bb049d48992c44390658df1, type: 2}
+    child: {fileID: 11400000, guid: 317243abcb9fe264c8fdfc49b5b32fe5, type: 2}
+    direction: 4
+    length: 2
+    rotationOffset: 0
+  - parent: {fileID: 11400000, guid: 1594c7134bb049d48992c44390658df1, type: 2}
+    child: {fileID: 11400000, guid: 56d62827c07b511439502907b2df4f39, type: 2}
+    direction: 3
     length: 2
     rotationOffset: 0

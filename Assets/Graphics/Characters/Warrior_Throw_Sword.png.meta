@@ -1,0 +1,977 @@
+fileFormatVersion: 2
+guid: 99977d1fd17826f44b19a6ea98769695
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5361699895716044281
+    second: Warrior_Throw_Sword_0
+  - first:
+      213: 6200002359077222636
+    second: Warrior_Throw_Sword_1
+  - first:
+      213: 7549586074902046485
+    second: Warrior_Throw_Sword_2
+  - first:
+      213: -3854385931730488529
+    second: Warrior_Throw_Sword_3
+  - first:
+      213: -3523121374486164654
+    second: Warrior_Throw_Sword_4
+  - first:
+      213: -7197178222538206835
+    second: Warrior_Throw_Sword_5
+  - first:
+      213: -6255720572183515756
+    second: Warrior_Throw_Sword_6
+  - first:
+      213: -1786706364559343485
+    second: Warrior_Throw_Sword_7
+  - first:
+      213: -3944079194191787261
+    second: Warrior_Throw_Sword_8
+  - first:
+      213: 3087395190095666387
+    second: Warrior_Throw_Sword_9
+  - first:
+      213: 7672946532498563625
+    second: Warrior_Throw_Sword_10
+  - first:
+      213: 3888007080988495544
+    second: Warrior_Throw_Sword_11
+  - first:
+      213: -7289940050329039782
+    second: Warrior_Throw_Sword_12
+  - first:
+      213: -997651778049518162
+    second: Warrior_Throw_Sword_13
+  - first:
+      213: 532363396258003217
+    second: Warrior_Throw_Sword_14
+  - first:
+      213: -3164406583842987197
+    second: Warrior_Throw_Sword_15
+  - first:
+      213: -8529999587100357575
+    second: Warrior_Throw_Sword_16
+  - first:
+      213: 68391388445317637
+    second: Warrior_Throw_Sword_17
+  - first:
+      213: 3396420968140251290
+    second: Warrior_Throw_Sword_18
+  - first:
+      213: -3566683423040600441
+    second: Warrior_Throw_Sword_19
+  - first:
+      213: 5906124565584856885
+    second: Warrior_Throw_Sword_20
+  - first:
+      213: 8320876821988748113
+    second: Warrior_Throw_Sword_21
+  - first:
+      213: -5982128361890120690
+    second: Warrior_Throw_Sword_22
+  - first:
+      213: 8442093333698317728
+    second: Warrior_Throw_Sword_23
+  - first:
+      213: -3704919220590791965
+    second: Warrior_Throw_Sword_24
+  - first:
+      213: 803946779065777261
+    second: Warrior_Throw_Sword_25
+  - first:
+      213: -8323789120526327082
+    second: Warrior_Throw_Sword_26
+  - first:
+      213: -2075828151553075874
+    second: Warrior_Throw_Sword_27
+  - first:
+      213: 2296441340313116818
+    second: Warrior_Throw_Sword_28
+  - first:
+      213: -8118394535467508492
+    second: Warrior_Throw_Sword_29
+  - first:
+      213: 3369052479840860825
+    second: Warrior_Throw_Sword_30
+  - first:
+      213: 4595254345270928944
+    second: Warrior_Throw_Sword_31
+  - first:
+      213: -2245956827881051375
+    second: Warrior_Throw_Sword_32
+  - first:
+      213: 2636223856515732816
+    second: Warrior_Throw_Sword_33
+  - first:
+      213: 830749029601993518
+    second: Warrior_Throw_Sword_34
+  - first:
+      213: -2666037302560636308
+    second: Warrior_Throw_Sword_35
+  - first:
+      213: 8801656913275383778
+    second: Warrior_Throw_Sword_36
+  - first:
+      213: 4868875016681648236
+    second: Warrior_Throw_Sword_37
+  - first:
+      213: 7414971690370014402
+    second: Warrior_Throw_Sword_38
+  - first:
+      213: -6051794586973316607
+    second: Warrior_Throw_Sword_39
+  - first:
+      213: 3157850537598160724
+    second: Warrior_Throw_Sword_40
+  - first:
+      213: 2109679621412556023
+    second: Warrior_Throw_Sword_41
+  - first:
+      213: -5815448913787422451
+    second: Warrior_Throw_Sword_42
+  - first:
+      213: -6953534044634647396
+    second: Warrior_Throw_Sword_43
+  - first:
+      213: -3769906407742082070
+    second: Warrior_Throw_Sword_44
+  - first:
+      213: 4402489310257509280
+    second: Warrior_Throw_Sword_45
+  - first:
+      213: -6056913922351844036
+    second: Warrior_Throw_Sword_46
+  - first:
+      213: 698202126136752560
+    second: Warrior_Throw_Sword_47
+  - first:
+      213: 9064650240010732568
+    second: Warrior_Throw_Sword_48
+  - first:
+      213: 5690279488879332902
+    second: Warrior_Throw_Sword_49
+  - first:
+      213: 4219779701873223357
+    second: Warrior_Throw_Sword_50
+  - first:
+      213: -1399682554244699579
+    second: Warrior_Throw_Sword_51
+  - first:
+      213: 7321759660797939168
+    second: Warrior_Throw_Sword_52
+  - first:
+      213: 6156956691809659326
+    second: Warrior_Throw_Sword_53
+  - first:
+      213: -4971545520479535598
+    second: Warrior_Throw_Sword_54
+  - first:
+      213: -8329219842909770355
+    second: Warrior_Throw_Sword_55
+  - first:
+      213: 4864112237807963090
+    second: Warrior_Throw_Sword_56
+  - first:
+      213: 8323201455701630598
+    second: Warrior_Throw_Sword_57
+  - first:
+      213: 941625728492804352
+    second: Warrior_Throw_Sword_58
+  - first:
+      213: -2071098025856238105
+    second: Warrior_Throw_Sword_59
+  - first:
+      213: 4748510611719967741
+    second: Warrior_Throw_Sword_60
+  - first:
+      213: 2300138775958399376
+    second: Warrior_Throw_Sword_61
+  - first:
+      213: 6997051941630933107
+    second: Warrior_Throw_Sword_62
+  - first:
+      213: -2783569111077705932
+    second: Warrior_Throw_Sword_63
+  - first:
+      213: -1058043195150247346
+    second: Warrior_Throw_Sword_64
+  - first:
+      213: 9146981954759747975
+    second: Warrior_Throw_Sword_65
+  - first:
+      213: -1076512484555828337
+    second: Warrior_Throw_Sword_66
+  - first:
+      213: -7990801290303095153
+    second: Warrior_Throw_Sword_67
+  - first:
+      213: 745376946548949892
+    second: Warrior_Throw_Sword_68
+  - first:
+      213: -8642791111806031413
+    second: Warrior_Throw_Sword_69
+  - first:
+      213: 5304668284610555329
+    second: Warrior_Throw_Sword_70
+  - first:
+      213: -1204083191314389568
+    second: Warrior_Throw_Sword_71
+  - first:
+      213: 6924101026911180920
+    second: Warrior_Throw_Sword_72
+  - first:
+      213: -6965116157298561213
+    second: Warrior_Throw_Sword_73
+  - first:
+      213: -2353723295166674897
+    second: Warrior_Throw_Sword_74
+  - first:
+      213: 7860509041895142499
+    second: Warrior_Throw_Sword_75
+  - first:
+      213: 6679061706602302852
+    second: Warrior_Throw_Sword_76
+  - first:
+      213: -5002073772094430041
+    second: Warrior_Throw_Sword_77
+  - first:
+      213: 91881185083422985
+    second: Warrior_Throw_Sword_78
+  - first:
+      213: -6030853170392552184
+    second: Warrior_Throw_Sword_79
+  - first:
+      213: 8023275059924480560
+    second: Warrior_Throw_Sword_80
+  - first:
+      213: 8414180593368615146
+    second: Warrior_Throw_Sword_81
+  - first:
+      213: 8202135098968559034
+    second: Warrior_Throw_Sword_82
+  - first:
+      213: -8021033529163596603
+    second: Warrior_Throw_Sword_83
+  - first:
+      213: 3285327181073163367
+    second: Warrior_Throw_Sword_84
+  - first:
+      213: -7349448556391517578
+    second: Warrior_Throw_Sword_85
+  - first:
+      213: 1644947143217156977
+    second: Warrior_Throw_Sword_86
+  - first:
+      213: 2640434556269784084
+    second: Warrior_Throw_Sword_87
+  - first:
+      213: -1207654769765017013
+    second: Warrior_Throw_Sword_88
+  - first:
+      213: 8284967899855407864
+    second: Warrior_Throw_Sword_89
+  - first:
+      213: 2003463937554111268
+    second: Warrior_Throw_Sword_90
+  - first:
+      213: -8170628798847139791
+    second: Warrior_Throw_Sword_91
+  - first:
+      213: -2158315465344498455
+    second: Warrior_Throw_Sword_92
+  - first:
+      213: -7578837096875540391
+    second: Warrior_Throw_Sword_93
+  - first:
+      213: 2799517732691638233
+    second: Warrior_Throw_Sword_94
+  - first:
+      213: -7463169874344221301
+    second: Warrior_Throw_Sword_95
+  - first:
+      213: -5352211170750030078
+    second: Warrior_Throw_Sword_96
+  - first:
+      213: -1571056736614061646
+    second: Warrior_Throw_Sword_97
+  - first:
+      213: -6067678568493273986
+    second: Warrior_Throw_Sword_98
+  - first:
+      213: -9022671128432612354
+    second: Warrior_Throw_Sword_99
+  - first:
+      213: 1398514083715303871
+    second: Warrior_Throw_Sword_100
+  - first:
+      213: -6870041057610534930
+    second: Warrior_Throw_Sword_101
+  - first:
+      213: 995628046600038328
+    second: Warrior_Throw_Sword_102
+  - first:
+      213: 9092654419797950667
+    second: Warrior_Throw_Sword_103
+  - first:
+      213: 5469842976226402950
+    second: Warrior_Throw_Sword_104
+  - first:
+      213: -1863599256054287107
+    second: Warrior_Throw_Sword_105
+  - first:
+      213: 6496928524052913917
+    second: Warrior_Throw_Sword_106
+  - first:
+      213: -6975939550997040789
+    second: Warrior_Throw_Sword_107
+  - first:
+      213: 408670913646455406
+    second: Warrior_Throw_Sword_108
+  - first:
+      213: 3750702533147751959
+    second: Warrior_Throw_Sword_109
+  - first:
+      213: -7351909060576317681
+    second: Warrior_Throw_Sword_110
+  - first:
+      213: 177415079984182718
+    second: Warrior_Throw_Sword_111
+  - first:
+      213: -1868418506015563562
+    second: Warrior_Throw_Sword_112
+  - first:
+      213: -1140270968309729325
+    second: Warrior_Throw_Sword_113
+  - first:
+      213: -7215163337102239101
+    second: Warrior_Throw_Sword_114
+  - first:
+      213: -8659893227247941009
+    second: Warrior_Throw_Sword_115
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 704
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce8b16beb45da0650800000000000000
+      internalID: 6200002359077222636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 704
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517a5c3298485c860800000000000000
+      internalID: 7549586074902046485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_3
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 704
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f23f0ff9a68728ac0800000000000000
+      internalID: -3854385931730488529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_4
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 704
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b8a25b6cb5b1fc0800000000000000
+      internalID: -3523121374486164654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_5
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 704
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d81de64f98c7e1c90800000000000000
+      internalID: -7197178222538206835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 660
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49de5e8a8473f29a0800000000000000
+      internalID: -6255720572183515756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 663
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380c28e17085437e0800000000000000
+      internalID: -1786706364559343485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_8
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 662
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30b80389ed0d349c0800000000000000
+      internalID: -3944079194191787261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_9
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 660
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dcd6e25191a8da20800000000000000
+      internalID: 3087395190095666387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_10
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 660
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9226422e738cb7a60800000000000000
+      internalID: 7672946532498563625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_11
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 663
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bec58237d9f4f530800000000000000
+      internalID: 3888007080988495544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_12
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 618
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5c8e32e52ee4da90800000000000000
+      internalID: -7289940050329039782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_13
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 616
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea552df5ef0a722f0800000000000000
+      internalID: -997651778049518162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_14
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 616
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 119f06530b5536700800000000000000
+      internalID: 532363396258003217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_15
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 607
+        width: 38
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343a12d4af4c514d0800000000000000
+      internalID: -3164406583842987197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_26
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 528
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d264cd65e5fb7c80800000000000000
+      internalID: -8323789120526327082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_27
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 528
+        width: 25
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e555ceb5b4d2133e0800000000000000
+      internalID: -2075828151553075874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Throw_Sword_113
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 3
+        width: 20
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d735328891fc20f0800000000000000
+      internalID: -1140270968309729325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7d57bb02776fdf94bbe92c16b1f1acd7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Warrior_Throw_Sword_0: -5361699895716044281
+      Warrior_Throw_Sword_1: 6200002359077222636
+      Warrior_Throw_Sword_10: 7672946532498563625
+      Warrior_Throw_Sword_100: 1398514083715303871
+      Warrior_Throw_Sword_101: -6870041057610534930
+      Warrior_Throw_Sword_102: 995628046600038328
+      Warrior_Throw_Sword_103: 9092654419797950667
+      Warrior_Throw_Sword_104: 5469842976226402950
+      Warrior_Throw_Sword_105: -1863599256054287107
+      Warrior_Throw_Sword_106: 6496928524052913917
+      Warrior_Throw_Sword_107: -6975939550997040789
+      Warrior_Throw_Sword_108: 408670913646455406
+      Warrior_Throw_Sword_109: 3750702533147751959
+      Warrior_Throw_Sword_11: 3888007080988495544
+      Warrior_Throw_Sword_110: -7351909060576317681
+      Warrior_Throw_Sword_111: 177415079984182718
+      Warrior_Throw_Sword_112: -1868418506015563562
+      Warrior_Throw_Sword_113: -1140270968309729325
+      Warrior_Throw_Sword_114: -7215163337102239101
+      Warrior_Throw_Sword_115: -8659893227247941009
+      Warrior_Throw_Sword_12: -7289940050329039782
+      Warrior_Throw_Sword_13: -997651778049518162
+      Warrior_Throw_Sword_14: 532363396258003217
+      Warrior_Throw_Sword_15: -3164406583842987197
+      Warrior_Throw_Sword_16: -8529999587100357575
+      Warrior_Throw_Sword_17: 68391388445317637
+      Warrior_Throw_Sword_18: 3396420968140251290
+      Warrior_Throw_Sword_19: -3566683423040600441
+      Warrior_Throw_Sword_2: 7549586074902046485
+      Warrior_Throw_Sword_20: 5906124565584856885
+      Warrior_Throw_Sword_21: 8320876821988748113
+      Warrior_Throw_Sword_22: -5982128361890120690
+      Warrior_Throw_Sword_23: 8442093333698317728
+      Warrior_Throw_Sword_24: -3704919220590791965
+      Warrior_Throw_Sword_25: 803946779065777261
+      Warrior_Throw_Sword_26: -8323789120526327082
+      Warrior_Throw_Sword_27: -2075828151553075874
+      Warrior_Throw_Sword_28: 2296441340313116818
+      Warrior_Throw_Sword_29: -8118394535467508492
+      Warrior_Throw_Sword_3: -3854385931730488529
+      Warrior_Throw_Sword_30: 3369052479840860825
+      Warrior_Throw_Sword_31: 4595254345270928944
+      Warrior_Throw_Sword_32: -2245956827881051375
+      Warrior_Throw_Sword_33: 2636223856515732816
+      Warrior_Throw_Sword_34: 830749029601993518
+      Warrior_Throw_Sword_35: -2666037302560636308
+      Warrior_Throw_Sword_36: 8801656913275383778
+      Warrior_Throw_Sword_37: 4868875016681648236
+      Warrior_Throw_Sword_38: 7414971690370014402
+      Warrior_Throw_Sword_39: -6051794586973316607
+      Warrior_Throw_Sword_4: -3523121374486164654
+      Warrior_Throw_Sword_40: 3157850537598160724
+      Warrior_Throw_Sword_41: 2109679621412556023
+      Warrior_Throw_Sword_42: -5815448913787422451
+      Warrior_Throw_Sword_43: -6953534044634647396
+      Warrior_Throw_Sword_44: -3769906407742082070
+      Warrior_Throw_Sword_45: 4402489310257509280
+      Warrior_Throw_Sword_46: -6056913922351844036
+      Warrior_Throw_Sword_47: 698202126136752560
+      Warrior_Throw_Sword_48: 9064650240010732568
+      Warrior_Throw_Sword_49: 5690279488879332902
+      Warrior_Throw_Sword_5: -7197178222538206835
+      Warrior_Throw_Sword_50: 4219779701873223357
+      Warrior_Throw_Sword_51: -1399682554244699579
+      Warrior_Throw_Sword_52: 7321759660797939168
+      Warrior_Throw_Sword_53: 6156956691809659326
+      Warrior_Throw_Sword_54: -4971545520479535598
+      Warrior_Throw_Sword_55: -8329219842909770355
+      Warrior_Throw_Sword_56: 4864112237807963090
+      Warrior_Throw_Sword_57: 8323201455701630598
+      Warrior_Throw_Sword_58: 941625728492804352
+      Warrior_Throw_Sword_59: -2071098025856238105
+      Warrior_Throw_Sword_6: -6255720572183515756
+      Warrior_Throw_Sword_60: 4748510611719967741
+      Warrior_Throw_Sword_61: 2300138775958399376
+      Warrior_Throw_Sword_62: 6997051941630933107
+      Warrior_Throw_Sword_63: -2783569111077705932
+      Warrior_Throw_Sword_64: -1058043195150247346
+      Warrior_Throw_Sword_65: 9146981954759747975
+      Warrior_Throw_Sword_66: -1076512484555828337
+      Warrior_Throw_Sword_67: -7990801290303095153
+      Warrior_Throw_Sword_68: 745376946548949892
+      Warrior_Throw_Sword_69: -8642791111806031413
+      Warrior_Throw_Sword_7: -1786706364559343485
+      Warrior_Throw_Sword_70: 5304668284610555329
+      Warrior_Throw_Sword_71: -1204083191314389568
+      Warrior_Throw_Sword_72: 6924101026911180920
+      Warrior_Throw_Sword_73: -6965116157298561213
+      Warrior_Throw_Sword_74: -2353723295166674897
+      Warrior_Throw_Sword_75: 7860509041895142499
+      Warrior_Throw_Sword_76: 6679061706602302852
+      Warrior_Throw_Sword_77: -5002073772094430041
+      Warrior_Throw_Sword_78: 91881185083422985
+      Warrior_Throw_Sword_79: -6030853170392552184
+      Warrior_Throw_Sword_8: -3944079194191787261
+      Warrior_Throw_Sword_80: 8023275059924480560
+      Warrior_Throw_Sword_81: 8414180593368615146
+      Warrior_Throw_Sword_82: 8202135098968559034
+      Warrior_Throw_Sword_83: -8021033529163596603
+      Warrior_Throw_Sword_84: 3285327181073163367
+      Warrior_Throw_Sword_85: -7349448556391517578
+      Warrior_Throw_Sword_86: 1644947143217156977
+      Warrior_Throw_Sword_87: 2640434556269784084
+      Warrior_Throw_Sword_88: -1207654769765017013
+      Warrior_Throw_Sword_89: 8284967899855407864
+      Warrior_Throw_Sword_9: 3087395190095666387
+      Warrior_Throw_Sword_90: 2003463937554111268
+      Warrior_Throw_Sword_91: -8170628798847139791
+      Warrior_Throw_Sword_92: -2158315465344498455
+      Warrior_Throw_Sword_93: -7578837096875540391
+      Warrior_Throw_Sword_94: 2799517732691638233
+      Warrior_Throw_Sword_95: -7463169874344221301
+      Warrior_Throw_Sword_96: -5352211170750030078
+      Warrior_Throw_Sword_97: -1571056736614061646
+      Warrior_Throw_Sword_98: -6067678568493273986
+      Warrior_Throw_Sword_99: -9022671128432612354
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

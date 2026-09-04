@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49922fcb25c46aa8697fa0ac06b055e, type: 3}
+  m_Name: SkillDataSO - SwordThrow Spin
+  m_EditorClassIdentifier: 
+  displayName: Sword Throw Spin
+  description: Throw your sword to damage enemies. Sword will apply statuseffects.
+    You can have only one active sword at a tme.
+  icon: {fileID: 2043529862, guid: d4c62e87250187549af36c36e331377f, type: 3}
+  cost: 1
+  isUnlockedDefault: 0
+  prerequisites: []
+  conflicts: []
+  skillType: 3
+  upgradeData:
+    upgradeType: 12
+    cooldown: 4
+    damageScaleData:
+      physic: 1
+      element: 1
+      iceDuration: 3
+      iceSlowMultiplier: 0.5
+      fireDuration: 3
+      fireTotalDamageScale: 1
+      thunderDuration: 3
+      thunderDamageScale: 1
+      thunderCharge: 0.4

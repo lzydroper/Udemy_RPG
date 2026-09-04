@@ -13,5 +13,6 @@ namespace Entity.Player
         public const string JumpAttack = "JumpAttack";
         public const string Death = "Death";
         public const string CounterAttack = "CounterAttack";
+        public const string SwordThrow = "SwordThrow";
     }
 }

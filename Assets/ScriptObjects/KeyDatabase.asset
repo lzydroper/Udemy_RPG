@@ -19,7 +19,7 @@ MonoBehaviour:
     keys:
     - OnHitVFX
     - OnCritHitVFX
-    - OnLightningtHitVFX
+    - OnThunderHitVFX
     - TimeEchoVFX
     - TimeShardVFX
     - SkillObjShard

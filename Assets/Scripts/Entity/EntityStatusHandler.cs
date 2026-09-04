@@ -110,7 +110,7 @@ namespace Entity
 
         private void DoThunderStrike(float damage)
         {
-            GameManager.Pool.RentAsync(Keys.Pool.OnThundertHitVFX, 
+            GameManager.Pool.RentAsync(Keys.Pool.OnThunderHitVFX, 
                 position: transform.position, parent: transform);
             _entityHealth.ReduceHealth(damage);
         }

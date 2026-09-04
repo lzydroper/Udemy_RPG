@@ -14,7 +14,7 @@ namespace Generated
         {
             public const string OnHitVFX = "OnHitVFX";
             public const string OnCritHitVFX = "OnCritHitVFX";
-            public const string OnThundertHitVFX = "OnThundertHitVFX";
+            public const string OnThunderHitVFX = "OnThunderHitVFX";
             public const string TimeEchoVFX = "TimeEchoVFX";
             public const string TimeShardVFX = "TimeShardVFX";
             public const string SkillObjShard = "SkillObjShard";

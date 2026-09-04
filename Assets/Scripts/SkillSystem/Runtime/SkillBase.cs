@@ -16,7 +16,7 @@ namespace SkillSystem.Runtime
 
         #region LifeCycleMethods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             skillManager = GetComponentInParent<SkillManager>();
         }
@@ -33,7 +33,7 @@ namespace SkillSystem.Runtime
             lastTimeUsed = Time.time;
         }
 
-        public bool IsCanUseSkill()
+        public virtual bool IsCanUseSkill()
         {
             if (IsCooldown())
                 return false;

@@ -35,7 +35,8 @@ namespace SkillSystem.Runtime
                 if (damageable.TryTakeDamage(context))
                 {
                     if (elementType != ElementType.None) 
-                        target.GetComponent<EntityStatusHandler>()?.ApplyElementEffect(elementType, effectData);
+                        tar.GetComponent<EntityStatusHandler>()?.ApplyElementEffect(elementType, effectData);
+                    entityVFX?.CreateOnHitVFX(tar.transform, context.IsCritical, context.ElementType);
                 }
             }
         }

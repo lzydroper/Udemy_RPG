@@ -25,13 +25,12 @@ namespace SkillSystem.Runtime
         private void CreateShard()
         {
             var skill = skillManager.GetSkillByType(SkillType.TimeShard) as SkillTimeShard;
-            if (skill != null)
-                skill.SummonShard();
+            skill?.SummonShard();
         }
 
         private void CreateClone()
         {
-            Debug.Log("Create time echo!;");
+            // Debug.Log("Create time echo!;");
             // TODO: skill manager clone create clone
         }
     }

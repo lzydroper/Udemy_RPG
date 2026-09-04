@@ -1,4 +1,5 @@
 using Core.State;
+using SkillSystem;
 
 namespace Entity.Player.State
 {
@@ -31,6 +32,12 @@ namespace Entity.Player.State
             if (player.InputSet.Player.CounterAttack.WasPressedThisFrame())
             {
                 stateMachine.ChangeState(PlayerStateType.CounterAttack);
+            }
+
+            if (player.InputSet.Player.CoAttack.WasPressedThisFrame() && 
+                player.skillManager.GetSkillByType(SkillType.SwordThrow).IsCanUseSkill())
+            {
+                stateMachine.ChangeState(PlayerStateType.SwordThrow);
             }
         }
     }

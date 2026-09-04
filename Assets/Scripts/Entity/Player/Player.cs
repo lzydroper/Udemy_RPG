@@ -17,6 +17,7 @@ namespace Entity.Player
         public Vector2 MoveInput { get; private set; } 
         public PlayerInputSet InputSet { get; private set; }
         public PlayerVFX VFX { get; private set; }
+        public Vector2 MousePosition { get; private set; }
     
         // attack
         [Header("attack details")] 
@@ -46,6 +47,8 @@ namespace Entity.Player
             base.FetchComponents();
             uiCanvas = FindFirstObjectByType<UICanvas>();
             VFX = GetComponent<PlayerVFX>();
+            skillManager = GetComponent<SkillManager>();
+            health = GetComponent<EntityHealth>();
         }
 
         protected override void BuildStateMachine()
@@ -62,6 +65,7 @@ namespace Entity.Player
             fsm.AddState(PlayerStateType.JumpAttack, new JumpAttackState(this, fsm, "jumpAttack"));
             fsm.AddState(PlayerStateType.Death, new DeathState(this, fsm, "death"));
             fsm.AddState(PlayerStateType.CounterAttack, new CounterAttackState(this, fsm, "counterAttack"));
+            fsm.AddState(PlayerStateType.SwordThrow, new SwordThrowState(this, fsm, "swordThrow"));
         }
 
         public override void Death()
@@ -78,8 +82,6 @@ namespace Entity.Player
         {
             base.Awake();
             InputSet = new PlayerInputSet();
-            skillManager = GetComponent<SkillManager>();
-            health = GetComponent<EntityHealth>();
         }
 
         private void OnEnable()
@@ -89,6 +91,7 @@ namespace Entity.Player
             InputSet.Player.Movement.canceled += _ => MoveInput = Vector2.zero;
             InputSet.Player.ToggleUITreeSkill.performed += _ => uiCanvas.ToggleUITreeSkill();
             InputSet.Player.Spell.performed += _ => skillManager.GetSkillByType(SkillType.TimeShard).UseSkill();
+            InputSet.Player.MousePosition.performed += ctx => MousePosition = ctx.ReadValue<Vector2>();
         }
 
         private void OnDisable()

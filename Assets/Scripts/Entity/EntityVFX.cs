@@ -89,12 +89,8 @@ namespace Entity
             }
         }
 
-        public void PlayOnDamageVFX()
-        {
-            if (onDamageCoroutine != null)
-                StopCoroutine(onDamageCoroutine);
-            StartCoroutine(OnDamageVFXCo());
-        }
+        public void PlayOnDamageVFX() 
+            => this.RestartCoroutine(ref onDamageCoroutine, OnDamageVFXCo());
 
         private IEnumerator OnDamageVFXCo()
         {

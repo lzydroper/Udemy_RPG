@@ -116,6 +116,11 @@ namespace SkillSystem.Runtime
             return skills.GetValueOrDefault(skillType);
         }
 
+        public T GetSkillByType<T>(SkillType skillType) where T : SkillBase
+        {
+            return skills.GetValueOrDefault(skillType) as T;
+        }
+
         private void GetAllSkills()
         {
             foreach (var skill in skillHolder.GetComponentsInChildren<SkillBase>())
