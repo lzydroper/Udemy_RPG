@@ -1,5 +1,6 @@
 using System;
 using SkillSystem.Data;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -33,10 +34,14 @@ namespace SkillSystem.UI
             if (skillData == null) return;
             gameObject.name = $"SkillUINode - {skillData.displayName}";
             skillIcon.sprite = skillData.icon;
+            
+            EditorUtility.SetDirty(skillIcon);
+            PrefabUtility.RecordPrefabInstancePropertyModifications(skillIcon);
         }
 
         private void Start()
         {
+            Refresh();
             SetIconColor(skillUITree.skillManager.IsSkillUnlocked(skillData) ? unlockedColor : lockedColor);
         }
 

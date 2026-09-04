@@ -12,6 +12,7 @@ namespace SkillSystem.Runtime
         protected SkillSwordThrow skill;
         protected Transform player;
         protected Rigidbody2D rb;
+        protected Animator ani;
         protected bool shouldComeback;
         protected float comebackSpeed = 20;
         protected float maxAllowedDistance = 25;
@@ -23,6 +24,7 @@ namespace SkillSystem.Runtime
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            ani = GetComponentInChildren<Animator>();
         }
 
         protected virtual void Update()
@@ -44,7 +46,11 @@ namespace SkillSystem.Runtime
             this.damageScale = damageScale;
         }
 
-        public void GetSwordBackToPlayer() => shouldComeback = true;
+        public void GetSwordBackToPlayer()
+        {
+            shouldComeback = true;
+            ani.SetBool("isSpinning", true);
+        }
 
         protected void HandleComeback()
         {

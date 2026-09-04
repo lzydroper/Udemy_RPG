@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Entity.Player;
 using SkillSystem.Data;
 using UnityEngine;
+using VInspector;
 
 namespace SkillSystem.Runtime
 {
@@ -141,6 +142,7 @@ namespace SkillSystem.Runtime
             return true;
         }
 
+        [Button]
         public void RefundAllSkills()
         {
             // 把所有非默认解锁的重置解锁状态

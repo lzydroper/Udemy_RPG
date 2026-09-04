@@ -3,6 +3,7 @@ using SkillSystem.Data;
 using SkillSystem.Runtime;
 using UI;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using VInspector;
 
@@ -83,6 +84,7 @@ namespace SkillSystem.UI
                 node.Refresh();
             foreach (var connection in connections)
                 connection.RefreshPosition();
+            EditorSceneManager.MarkSceneDirty(gameObject.scene);
         }
 
         // 重置并缓存已存在的技能树
@@ -90,14 +92,14 @@ namespace SkillSystem.UI
         {
             nodes.Clear();
             connections.Clear();
-            foreach (var node in nodeRoot.GetComponentsInChildren<SkillUINode>())
+            foreach (var node in nodeRoot.GetComponentsInChildren<SkillUINode>(true))
             {
                 if (node.skillData == null)
                     continue;
 
                 nodes[node.skillData] = node;
             }
-            foreach (var conn in connectionRoot.GetComponentsInChildren<SkillUIConnection>())
+            foreach (var conn in connectionRoot.GetComponentsInChildren<SkillUIConnection>(true))
             {
                 connections.Add(conn);
             }

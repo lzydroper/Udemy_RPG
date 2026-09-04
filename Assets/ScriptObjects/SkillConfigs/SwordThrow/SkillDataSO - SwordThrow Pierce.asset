@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: SkillDataSO - SwordThrow Pierce
   m_EditorClassIdentifier: 
   displayName: Sword Throw Pierce
-  description: Throw your sword to damage enemies. Sword will apply statuseffects.
-    You can have only one active sword at a tme.
-  icon: {fileID: 2043529862, guid: d4c62e87250187549af36c36e331377f, type: 3}
+  description: Launch a sword that flies forward, piercing throughup to N enemies
+    in its path.
+  icon: {fileID: 397261358, guid: d4c62e87250187549af36c36e331377f, type: 3}
   cost: 1
   isUnlockedDefault: 0
   prerequisites: []
-  conflicts: []
+  conflicts:
+  - {fileID: 11400000, guid: 56d62827c07b511439502907b2df4f39, type: 2}
+  - {fileID: 11400000, guid: 2257dfa1a1eecff4ba9dc952980f8ac7, type: 2}
   skillType: 3
   upgradeData:
     upgradeType: 13

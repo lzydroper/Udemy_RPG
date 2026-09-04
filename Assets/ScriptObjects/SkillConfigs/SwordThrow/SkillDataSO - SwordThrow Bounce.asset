@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: SkillDataSO - SwordThrow Bounce
   m_EditorClassIdentifier: 
   displayName: Sword Throw Bounce
-  description: Throw your sword to damage enemies. Sword will apply statuseffects.
-    You can have only one active sword at a tme.
-  icon: {fileID: 2043529862, guid: d4c62e87250187549af36c36e331377f, type: 3}
+  description: The sword will bounce beetwen N targets, dealing damage oneach bounce.
+  icon: {fileID: 1463510484, guid: d4c62e87250187549af36c36e331377f, type: 3}
   cost: 1
   isUnlockedDefault: 0
   prerequisites: []
-  conflicts: []
+  conflicts:
+  - {fileID: 11400000, guid: 317243abcb9fe264c8fdfc49b5b32fe5, type: 2}
+  - {fileID: 11400000, guid: 2257dfa1a1eecff4ba9dc952980f8ac7, type: 2}
   skillType: 3
   upgradeData:
     upgradeType: 14

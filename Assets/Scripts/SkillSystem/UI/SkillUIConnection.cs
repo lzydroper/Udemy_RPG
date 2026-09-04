@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,8 @@ namespace SkillSystem.UI
             connectionRect.anchoredPosition = (sta + end) * 0.5f;
             connectionRect.sizeDelta = new Vector2(direction.magnitude, connectionRect.sizeDelta.y);
             connectionRect.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            
+            EditorUtility.SetDirty(this);
         }
     
         /// <summary>

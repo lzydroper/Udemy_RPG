@@ -17,6 +17,15 @@ namespace SkillSystem.Runtime
             _ => throw new System.NotImplementedException(),
         };
         
+        [Header("Trajectory Prediction")]
+        [SerializeField] private GameObject predictionDotPrefab;
+        [SerializeField] private int numOfDots = 20;
+        [SerializeField] private float spaceOfDots = 0.05f;
+        [SerializeField] private float gravity = 3.5f;
+        private Transform[] predictionDots;
+        private Transform predictionDotParent;
+        private Vector2 confirmedDirection;
+        
         [Tab("Regular Sword Upgrade")]
         [Header("Regular Sword Upgrade")]
         [SerializeField] private GameObject regularSwordPrefab;
@@ -46,15 +55,6 @@ namespace SkillSystem.Runtime
         public float bounceSpeed = 12;
         [SerializeField] private float bounceThrowPower = 5;
         [EndTab]
-        
-        [Header("Trajectory Prediction")]
-        [SerializeField] private GameObject predictionDotPrefab;
-        [SerializeField] private int numOfDots = 20;
-        [SerializeField] private float spaceOfDots = 0.05f;
-        [SerializeField] private float gravity = 3.5f;
-        private Transform[] predictionDots;
-        private Transform predictionDotParent;
-        private Vector2 confirmedDirection;
 
         #endregion
 

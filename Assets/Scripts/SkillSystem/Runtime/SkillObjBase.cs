@@ -20,6 +20,9 @@ namespace SkillSystem.Runtime
         protected DamageScaleData damageScale;
 
         #endregion
+        
+        protected void DamageInRadius(Transform target, float radius) 
+            => DamageInRadius(target, radius, out _);
 
         protected void DamageInRadius(Transform target, float radius, out ElementType elementType)
         {
