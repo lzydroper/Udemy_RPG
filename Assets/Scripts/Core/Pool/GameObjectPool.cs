@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Core.Utils;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ namespace Core.Pool
     public class GameObjectPool
     {
         private CancellationTokenSource cts;
+        private readonly Dictionary<int, CancellationTokenSource> _objCtsDict = new();
         private readonly Dictionary<int, IPoolRent> _rentDict = new();
         private readonly Dictionary<int, IPoolReturn> _returnDict = new();
         // 防止重复Return
@@ -120,7 +122,14 @@ namespace Core.Pool
             // 判空，并防止重复入队
             if (gameObject is null || _poolSet.Contains(gameObject.GetInstanceID()))
                 return false;
-            if (_returnDict.TryGetValue(gameObject.GetInstanceID(), out IPoolReturn ret))
+            var id = gameObject.GetInstanceID();
+            if (_objCtsDict.TryGetValue(id, out var objCts))
+            {
+                objCts.Cancel();
+                objCts.Dispose();
+                _objCtsDict.Remove(id);
+            }
+            if (_returnDict.TryGetValue(id, out IPoolReturn ret))
                 ret.OnReturn();
             Push(gameObject);
             return true;
@@ -137,9 +146,42 @@ namespace Core.Pool
         {
             // 不接受生存时间不合法选项
             duration = duration < 0 ? Duration : duration;
-            if (duration < 0) return;
-            await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: cts.Token);
-            TryReturn(gameObject);
+            if (duration < 0 || gameObject is null) return;
+            var id = gameObject.GetInstanceID();
+            // 如果上次遗留了任务，先清理
+            if (_objCtsDict.TryGetValue(id, out var oldCts))
+            {
+                oldCts.Cancel();
+                oldCts.Dispose();
+            }
+            // 为本次延迟回池生成专属 CTS
+            var objCts = new CancellationTokenSource();
+            _objCtsDict[id] = objCts;
+
+            try
+            {
+                // 联动：整个池销毁 或 该物体被提前回收 时，都会触发取消
+                using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, objCts.Token);
+
+                bool isCanceled = await UniTask
+                    .Delay(TimeSpan.FromSeconds(duration), cancellationToken: linkedCts.Token)
+                    .SuppressCancellationThrow();
+
+                // 如果被取消（提前被打死回池了）或物体已不存在，直接退出
+                if (isCanceled)
+                    return;
+
+                TryReturn(gameObject);
+            }
+            finally
+            {
+                // 延时结束后，清理字典记录
+                if (_objCtsDict.TryGetValue(id, out var current) && current == objCts)
+                {
+                    _objCtsDict.Remove(id);
+                    objCts.Dispose();
+                }
+            }
         }
         
         public void Destroy()
