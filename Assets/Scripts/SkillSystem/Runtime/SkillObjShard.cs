@@ -7,13 +7,12 @@ using UnityEngine;
 
 namespace SkillSystem.Runtime
 {
-    public class SkillObjShard : SkillObjBase
+    public class SkillObjShard : SkillObjBase<SkillTimeShard>
     {
         #region Variables
 
         private Transform target;
         private float moveSpeed;
-        private SkillTimeShard skill;
 
         #endregion
 
@@ -34,13 +33,9 @@ namespace SkillSystem.Runtime
             moveSpeed = speed;
         }
 
-        public void SetupShard(SkillTimeShard skill, float detonateDelay, EntityStat entityStat, EntityVFX entityVFX, 
-            DamageScaleData damageScale)
+        public void SetupShard(SkillTimeShard skill, float detonateDelay)
         {
-            this.skill = skill;
-            this.entityStat = entityStat;
-            this.entityVFX = entityVFX;
-            this.damageScale = damageScale;
+            Setup(skill);
             Invoke(nameof(Explode), detonateDelay);
         }
 

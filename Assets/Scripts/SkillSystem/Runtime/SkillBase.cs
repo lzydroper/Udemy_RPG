@@ -8,9 +8,9 @@ namespace SkillSystem.Runtime
     public abstract class SkillBase : MonoBehaviour
     {
         [SerializeField] public SkillType skillType;
-        protected SkillManager skillManager;
+        public SkillManager skillManager;
         [SerializeField] protected SkillUpgradeType upgradeType;
-        protected DamageScaleData damageScale;
+        public DamageScaleData damageScale;
         protected float cooldown;
         private float lastTimeUsed;
 

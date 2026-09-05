@@ -8268,6 +8268,7 @@ GameObject:
   - component: {fileID: 1237942021}
   - component: {fileID: 1237942020}
   - component: {fileID: 1237942022}
+  - component: {fileID: 1237942023}
   m_Layer: 8
   m_Name: SkillHolder
   m_TagString: Untagged
@@ -8303,7 +8304,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillType: 2
+  skillManager: {fileID: 0}
   upgradeType: 0
+  damageScale:
+    physic: 1
+    element: 1
+    iceDuration: 3
+    iceSlowMultiplier: 0.5
+    fireDuration: 3
+    fireTotalDamageScale: 1
+    thunderDuration: 3
+    thunderDamageScale: 1
+    thunderCharge: 0.4
   detonateDelayRegular: 2
   shardSpeed: 7
   maxCharges: 3
@@ -8324,7 +8336,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillType: 0
+  skillManager: {fileID: 0}
   upgradeType: 0
+  damageScale:
+    physic: 1
+    element: 1
+    iceDuration: 3
+    iceSlowMultiplier: 0.5
+    fireDuration: 3
+    fireTotalDamageScale: 1
+    thunderDuration: 3
+    thunderDamageScale: 1
+    thunderCharge: 0.4
 --- !u!114 &1237942022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8338,7 +8361,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillType: 3
+  skillManager: {fileID: 0}
   upgradeType: 0
+  damageScale:
+    physic: 1
+    element: 1
+    iceDuration: 3
+    iceSlowMultiplier: 0.5
+    fireDuration: 3
+    fireTotalDamageScale: 1
+    thunderDuration: 3
+    thunderDamageScale: 1
+    thunderCharge: 0.4
   predictionDotPrefab: {fileID: 5518067683393343308, guid: 262d38e1be98fc44bb033589bc0f60c4, type: 3}
   numOfDots: 20
   spaceOfDots: 0.02
@@ -8357,6 +8391,36 @@ MonoBehaviour:
   bounceCount: 5
   bounceSpeed: 12
   bounceThrowPower: 5
+--- !u!114 &1237942023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237942018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698ef6e13edb47608c387e2abca46cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 1
+  skillManager: {fileID: 0}
+  upgradeType: 15
+  damageScale:
+    physic: 1
+    element: 1
+    iceDuration: 3
+    iceSlowMultiplier: 0.5
+    fireDuration: 3
+    fireTotalDamageScale: 1
+    thunderDuration: 3
+    thunderDamageScale: 1
+    thunderCharge: 0.4
+  timeEchoDuration: 5
+  maxAttacks: 3
+  duplicateChance: 0.3
+  damagePercentHealed: 0.3
+  cooldownReducedInSeconds: 0
 --- !u!1001 &1239494386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46589,19 +46653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ec612359b44c4eb746724f4b0f1cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1656367769}
-  entityStat: {fileID: 0}
-  entityVFX: {fileID: 0}
-  damageScale:
-    physic: 1
-    element: 1
-    iceDuration: 3
-    iceSlowMultiplier: 0.5
-    fireDuration: 3
-    fireTotalDamageScale: 1
-    thunderDuration: 3
-    thunderDamageScale: 1
-    thunderCharge: 0.4
+  skillTimeEcho: {fileID: 1237942023}
 --- !u!4 &1699134459
 Transform:
   m_ObjectHideFlags: 0
@@ -49552,6 +49604,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2821ddbabd51dcd479379b4fa5e69cd5, type: 2}
   - {fileID: 11400000, guid: a15fda1a9f77695498eebdf0d1c6471b, type: 2}
   - {fileID: 11400000, guid: f54367b26b0024f4fab76f87def7f890, type: 2}
+  - {fileID: 11400000, guid: 5e313faa399cf424f9aa638a03549ded, type: 2}
+  - {fileID: 11400000, guid: 03c924c08a80f154d8b76c570467a032, type: 2}
 --- !u!4 &2035860807
 Transform:
   m_ObjectHideFlags: 0

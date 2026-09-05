@@ -29,10 +29,9 @@ namespace SkillSystem.Runtime
 
         #endregion
 
-        public override void SetupSword(SkillSwordThrow skill, Vector2 velocity, Transform player, 
-            EntityStat entityStat, EntityVFX entityVFX, DamageScaleData damageScale)
+        public override void SetupSword(SkillSwordThrow skill, Vector2 velocity)
         {
-            base.SetupSword(skill, velocity, player, entityStat, entityVFX, damageScale);
+            base.SetupSword(skill, velocity);
             ani.SetBool("isSpinning", true);
             attackInterval = 1 / skill.attacksPerSecond;
             Invoke(nameof(GetSwordBackToPlayer), skill.maxSpinDuration);

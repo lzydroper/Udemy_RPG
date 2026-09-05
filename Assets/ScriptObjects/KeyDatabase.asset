@@ -20,6 +20,8 @@ MonoBehaviour:
     - OnHitVFX
     - OnCritHitVFX
     - OnThunderHitVFX
-    - TimeEchoVFX
+    - DashEchoVFX
     - TimeShardVFX
     - SkillObjShard
+    - SkillObjEcho
+    - SmokeCloudVFX

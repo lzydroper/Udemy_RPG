@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 56d62827c07b511439502907b2df4f39, type: 2}
   - {fileID: 11400000, guid: 317243abcb9fe264c8fdfc49b5b32fe5, type: 2}
   - {fileID: 11400000, guid: 2257dfa1a1eecff4ba9dc952980f8ac7, type: 2}
+  - {fileID: 11400000, guid: 7fc849365d7a108489a06f8eac2a225f, type: 2}
   connections:
   - parent: {fileID: 11400000, guid: 102f4a9dbf0ce5b4eb4c6a026ec66d45, type: 2}
     child: {fileID: 11400000, guid: 88e519c17bc6c47499253ed39d0f47b6, type: 2}

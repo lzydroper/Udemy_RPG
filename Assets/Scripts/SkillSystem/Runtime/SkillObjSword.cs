@@ -5,11 +5,10 @@ using UnityEngine;
 
 namespace SkillSystem.Runtime
 {
-    public class SkillObjSword : SkillObjBase
+    public class SkillObjSword : SkillObjBase<SkillSwordThrow>
     {
         #region Variables
 
-        protected SkillSwordThrow skill;
         protected Transform player;
         protected Rigidbody2D rb;
         protected Animator ani;
@@ -35,15 +34,11 @@ namespace SkillSystem.Runtime
 
         #endregion
         
-        public virtual void SetupSword(SkillSwordThrow skill, Vector2 velocity, Transform player, 
-            EntityStat entityStat, EntityVFX entityVFX, DamageScaleData damageScale)
+        public virtual void SetupSword(SkillSwordThrow skill, Vector2 velocity)
         {
-            this.skill = skill;
+            Setup(skill);
             rb.linearVelocity = velocity;
-            this.player = player;
-            this.entityStat = entityStat;
-            this.entityVFX = entityVFX;
-            this.damageScale = damageScale;
+            player = skill.skillManager.player.transform;
         }
 
         public void GetSwordBackToPlayer()

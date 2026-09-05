@@ -25,7 +25,7 @@ namespace Entity.Player
             while (timer < duration)
             {
                 if (GameManager.Pool.TryRent<VFXController>(
-                        Keys.Pool.TimeEchoVFX,
+                        Keys.Pool.DashEchoVFX,
                         out var vfx,
                         position: transform.position,
                         rotation: transform.rotation))

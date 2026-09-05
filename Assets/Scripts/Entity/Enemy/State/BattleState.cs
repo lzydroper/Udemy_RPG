@@ -7,6 +7,7 @@ namespace Entity.Enemy.State
     public class BattleState : EnemyStateBase
     {
         private Transform player;
+        private Transform lastTarget;
         private float _lastTimeWasInBattle;
         
         public BattleState(EnemyBase enemy, StateMachine stateMachine, string animBoolName) 
@@ -39,6 +40,13 @@ namespace Entity.Enemy.State
 
             if (enemy.PlayerDetected())
             {
+                // 战斗中可能切换目标
+                Transform newTarget = enemy.PlayerDetected().transform;
+                if (newTarget != lastTarget)
+                {
+                    lastTarget = newTarget;
+                    player = newTarget;
+                }
                 // update battle timer
                 _lastTimeWasInBattle = Time.time;
             }

@@ -74,7 +74,7 @@ namespace SkillSystem.Runtime
             if (GameManager.Pool.TryRent<SkillObjShard>(Keys.Pool.SkillObjShard, out var shard,
                     position: transform.position))
             {
-                shard.SetupShard(this, detonateDelay, skillManager.player.stat, skillManager.player.VFX, damageScale);
+                shard.SetupShard(this, detonateDelay);
                 if (upgradeType is SkillUpgradeType.Shard_MoveToEnemy or SkillUpgradeType.Shard_Multicast)
                     shard.MoveTowardClosest(shardSpeed);
                 currShard = shard;

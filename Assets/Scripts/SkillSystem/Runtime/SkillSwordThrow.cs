@@ -98,8 +98,7 @@ namespace SkillSystem.Runtime
             var go = Instantiate(prefab, predictionDots[1].position, Quaternion.identity);
             var velocity = confirmedDirection * (currentThrowPower * 10);
             sword = go.GetComponent<SkillObjSword>();
-            sword.SetupSword(this, velocity, skillManager.player.transform, skillManager.player.stat,
-                skillManager.player.VFX, damageScale);
+            sword.SetupSword(this, velocity);
         }
         
         #region Trajectory

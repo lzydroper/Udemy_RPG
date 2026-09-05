@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace SkillSystem.Runtime
 {
-    public abstract class SkillObjBase : MonoBehaviour
+    public abstract class SkillObjBase<TSkill> : MonoBehaviour 
+        where TSkill : SkillBase
     {
         #region Variables
 
@@ -15,11 +16,20 @@ namespace SkillSystem.Runtime
         [SerializeField] protected float checkRadius = 1f;
         [SerializeField] protected float closestCheckR = 10f;
         
+        protected TSkill skill;
         protected EntityStat entityStat;
         protected EntityVFX entityVFX;
         protected DamageScaleData damageScale;
 
         #endregion
+
+        protected void Setup(TSkill skill)
+        {
+            this.skill = skill;
+            entityStat = skill.skillManager.player.stat;
+            entityVFX = skill.skillManager.player.VFX;
+            damageScale = skill.damageScale;
+        }
         
         protected void DamageInRadius(Transform target, float radius) 
             => DamageInRadius(target, radius, out _);

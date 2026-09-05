@@ -127,10 +127,9 @@ namespace SkillSystem.Runtime
             return candidates[Random.Range(0, candidates.Count)];
         }
 
-        public override void SetupSword(SkillSwordThrow skill, Vector2 velocity, Transform player, 
-            EntityStat entityStat, EntityVFX entityVFX, DamageScaleData damageScale)
+        public override void SetupSword(SkillSwordThrow skill, Vector2 velocity)
         {
-            base.SetupSword(skill, velocity, player, entityStat, entityVFX, damageScale);
+            base.SetupSword(skill, velocity);
             ani.SetBool("isSpinning", true);
             isBouncing = false;
             isReturning = false;

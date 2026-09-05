@@ -18,12 +18,12 @@ MonoBehaviour:
     The echo will distracts enemies.'
   icon: {fileID: 889661406, guid: d4c62e87250187549af36c36e331377f, type: 3}
   cost: 1
-  isUnlockedDefault: 0
+  isUnlockedDefault: 1
   prerequisites: []
   conflicts: []
-  skillType: 0
+  skillType: 1
   upgradeData:
-    upgradeType: 0
+    upgradeType: 15
     cooldown: 0
     damageScaleData:
       physic: 1

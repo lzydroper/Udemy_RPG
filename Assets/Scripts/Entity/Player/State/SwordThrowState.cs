@@ -9,6 +9,7 @@ namespace Entity.Player.State
     {
 
         private Camera camera;
+        private SkillSwordThrow swordThrowSkill;
     
         public SwordThrowState(Player player, StateMachine stateMachine, string animBoolName )
             : base(player, stateMachine, animBoolName)
@@ -19,10 +20,15 @@ namespace Entity.Player.State
         {
             base.OnEnter();
             
-            player.skillManager.GetSkillByType<SkillSwordThrow>(SkillType.SwordThrow).EnableDots(true);
-            
             if (camera != Camera.main)
                 camera = Camera.main;
+            
+            swordThrowSkill ??= player.skillManager.GetSkillByType<SkillSwordThrow>(SkillType.SwordThrow);
+            // 为去除残影，提前计算位置再开启
+            var direction = DirectionToMouse();
+            player.HandleFlip(direction.x);
+            swordThrowSkill.PredictTrajectory(direction);
+            swordThrowSkill.EnableDots(true);
         }
 
         public override void OnUpdate()
@@ -32,12 +38,12 @@ namespace Entity.Player.State
             var direction = DirectionToMouse();
             player.SetVelocity(0, rb.linearVelocity.y);
             player.HandleFlip(direction.x);
-            player.skillManager.GetSkillByType<SkillSwordThrow>(SkillType.SwordThrow).PredictTrajectory(direction);
+            swordThrowSkill.PredictTrajectory(direction);
             
             if (player.InputSet.Player.CoAttack.WasReleasedThisFrame())
             {
                 ani.SetBool("swordThrowPerform", true);
-                player.skillManager.GetSkillByType<SkillSwordThrow>(SkillType.SwordThrow).ConfirmedDirection(direction);
+                swordThrowSkill.ConfirmedDirection(direction);
             }
             
             // 取消，或完成
@@ -48,7 +54,7 @@ namespace Entity.Player.State
         public override void OnExit()
         {
             base.OnExit();
-            player.skillManager.GetSkillByType<SkillSwordThrow>(SkillType.SwordThrow).EnableDots(false);
+            swordThrowSkill.EnableDots(false);
             ani.SetBool("swordThrowPerform", false);
         }
 

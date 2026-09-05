@@ -15,9 +15,11 @@ namespace Generated
             public const string OnHitVFX = "OnHitVFX";
             public const string OnCritHitVFX = "OnCritHitVFX";
             public const string OnThunderHitVFX = "OnThunderHitVFX";
-            public const string TimeEchoVFX = "TimeEchoVFX";
+            public const string DashEchoVFX = "DashEchoVFX";
             public const string TimeShardVFX = "TimeShardVFX";
             public const string SkillObjShard = "SkillObjShard";
+            public const string SkillObjEcho = "SkillObjEcho";
+            public const string SmokeCloudVFX = "SmokeCloudVFX";
         }
     }
 }
